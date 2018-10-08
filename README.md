@@ -7,3 +7,7 @@ Machine learning in Nautilina with OrbitDB.
 - Docker
 - Docker Compose
 - Node.js
+
+### Architecture
+
+![Architecture Diagram](/doc/OceanHaja.png)
