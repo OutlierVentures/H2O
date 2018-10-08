@@ -1,3 +1,9 @@
-# H2O
+# H2O: Haja to Ocean
 
-Haja to Ocean: machine learning in Nautilina with OrbitDB.
+Machine learning in Nautilina with OrbitDB.
+
+### Requirements
+
+- Docker
+- Docker Compose
+- Node.js
