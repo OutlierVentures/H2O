@@ -1,3 +1,4 @@
+const config = require('../config')
 const IPFS = require('ipfs')
 const OrbitDB = require('orbit-db')
 
@@ -23,11 +24,11 @@ ipfs.on('ready', async () => {
 
   const orbitdb = new OrbitDB(ipfs)
 
-  const db = await orbitdb.open('/orbitdb/QmcHKBHmXmx3HHi1opqAVqF4E3qwwkmJPQ8CeVX4ybc4xJ/trainingdata', { sync: true })
+  const db = await orbitdb.open(config.address, { sync: true })
   await db.load()
 
   db.events.on('replicated', () => {
-
+    
     //TODO: WRITE TO JSON
     orbitdb.disconnect()
     ipfs.stop(() => {})
