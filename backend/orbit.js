@@ -27,8 +27,12 @@ ipfs.on('ready', async () => {
   await db.load()
 
   db.events.on('replicated', () => {
+    //write to json
     const value = db.get('01')
     console.log(value)
+    orbitdb.disconnect()
+    ipfs.stop(() => {})
+
   })
 
 })
