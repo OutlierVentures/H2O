@@ -5,9 +5,8 @@ Machine learning in Nautilina with OrbitDB.
 ### Requirements
 
 - Docker, Docker Compose
-The following will be installed automatically:
 - Node.js, Yarn, Angular CLI
-- Python, pip, Flask, scikit-learn
+- Python, pip
 
 ### Architecture
 

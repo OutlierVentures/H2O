@@ -1,7 +1,7 @@
 {
-    "name": "Data-Science-Web-App",
-    "version": "1.0.0",
-    "author": "Daniel Elsner <dvelsner@gmail.com>",
+    "name": "H2O",
+    "version": "0.2.0",
+    "author": "Outlier Ventures, Daniel Elsner",
     "scripts": {
         "ng": "ng",
         "start": "ng serve --proxy-config proxy.conf.json",

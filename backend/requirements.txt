@@ -1,2 +1,0 @@
-flask
-scikit-learn[alldeps]
