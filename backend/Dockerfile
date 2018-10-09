@@ -16,6 +16,7 @@ WORKDIR /app
 
 # install required libraries
 RUN pip3 install -r flask scikit-learn[alldeps]
+RUN npm install
 
 # This is the runtime command for the container
 CMD python3 app.py

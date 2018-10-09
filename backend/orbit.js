@@ -23,9 +23,9 @@ ipfs.on('ready', async () => {
 
   const orbitdb = new OrbitDB(ipfs)
 
-  const db = await orbitdb.open('/orbitdb/QmcYbhRpK8pySXwpH5iTPTNna5aWBf2dE75UoLvC7ENFM5/ajdb', { sync: true })
+  const db = await orbitdb.open('/orbitdb/ADDRESS', { sync: true })
   await db.load()
-  
+
   const value = db.get('name')
   console.log(value)
 
