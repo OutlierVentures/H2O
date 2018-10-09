@@ -23,10 +23,12 @@ ipfs.on('ready', async () => {
 
   const orbitdb = new OrbitDB(ipfs)
 
-  const db = await orbitdb.open('/orbitdb/ADDRESS', { sync: true })
+  const db = await orbitdb.open('/orbitdb/QmcHKBHmXmx3HHi1opqAVqF4E3qwwkmJPQ8CeVX4ybc4xJ/trainingdata', { sync: true })
   await db.load()
 
-  const value = db.get('name')
-  console.log(value)
+  db.events.on('replicated', () => {
+    const value = db.get('01')
+    console.log(value)
+  })
 
 })
