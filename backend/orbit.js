@@ -1,4 +1,5 @@
 const config = require('../config')
+const fs = require('fs');
 const IPFS = require('ipfs')
 const OrbitDB = require('orbit-db')
 
@@ -29,8 +30,18 @@ ipfs.on('ready', async () => {
 
   db.events.on('replicated', () => {
 
-    console.log(db.query((doc) => doc))
 
+    x = db.get('x')[0].array
+    console.log(x)
+    //console.log(db.query((doc) => doc))
+    /*
+    let data = {
+      x: db.get('x'),
+      y: db.get('y'),
+      truth: db.get('t')
+    }
+    console.log(data)
+    */
     //TODO: WRITE TO JSON
     orbitdb.disconnect()
     ipfs.stop(() => {})
