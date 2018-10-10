@@ -30,22 +30,23 @@ ipfs.on('ready', async () => {
 
   db.events.on('replicated', () => {
 
-
-    x = db.get('x')[0].array
-    console.log(x)
-    //console.log(db.query((doc) => doc))
-    /*
     let data = {
-      x: db.get('x'),
-      y: db.get('y'),
-      truth: db.get('t')
+      "x": getArray(db, 'x'),
+      "y": getArray(db, 'y'),
+      "truth": getArray(db, 't')
     }
-    console.log(data)
-    */
-    //TODO: WRITE TO JSON
+    fs.writeFileSync('data.json', JSON.stringify(data));
+
+    /*
     orbitdb.disconnect()
     ipfs.stop(() => {})
-
+    */
   })
 
 })
+
+function getArray(db, name) {
+
+  return db.get(name)[0].array
+
+}
