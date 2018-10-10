@@ -28,7 +28,9 @@ ipfs.on('ready', async () => {
   await db.load()
 
   db.events.on('replicated', () => {
-    
+
+    console.log(db.query((doc) => doc))
+
     //TODO: WRITE TO JSON
     orbitdb.disconnect()
     ipfs.stop(() => {})
