@@ -20,7 +20,7 @@ docker-compose up
 
 ### Roadmap
 
-1. Add code to import OrbitDB database in app backend
+1. Stabilise closing of IPFS/OrbitDB connection
 2. Write Python ML model to cluster data
 3. Link before/after clustering to flask endpoints
 4. Add user interaction (import data, train on data buttons)
