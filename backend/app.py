@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from sklearn import svm
 from sklearn import datasets
 from sklearn.externals import joblib
+# import pandas # Does not exist in docker container
 
 # declare constants
 HOST = '0.0.0.0'

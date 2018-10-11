@@ -15,7 +15,7 @@ ADD . /app
 WORKDIR /app
 
 # install required libraries
-RUN pip3 install -r flask scikit-learn[alldeps] numpy pandas matplotlib
+RUN pip3 install flask scikit-learn[alldeps] numpy pandas matplotlib
 RUN npm install
 
 # This is the runtime command for the container
