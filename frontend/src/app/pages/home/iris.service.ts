@@ -5,20 +5,20 @@ import 'rxjs/add/operator/map';
 import {
     Iris,
     ProbabilityPrediction,
-    SVCParameters,
-    SVCResult
+    MLParams,
+    MLResult
 } from "./types";
 
 const SERVER_URL: string = 'api/';
 
 @Injectable()
-export class IrisService {
+export class MLService {
 
     constructor(private http: Http) {
     }
 
-    public trainModel(svcParameters: SVCParameters): Observable<SVCResult> {
-        return this.http.post(`${SERVER_URL}train`, svcParameters).map((res) => res.json());
+    public trainModel(MLParams: MLParams): Observable<MLResult> {
+        return this.http.post(`${SERVER_URL}train`, MLParams).map((res) => res.json());
     }
 
     public predictIris(iris: Iris): Observable<ProbabilityPrediction[]> {

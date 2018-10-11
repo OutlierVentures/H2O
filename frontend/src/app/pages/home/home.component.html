@@ -10,20 +10,20 @@
                     mdInput
                     name="C Parameter"
                     placeholder="C Parameter"
-                    [(ngModel)]="svcParameters.C">
+                    [(ngModel)]="MLParams.C">
             </md-input-container>
             <button md-raised-button (click)="trainModel()">
                 Train model
             </button>
         </md-card>
 
-        <div *ngIf="svcResult"
+        <div *ngIf="MLResult"
              fxLayoutAlign="center center"
              fxLayout="column">
             <h4>Training Accuracy</h4>
             <ngx-charts-linear-gauge
                 [view]="[300, 100]"
-                [value]="svcResult.accuracy"
+                [value]="MLResult.accuracy"
                 [scheme]="colorScheme"
                 [min]="0"
                 [max]="100"

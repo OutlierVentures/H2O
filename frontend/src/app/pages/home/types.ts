@@ -10,10 +10,10 @@ export class ProbabilityPrediction {
     value: number;
 }
 
-export class SVCParameters {
-    C: number = 2.0;
+export class MLParams {
+    C: number = 4;
 }
 
-export class SVCResult {
+export class MLResult {
     accuracy: number;
 }

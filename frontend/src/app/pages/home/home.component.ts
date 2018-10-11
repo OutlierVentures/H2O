@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {IrisService} from "./iris.service";
+import {MLService} from "./iris.service";
 import {
     Iris,
     ProbabilityPrediction,
-    SVCParameters,
-    SVCResult
+    MLParams,
+    MLResult
 } from "./types";
 
 @Component({
@@ -14,8 +14,8 @@ import {
 })
 export class HomeComponent implements OnInit {
 
-    public svcParameters: SVCParameters = new SVCParameters();
-    public svcResult: SVCResult;
+    public MLParams: MLParams = new MLParams();
+    public MLResult: MLResult;
     public iris: Iris = new Iris();
     public probabilityPredictions: ProbabilityPrediction[];
 
@@ -24,20 +24,20 @@ export class HomeComponent implements OnInit {
         domain: ['#1a242c', '#e81746', '#e67303', '#f0f0f0']
     };
 
-    constructor(private irisService: IrisService) {
+    constructor(private mlService: MLService) {
     }
 
     ngOnInit() {
     }
 
     public trainModel() {
-        this.irisService.trainModel(this.svcParameters).subscribe((svcResult) => {
-            this.svcResult = svcResult;
+        this.mlService.trainModel(this.MLParams).subscribe((MLResult) => {
+            this.MLResult = MLResult;
         });
     }
 
     public predictIris() {
-        this.irisService.predictIris(this.iris).subscribe((probabilityPredictions) => {
+        this.mlService.predictIris(this.iris).subscribe((probabilityPredictions) => {
             this.probabilityPredictions = probabilityPredictions;
         });
     }

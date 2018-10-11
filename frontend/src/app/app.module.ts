@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import {ROUTES} from "./app.routes";
 import {HomeComponent} from "./pages/home/home.component";
-import {IrisService} from "./pages/home/iris.service";
+import {MLService} from "./pages/home/iris.service";
 
 @NgModule({
     declarations: [
@@ -23,7 +23,7 @@ import {IrisService} from "./pages/home/iris.service";
         RouterModule.forRoot(ROUTES, {useHash: false, preloadingStrategy: PreloadAllModules}),
         SharedModule
     ],
-    providers: [IrisService],
+    providers: [MLService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
