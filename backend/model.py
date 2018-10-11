@@ -27,8 +27,6 @@ plt.scatter(df[:, 0], df[:, 1], c = prediction)
 plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5);
 plt.savefig('after')
 
-# Show both before and after plots
-plt.show()
 
 '''
 K-means is not classification, so accuracy doesn't really apply.
