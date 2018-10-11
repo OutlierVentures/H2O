@@ -25,3 +25,6 @@ docker-compose up
 3. Link before/after clustering to flask endpoints
 4. Add user interaction (import data, train on data buttons)
 5. Clean up front end
+
+Enhancements:
+1. Pass ML output in through Flask endpoint as JSON object and draw in JS.
