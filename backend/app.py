@@ -18,6 +18,38 @@ def train():
     # get parameters from request
     parameters = request.get_json()
 
+
+
+    data = pd.read_json('data.json')
+    df = data.as_matrix(columns = data.columns[0:2])
+
+    # Plot original
+    plt.figure(1)
+    plt.scatter(df[:, 0], df[:, 1]);
+    plt.savefig('../frontend/src/assets/images/before.png')
+
+    # K-means cluster
+    kmeans = KMeans(n_clusters = parameters['C'])
+    kmeans.fit(df)
+    prediction = kmeans.predict(df)
+    centers = kmeans.cluster_centers_
+
+    # Plot result
+    plt.figure(2)
+    plt.scatter(df[:, 0], df[:, 1], c = prediction)
+    plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5);
+    plt.savefig('../frontend/src/assets/images/after.png')
+
+
+    '''
+    K-means is not classification, so accuracy doesn't really apply.
+    Nevertheless, labels can be loaded for an 'accuracy' metric:
+    truth = data['truth'].values
+    Compare to the 'prediction' array. Note you may have to use the
+    random_state parameter so that cluster ordering is deterministic.
+    '''
+
+
     # read iris data set
     iris = datasets.load_iris()
     X, y = iris.data, iris.target
