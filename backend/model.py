@@ -1,3 +1,7 @@
+'''
+The clustering model on its own.
+'''
+
 from flask import Flask, request, jsonify
 from sklearn.cluster import KMeans
 import pandas as pd
