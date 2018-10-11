@@ -37,11 +37,12 @@ ipfs.on('ready', async () => {
     }
     fs.writeFileSync('data.json', JSON.stringify(data));
 
+    // Disconnection TODO: stabilise
     /*
     orbitdb.disconnect()
     ipfs.stop(() => {})
     */
-    
+
   })
 
 })
