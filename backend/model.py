@@ -13,7 +13,7 @@ df = data.as_matrix(columns=data.columns[0:2])
 # Plot original
 plt.figure(1)
 plt.scatter(df[:, 0], df[:, 1]);
-plt.savefig('before')
+plt.savefig('../frontend/src/assets/images/before.png')
 
 # K-means cluster
 kmeans = KMeans(n_clusters = 4)
@@ -25,7 +25,7 @@ centers = kmeans.cluster_centers_
 plt.figure(2)
 plt.scatter(df[:, 0], df[:, 1], c = prediction)
 plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5);
-plt.savefig('after')
+plt.savefig('../frontend/src/assets/images/after.png')
 
 
 '''
