@@ -47,4 +47,4 @@ Interact with the app in your browser at `localhost:4200`.
 
 ### Roadmap
 
-1. Deploy at url
+1. Deploy at a publicly accessible URL.
