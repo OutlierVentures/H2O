@@ -1,0 +1,5 @@
+pandas
+matplotlib
+Naked
+flask
+scikit-learn[alldeps]
