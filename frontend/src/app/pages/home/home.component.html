@@ -2,21 +2,24 @@
     <h1>Iris Model - Example</h1>
 
     <div class="home__training">
-      <button md-raised-button (click)="getOrbit()">
-          Get OrbitDB database
-      </button>
-        <h3>Train Classification Model (Support Vector Machine)</h3>
         <md-card fxLayoutAlign="center center" fxLayout="column">
-            <h4>Set Parameter for Model Training</h4>
+            <h4>Get data from OrbitDB</h4>
+            <button md-raised-button (click)="getOrbit()">
+                Replicate database
+            </button>
+            <img src="../../assets/images/before.png" alt="" style="width: 80%">
+        </md-card>
+        <md-card fxLayoutAlign="center center" fxLayout="column">
+            <h4>Set number of clusters</h4>
             <md-input-container>
                 <input
                     mdInput
-                    name="C Parameter"
-                    placeholder="C Parameter"
+                    name="Number of clusters"
+                    placeholder="Number of clusters"
                     [(ngModel)]="MLParams.C">
             </md-input-container>
             <button md-raised-button (click)="trainModel()">
-                Train model
+                Run clustering
             </button>
         </md-card>
 

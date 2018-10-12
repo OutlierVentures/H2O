@@ -7,6 +7,7 @@ from sklearn.externals import joblib
 from sklearn.cluster import KMeans
 import pandas as pd
 import matplotlib
+# Run matplotlib in headless mode, prevents NSWindow crash
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
 from Naked.toolshed.shell import execute_js
@@ -32,7 +33,7 @@ def get_orbit():
     plt.figure(1)
     plt.scatter(df[:, 0], df[:, 1]);
     plt.savefig('../frontend/src/assets/images/before.png')
-    
+
     return ('', 200)
 
 @app.route('/api/train', methods=['POST'])
