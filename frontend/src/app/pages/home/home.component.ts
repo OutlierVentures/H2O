@@ -4,7 +4,9 @@ import {
     Iris,
     ProbabilityPrediction,
     MLParams,
-    MLResult
+    MLResult,
+    OrbitParams,
+    OrbitResult
 } from "./types";
 
 @Component({
@@ -16,6 +18,8 @@ export class HomeComponent implements OnInit {
 
     public MLParams: MLParams = new MLParams();
     public MLResult: MLResult;
+    public OrbitParams: OrbitParams = new OrbitParams();
+    public OrbitResult: OrbitResult;
     public iris: Iris = new Iris();
     public probabilityPredictions: ProbabilityPrediction[];
 
@@ -28,6 +32,12 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    public getOrbit() {
+        this.mlService.getOrbit(this.OrbitParams).subscribe((OrbitResult) => {
+            this.OrbitResult = OrbitResult;
+        });
     }
 
     public trainModel() {

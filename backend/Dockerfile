@@ -2,6 +2,8 @@ FROM ubuntu:18.04
 
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
+    git \
+    make \
     python3 \
     python3-pip \
     nodejs \

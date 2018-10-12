@@ -17,3 +17,11 @@ export class MLParams {
 export class MLResult {
     accuracy: number;
 }
+
+export class OrbitParams {
+
+}
+
+export class OrbitResult {
+  
+}

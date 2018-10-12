@@ -6,7 +6,9 @@ import {
     Iris,
     ProbabilityPrediction,
     MLParams,
-    MLResult
+    MLResult,
+    OrbitParams,
+    OrbitResult
 } from "./types";
 
 const SERVER_URL: string = 'api/';
@@ -15,6 +17,10 @@ const SERVER_URL: string = 'api/';
 export class MLService {
 
     constructor(private http: Http) {
+    }
+
+    public getOrbit(OrbitParams: OrbitParams): Observable<OrbitResult> {
+        return this.http.post(`${SERVER_URL}orbit`, OrbitParams).map((res) => res.json());
     }
 
     public trainModel(MLParams: MLParams): Observable<MLResult> {
