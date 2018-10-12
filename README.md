@@ -47,9 +47,5 @@ Interact with the app in your browser at `localhost:4200`.
 
 ### Roadmap
 
-1. Link before/after clustering to flask endpoints
-2. Add user interaction (import data, train on data buttons)
-3. Clean up front end
-
-Enhancements:
-1. Pass ML output in through Flask endpoint as JSON object and draw in JS.
+1. Fix cluster number bug (no backend reload on re-submission)
+2. Improve front-end
