@@ -1,9 +1,4 @@
 from flask import Flask, request, jsonify
-
-from sklearn import svm
-from sklearn import datasets
-from sklearn.externals import joblib
-
 from sklearn.cluster import KMeans
 import pandas as pd
 import matplotlib
@@ -18,6 +13,7 @@ PORT = 8081
 
 # initialize flask application
 app = Flask(__name__)
+
 
 @app.route('/api/orbit', methods=['POST'])
 def get_orbit():
@@ -37,6 +33,7 @@ def get_orbit():
     plt.savefig('../frontend/src/assets/images/before.png')
 
     return ('', 200)
+
 
 @app.route('/api/train', methods=['POST'])
 def train():
