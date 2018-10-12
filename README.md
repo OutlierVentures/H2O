@@ -21,6 +21,7 @@ Machine learning in Nautilina with OrbitDB.
 
 Install dependencies:
 ```
+pip3 install --upgrade setuptools
 cd backend
 pip3 install -r requirements.txt
 npm install
