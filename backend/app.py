@@ -1,8 +1,13 @@
 from flask import Flask, request, jsonify
+
 from sklearn import svm
 from sklearn import datasets
 from sklearn.externals import joblib
+
+from sklearn.cluster import KMeans
 import pandas as pd
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 from Naked.toolshed.shell import execute_js
 
@@ -15,7 +20,19 @@ app = Flask(__name__)
 
 @app.route('/api/orbit', methods=['POST'])
 def get_orbit():
+
     execute_js('orbit.js')
+
+    # Read in dataframe
+    data = pd.read_json('data.json')
+
+    df = data.as_matrix(columns = data.columns[0:2])
+
+    # Plot original
+    plt.figure(1)
+    plt.scatter(df[:, 0], df[:, 1]);
+    plt.savefig('../frontend/src/assets/images/before.png')
+    
     return ('', 200)
 
 @app.route('/api/train', methods=['POST'])
