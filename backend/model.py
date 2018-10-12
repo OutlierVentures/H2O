@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 data = pd.read_json('data.json')
-df = data.as_matrix(columns=data.columns[0:2])
+df = data.as_matrix(columns = data.columns[0:2])
 
 # Plot original
 plt.figure(1)
