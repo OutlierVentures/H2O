@@ -5,8 +5,16 @@ Machine learning in Nautilina with OrbitDB.
 ### Requirements
 
 - Docker, Docker Compose
+
+#### For development
+
 - Node.js, Yarn, Angular CLI
 - Python, pip
+  - pandas
+  - matplotlib
+  - Naked
+  - flask
+  - scikit-learn[alldeps]
 
 
 ### Architecture
@@ -22,6 +30,8 @@ docker-compose build
 
 
 ### Run
+
+Make sure H2O-Host is running so that the database is available through IPFS. Without a provider of the database, it cannot be replicated.
 
 ```
 docker-compose up
