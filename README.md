@@ -42,6 +42,9 @@ cd frontend
 yarn start
 ```
 
+Interact with the app in your browser at `localhost:4200`.
+
+
 ### Roadmap
 
 1. Link before/after clustering to flask endpoints
