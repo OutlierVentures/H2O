@@ -1,3 +1,4 @@
+const config = require('../config')
 const fs = require('fs');
 
 if (!fs.existsSync('data.json')) {
@@ -27,7 +28,7 @@ if (!fs.existsSync('data.json')) {
 
     const orbitdb = new OrbitDB(ipfs)
 
-    const db = await orbitdb.open('/orbitdb/QmcHKBHmXmx3HHi1opqAVqF4E3qwwkmJPQ8CeVX4ybc4xJ/trainingdata')
+    const db = await orbitdb.open(config.address)
     await db.load()
 
     db.events.on('replicated', async () => {
