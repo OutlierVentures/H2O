@@ -39,10 +39,9 @@ docker-compose up
 
 ### Roadmap
 
-1. Stabilise closing of IPFS/OrbitDB connection
-2. Link before/after clustering to flask endpoints
-3. Add user interaction (import data, train on data buttons)
-4. Clean up front end
+1. Link before/after clustering to flask endpoints
+2. Add user interaction (import data, train on data buttons)
+3. Clean up front end
 
 Enhancements:
 1. Pass ML output in through Flask endpoint as JSON object and draw in JS.
