@@ -74,6 +74,6 @@ def train():
 
 if __name__ == '__main__':
     # run web server
-    app.run(host=HOST,
-            debug=True,  # automatic reloading enabled
-            port=PORT)
+    app.run(host = HOST,
+            debug = True,  # automatic reloading enabled
+            port = PORT)
