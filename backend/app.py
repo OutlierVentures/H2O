@@ -16,6 +16,7 @@ app = Flask(__name__)
 @app.route('/api/orbit', methods=['POST'])
 def get_orbit():
     execute_js('orbit.js')
+    return ('', 200)
 
 @app.route('/api/train', methods=['POST'])
 def train():
