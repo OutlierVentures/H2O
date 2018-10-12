@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MLService} from "./iris.service";
+import {MLService} from "./cluster.service";
 import {
-    Iris,
-    ProbabilityPrediction,
     MLParams,
     MLResult,
     OrbitParams,
@@ -20,8 +18,6 @@ export class HomeComponent implements OnInit {
     public MLResult: MLResult;
     public OrbitParams: OrbitParams = new OrbitParams();
     public OrbitResult: OrbitResult;
-    public iris: Iris = new Iris();
-    public probabilityPredictions: ProbabilityPrediction[];
 
     // graph styling
     public colorScheme = {
@@ -43,12 +39,6 @@ export class HomeComponent implements OnInit {
     public trainModel() {
         this.mlService.trainModel(this.MLParams).subscribe((MLResult) => {
             this.MLResult = MLResult;
-        });
-    }
-
-    public predictIris() {
-        this.mlService.predictIris(this.iris).subscribe((probabilityPredictions) => {
-            this.probabilityPredictions = probabilityPredictions;
         });
     }
 

@@ -52,6 +52,7 @@ def train():
         print('No OrbitDB database found.')
 
     # K-means cluster
+    print()
     kmeans = KMeans(n_clusters = int(parameters['C']))
     kmeans.fit(df)
     prediction = kmeans.predict(df)
@@ -72,21 +73,6 @@ def train():
     '''
 
     return ('', 200)
-
-
-@app.route('/api/predict', methods=['POST'])
-def predict():
-    # get iris object from request
-    X = request.get_json()
-    X = [[float(X['sepalLength']), float(X['sepalWidth']), float(X['petalLength']), float(X['petalWidth'])]]
-
-    # read model
-    clf = joblib.load('model.pkl')
-    probabilities = clf.predict_proba(X)
-
-    return jsonify([{'name': 'Iris-Setosa', 'value': round(probabilities[0, 0] * 100, 2)},
-                    {'name': 'Iris-Versicolour', 'value': round(probabilities[0, 1] * 100, 2)},
-                    {'name': 'Iris-Virginica', 'value': round(probabilities[0, 2] * 100, 2)}])
 
 
 if __name__ == '__main__':

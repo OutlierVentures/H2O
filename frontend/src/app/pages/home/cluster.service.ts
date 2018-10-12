@@ -3,8 +3,6 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import {
-    Iris,
-    ProbabilityPrediction,
     MLParams,
     MLResult,
     OrbitParams,
@@ -27,7 +25,4 @@ export class MLService {
         return this.http.post(`${SERVER_URL}train`, MLParams).map((res) => res.json());
     }
 
-    public predictIris(iris: Iris): Observable<ProbabilityPrediction[]> {
-        return this.http.post(`${SERVER_URL}predict`, iris).map((res) => res.json());
-    }
 }
