@@ -6,7 +6,7 @@ Machine learning in Nautilina with OrbitDB.
 
 - Node
 - NPM
-- Yarn
+- Yarn (https://yarnpkg.com/lang/en/docs/install, do not `apt-get install yarn`)
 - Angular CLI
 - Python
 - Pip
