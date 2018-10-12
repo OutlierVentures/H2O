@@ -47,5 +47,4 @@ Interact with the app in your browser at `localhost:4200`.
 
 ### Roadmap
 
-1. Fix cluster number bug (no backend reload on re-submission)
-2. Improve front-end
+1. Deploy at url
