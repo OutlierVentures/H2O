@@ -31,6 +31,7 @@ def get_orbit():
     plt.figure(1)
     plt.scatter(df[:, 0], df[:, 1]);
     plt.savefig('../frontend/src/assets/images/before.png')
+    plt.close()
 
     return ('', 200)
 
@@ -49,7 +50,6 @@ def train():
         print('No OrbitDB database found.')
 
     # K-means cluster
-    print()
     kmeans = KMeans(n_clusters = int(parameters['C']))
     kmeans.fit(df)
     prediction = kmeans.predict(df)
@@ -60,6 +60,7 @@ def train():
     plt.scatter(df[:, 0], df[:, 1], c = prediction)
     plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5);
     plt.savefig('../frontend/src/assets/images/after.png')
+    plt.close()
 
     '''
     K-means is not classification, so accuracy doesn't really apply.
