@@ -5,6 +5,7 @@ Machine learning in Nautilina with OrbitDB.
 ### Requirements
 
 - Node
+- NPM
 - Yarn
 - Angular CLI
 - Python
