@@ -19,11 +19,6 @@ export class HomeComponent implements OnInit {
     public OrbitParams: OrbitParams = new OrbitParams();
     public OrbitResult: OrbitResult;
 
-    // graph styling
-    public colorScheme = {
-        domain: ['#1a242c', '#e81746', '#e67303', '#f0f0f0']
-    };
-
     constructor(private mlService: MLService) {
     }
 
