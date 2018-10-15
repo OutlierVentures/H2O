@@ -50,26 +50,23 @@ The app is currently deployed using a Werkzeug dev server. This is not safe for 
 
 To run:
 ```
+screen
 cd backend
 python3 app.py
 ```
-Press `CTRL` + `Z`.
-```
-bg
-```
+Press `CTRL` + `A`, then `CTRL` + `D`.
 
 Next:
 ```
+screen
 cd frontend
 yarn start
 ```
 Wait a few seconds until you see `webpack: Compiled successfully.`
 
-Press `CTRL` + `Z`.
-```
-bg
-```
-You can now close the terminal window. The app is running in the background.
+Press `CTRL` + `A`, then `CTRL` + `D`.
+
+You can now close the terminal window. The app will continue to run.
 
 
 #### Development
