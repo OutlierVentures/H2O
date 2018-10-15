@@ -33,14 +33,12 @@ export class HomeComponent implements OnInit {
     public getOrbit() {
         this.mlService.getOrbit(this.OrbitParams).subscribe((OrbitResult) => {
             this.OrbitResult = OrbitResult;
-            window.location.reload();
         });
     }
 
     public trainModel() {
         this.mlService.trainModel(this.MLParams).subscribe((MLResult) => {
             this.MLResult = MLResult;
-            window.location.reload();
         });
     }
 
