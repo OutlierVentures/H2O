@@ -4,7 +4,7 @@
     <div class="home__training">
         <md-card fxLayoutAlign="center center" fxLayout="column">
             <h4>Get data from OrbitDB</h4>
-            <button md-raised-button (click)="getOrbit();location.reload();">
+            <button md-raised-button (click)="getOrbit();$route.reload();">
                 Replicate database
             </button>
             <img src="../../assets/images/before.png" alt="" style="width: 80%">
@@ -19,7 +19,7 @@
                     placeholder="Number of clusters"
                     [(ngModel)]="MLParams.C">
             </md-input-container>
-            <button md-raised-button (click)="trainModel();location.reload();">
+            <button md-raised-button (click)="trainModel();$route.reload();">
                 Run clustering
             </button>
             <img src="../../assets/images/after.png" alt="" style="width: 80%">
