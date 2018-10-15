@@ -86,5 +86,5 @@ cd frontend
 yarn start
 ```
 
-Interact with the app in your browser at `localhost:4200`.
+Interact with the app in your browser at `0.0.0.0:4200`.
 
