@@ -4,13 +4,19 @@ Machine learning in Nautilina with OrbitDB.
 
 ### Requirements
 
-- Node
-- NPM
-- Yarn (https://yarnpkg.com/lang/en/docs/install, do not `apt-get install yarn`)
-- Angular CLI
-- Python
-- Pip
-
+- Python 3.6+
+- Pip3 9.0+
+- Node 8.10+
+- NPM 3.5+
+- Angular CLI 6.2+
+  - `sudo npm install -g @angular/cli`
+- Yarn 1.10+
+   - Linux install:
+      ```
+      curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+      sudo apt-get update && sudo apt-get install yarn
+      ```
 
 ### Architecture
 
