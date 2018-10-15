@@ -49,6 +49,10 @@ def train():
     except:
         print('No OrbitDB database found.')
 
+
+    print(parameters['C'])
+
+
     # K-means cluster
     kmeans = KMeans(n_clusters = int(parameters['C']))
     kmeans.fit(df)

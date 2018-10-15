@@ -4,7 +4,7 @@
     "author": "Outlier Ventures, Daniel Elsner",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --proxy-config proxy.conf.json",
+        "start": "ng serve --host 0.0.0.0 --disableHostCheck true --proxy-config proxy.conf.json",
         "build": "ng build",
         "test": "echo \"Error: no test... minimal project\" && exit 1",
         "lint": "echo \"Error: no lint... minimal project\" && exit 1",
