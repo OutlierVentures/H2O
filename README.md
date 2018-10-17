@@ -2,6 +2,11 @@
 
 Machine learning in Nautilina with OrbitDB.
 
+This branch (`register_direct`) is for registering an asset with the Python wrapper for keeper contracts. This is currently under development for use with the Kovan testnet.
+
+For now, asset registration is executed independently (i.e. separate to `app.py`). The two will soon be merged into a single app. For instructions specific to asset registration scripts, see `README.md` in the `register_direct` folder.
+
+
 You can find a live version of the app at `159.69.202.132:4200`.
 
 This is a deployable version. For the local deployment-only version, switch to the `local_deployment` branch.
@@ -87,4 +92,3 @@ yarn start
 ```
 
 Interact with the app in your browser at `0.0.0.0:4200`.
-
