@@ -27,6 +27,11 @@ This is a deployable version. For the local deployment-only version, switch to t
       echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
       sudo apt-get update && sudo apt-get install yarn
       ```
+#### Register Direct
+
+- If on mac, gnu-sed: `brew install --with-default-names gnu-sed`
+- Pip modules in requirements_dev.txt
+
 
 ### Architecture
 
