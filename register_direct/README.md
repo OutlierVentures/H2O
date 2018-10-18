@@ -28,3 +28,12 @@ Terminal 2:
 ```
 python3 register.py
 ```
+
+
+## Asset structure
+
+https://github.com/oceanprotocol/squid-py/blob/3a808bd29ebf24d28267faf518cbe9002016d9b5/tests/test_keeper.py
+
+https://github.com/oceanprotocol/pleuston/blob/90247641e859e9ce4655d2d1cf8df1d083927408/src/mock/assets.js
+
+https://github.com/oceanprotocol/provider/blob/67ee3192ab6fda5e726eda8e346da3468f75c716/tests/conftest.py
