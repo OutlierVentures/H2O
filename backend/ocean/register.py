@@ -20,7 +20,7 @@ json_request_consume = {
 
 
 
-ocean = OceanContracts(host='http://0.0.0.0', port=8545, config_path='config.ini')
+ocean = OceanContracts(host='http://0.0.0.0', port=8545, config_path='config_local.ini')
 #ocean.init_contracts()
 resouce_id = register(publisher_account=ocean.web3.eth.accounts[1],
                       provider_account=ocean.web3.eth.accounts[0],
