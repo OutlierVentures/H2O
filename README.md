@@ -62,20 +62,16 @@ docker-compose -f ./docker/docker-compose.yml up
 ```
 Wait until you see the output `keeper-contracts_1  | eth_getFilterLogs`.
 
-Next, fill in the contract addresses in the `config.ini` file (in the same `backend/ocean` folder) by searching for `OceanMarket:`, `OceanAuth:` and `OceanToken:` in this terminal window. Fortunately, `CTRL` + `F` works with most modern terminals.
-
-Automatic parsing of these addresses will be added to H2O soon.
-
-Once you've pasted the addresses in to `config.ini`, save the file. You can now register an asset with the `register.py` file. Feel free to fill in your own metadata, though sample content has been provided.
-
-To register an asset, use the other terminal window in which you navigated to `backend/ocean`:
+Next, in your other terminal, type:
 ```
+./configure
 python3 register.py
 ```
-
 You should get a confirmation of asset registration message in your terminal window.
 
-The asset registration functionality will be added to `app.py` and be accessible with the H2O UI soon.
+If you want to customise an asset to be registered, you can do so by setting the metadata of the JSON object in `register.py`. Sample content has been provided.
+
+The above asset registration functionality is being added to `app.py`. It will be accessible within the H2O UI soon, including setting asset properties such as description, hosting etc. with a form.
 
 
 ### Deployment
