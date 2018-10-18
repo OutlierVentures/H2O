@@ -11,7 +11,7 @@ You can find a live version of the app (no Ocean asset registration, `master` br
 This is a deployable version. For the local deployment-only version, switch to the `local_deployment` branch.
 
 
-### Requirements
+## Requirements
 
 - Python 3.6+
 - Pip3 9.0+
@@ -26,17 +26,17 @@ This is a deployable version. For the local deployment-only version, switch to t
       echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
       sudo apt-get update && sudo apt-get install yarn
       ```
-#### Asset Registration
+### Asset Registration
 
 - If on mac, gnu-sed: `brew install --with-default-names gnu-sed`
 
 
-### Architecture
+## Architecture
 
 ![Architecture Diagram](/doc/OceanHaja.png)
 
 
-### Run
+## Run
 
 Install dependencies:
 ```
@@ -50,7 +50,7 @@ yarn install --pure-lockfile
 
 Make sure H2O-Host is running so that the database is available through IPFS. Without a provider of the database, it cannot be replicated.
 
-#### Asset registration
+### Asset registration
 
 Asset registration is functional but a bit clunky while it is being integrated with the UI.
 
@@ -78,7 +78,7 @@ You should get a confirmation of asset registration message in your terminal win
 The asset registration functionality will be added to `app.py` and be accessible with the H2O UI soon.
 
 
-#### Deployment
+### Deployment
 
 This deploys the app at your public IP. You must allow port 4200 and 8081.
 
@@ -105,7 +105,7 @@ Press `CTRL` + `A`, then `CTRL` + `D`.
 You can now close the terminal window. The app will continue to run.
 
 
-#### Development
+### Development
 
 You can run the back and front end in separate terminals for easier development.
 
@@ -125,17 +125,16 @@ yarn start
 Interact with the app in your browser at `0.0.0.0:4200`.
 
 
-### Roadmap
+## Roadmap
 
-1. Parse Ocean Protocol blockchain configuration addresses automatically
-2. Add asset registration UI
-3. Add automatic setup of asset hosting within H2O and integrate this with the asset registration UI
-4. Migrate contracts to Kovan
-    Relevant contract addresses:
-    ```
-    market.address = 0xb8277FC2A46C11235775BEC194BD8C12ed92343C
-    auth.address = 0xfA65f2662224Dd340a2dea0972E70BA450E94e3C
-    token.address = 0x656f2Ab5D4C4bC2D5821fd959B083fd50273C2f1
-    ```
-5. Make UI in line with Outlier Ventures branding
-6. Regulatory & publish
+1. Parse Ocean Protocol blockchain configuration addresses automatically.
+2. Add asset registration UI.
+3. Add automatic setup of asset hosting within H2O and integrate this with the asset registration UI.
+4. Migrate contracts to Kovan. Kovan addresses:
+      ```
+      market.address = 0xb8277FC2A46C11235775BEC194BD8C12ed92343C
+      auth.address = 0xfA65f2662224Dd340a2dea0972E70BA450E94e3C
+      token.address = 0x656f2Ab5D4C4bC2D5821fd959B083fd50273C2f1
+      ```
+5. Make UI in line with Outlier Ventures branding.
+6. Regulatory & publish.
