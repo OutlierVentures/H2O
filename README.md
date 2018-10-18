@@ -30,7 +30,7 @@ This is a deployable version. For the local deployment-only version, switch to t
 #### Register Direct
 
 - If on mac, gnu-sed: `brew install --with-default-names gnu-sed`
-- Pip modules in requirements_dev.txt
+- Pip modules in `requirements_dev.txt`
 
 
 ### Architecture
