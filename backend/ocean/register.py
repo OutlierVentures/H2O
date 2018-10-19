@@ -5,11 +5,19 @@ from squid_py.consumer import register
 json_consume = {
     "publisherId": "0x01",
     "metadata": {
-        "name": "testzkp",
-        "links": "https://testocnfiles.blob.core.windows.net/testfiles/testzkp.pdf",
-        "size": "1.08MiB",
-        "format": "pdf",
-        "description": "description"
+        # User-specified
+        "name": "H2O Output",
+        "description": "Clustered dataset from OrbitDB data.",
+        "contentUrls": ["http://0.0.0.0:4200"],
+        "price": 10,
+        "author": "Outlier Ventures",
+        # Fixed
+        "type": "dataset",
+        "licence": "CC-BY",
+        # Internal, used to generate resource ID
+        "links": "",
+        "size": "",
+        "format": ""
     },
     "assetId": "0x01"
 }
