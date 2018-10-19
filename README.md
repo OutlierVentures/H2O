@@ -4,8 +4,6 @@ Machine learning in Nautilina with OrbitDB.
 
 This branch (`develop`) is for registering an asset with the Ocean Protocol Squid API.
 
-For now, asset registration is executed independently (i.e. separate to `app.py`). The two will soon be merged into a single app.
-
 You can find a live version of the app (no Ocean asset registration, `master` branch) at `159.69.202.132:4200`.
 
 This is a deployable version. For the local deployment-only version, switch to the `local_deployment` branch.
@@ -36,7 +34,7 @@ This is a deployable version. For the local deployment-only version, switch to t
 ![Architecture Diagram](/doc/OceanHaja.png)
 
 
-## Run
+## How to use
 
 Install dependencies:
 ```
@@ -50,33 +48,42 @@ yarn install --pure-lockfile
 
 Make sure H2O-Host is running so that the database is available through IPFS. Without a provider of the database, it cannot be replicated.
 
+You'll need a running instance of Ocean Protocol. You can start an instance with H2O by going to the `backend` folder and typing:
+```
+docker-compose -f ./docker/docker-compose.yml up
+
+```
+The blockchain is ready once you see the output:
+```
+keeper-contracts_1  | eth_getFilterLogs
+keeper-contracts_1  | eth_getFilterLogs
+keeper-contracts_1  | eth_getFilterLogs
+...
+```
+Local/testnet use can be specified with environment variables as usual with Ocean Protocol.
+
 #### Mid-October 2018: IPFS node module install slow on MacOS
 
 MacOS users: the normal IPFS node module install is currently broken. The install scripts provided with H2O will get it running but for now take several minutes at the `npm install` step. We've optimised it as best we can until IPFS roll out a fix.
 
 
-### Asset registration
+### Running
 
-Asset registration is functional but a bit clunky while it is being integrated with the UI.
+Open two terminal windows, one for back-end and one for front-end. You can run the tasks in a single window using `screen` or `bg` if you'd like, but you may miss useful logs.
 
-If you do want to try it out, navigate to `backend/ocean` in two terminal windows.
-
-In one terminal window, start the Ocean Protocol blockchain:
+In one terminal window:
 ```
-docker-compose -f ./docker/docker-compose.yml up
-```
-Wait until you see the output `keeper-contracts_1  | eth_getFilterLogs`.
-
-Next, in your other terminal, type:
-```
+cd backend
 ./configure
-python3 register.py
+python3 app.py
 ```
-You should get a confirmation of asset registration message in your terminal window.
+In the other:
+```
+cd frontend
+yarn start
+```
 
-If you want to customise an asset to be registered, you can do so by setting the metadata of the JSON object in `register.py`. Sample content has been provided.
-
-The above asset registration functionality is being added to `app.py`. It will be accessible within the H2O UI soon, including setting asset properties such as description, hosting etc. with a form.
+Interact with the app in your browser at `0.0.0.0:4200`.
 
 
 ### Deployment
@@ -89,6 +96,7 @@ To run:
 ```
 screen
 cd backend
+./configure
 python3 app.py
 ```
 Press `CTRL` + `A`, then `CTRL` + `D`.
@@ -106,36 +114,18 @@ Press `CTRL` + `A`, then `CTRL` + `D`.
 You can now close the terminal window. The app will continue to run.
 
 
-### Development
-
-You can run the back and front end in separate terminals for easier development.
-
-Open two terminal windows.
-
-In one:
-```
-cd backend
-python3 app.py
-```
-In the other:
-```
-cd frontend
-yarn start
-```
-
-Interact with the app in your browser at `0.0.0.0:4200`.
-
-
 ## Roadmap
 
-1. Parse Ocean Protocol blockchain configuration addresses automatically.
-2. Add asset registration UI.
-3. Add automatic setup of asset hosting within H2O and integrate this with the asset registration UI.
-4. Migrate contracts to Kovan. Kovan addresses:
-      ```
-      market.address = 0xb8277FC2A46C11235775BEC194BD8C12ed92343C
-      auth.address = 0xfA65f2662224Dd340a2dea0972E70BA450E94e3C
-      token.address = 0x656f2Ab5D4C4bC2D5821fd959B083fd50273C2f1
-      ```
-5. Make UI in line with Outlier Ventures branding.
-6. Regulatory & publish.
+1. Testing + clean up terminal outputs.
+2. Make UI in line with Outlier Ventures branding.
+3. Regulatory & publish.
+
+
+## Useful info
+
+Kovan addresses for manual `config.ini`:
+```
+market.address = 0xb8277FC2A46C11235775BEC194BD8C12ed92343C
+auth.address = 0xfA65f2662224Dd340a2dea0972E70BA450E94e3C
+token.address = 0x656f2Ab5D4C4bC2D5821fd959B083fd50273C2f1
+```
