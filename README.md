@@ -50,12 +50,9 @@ yarn install --pure-lockfile
 
 Make sure H2O-Host is running so that the database is available through IPFS. Without a provider of the database, it cannot be replicated.
 
-#### Mid-October 2018: IPFS node module install broken on MacOS
+#### Mid-October 2018: IPFS node module install slow on MacOS
 
-Just install manually: `npm install ipfs`.
-
-The install takes several minutes and appears to hang, please be patient.
-
+MacOS users: the normal IPFS node module install is currently broken. The install scripts provided with H2O will get it running but for now take several minutes at the `npm install` step. We've optimised it as best we can until IPFS roll out a fix.
 
 
 ### Asset registration
