@@ -30,9 +30,37 @@
             <md-input-container>
                 <input
                     mdInput
-                    name="Asset name"
-                    placeholder="Asset name"
+                    name="Name"
+                    placeholder="Name"
                     [(ngModel)]="OceanParams.name">
+            </md-input-container>
+            <md-input-container>
+                <input
+                    mdInput
+                    name="Description"
+                    placeholder="Description"
+                    [(ngModel)]="OceanParams.description">
+            </md-input-container>
+            <md-input-container>
+                <input
+                    mdInput
+                    name="URL"
+                    placeholder="URL"
+                    [(ngModel)]="OceanParams.contentUrls">
+            </md-input-container>
+            <md-input-container>
+                <input
+                    mdInput
+                    name="Price"
+                    placeholder="Price"
+                    [(ngModel)]="OceanParams.price">
+            </md-input-container>
+            <md-input-container>
+                <input
+                    mdInput
+                    name="Author"
+                    placeholder="Author"
+                    [(ngModel)]="OceanParams.author">
             </md-input-container>
             <button md-raised-button (click)="publishAsset()">
                 Publish
