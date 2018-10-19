@@ -4,7 +4,9 @@ import {
     MLParams,
     MLResult,
     OrbitParams,
-    OrbitResult
+    OrbitResult,
+    OceanParams,
+    OceanResult
 } from "./types";
 
 @Component({
@@ -18,6 +20,8 @@ export class HomeComponent implements OnInit {
     public MLResult: MLResult;
     public OrbitParams: OrbitParams = new OrbitParams();
     public OrbitResult: OrbitResult;
+    public OceanParams: OceanParams = new OceanParams();
+    public OceanResult: OceanResult;
 
     constructor(private mlService: MLService) {
     }
@@ -35,6 +39,13 @@ export class HomeComponent implements OnInit {
     public trainModel() {
         this.mlService.trainModel(this.MLParams).subscribe((MLResult) => {
             this.MLResult = MLResult;
+        });
+        location.reload();
+    }
+
+    public publishAsset() {
+        this.mlService.publishAsset(this.OceanParams).subscribe((OceanResult) => {
+            this.OceanResult = OceanResult;
         });
         location.reload();
     }
