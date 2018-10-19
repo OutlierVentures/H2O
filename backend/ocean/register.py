@@ -8,7 +8,7 @@ json_consume = {
         # User-specified
         "name": "H2O Output",
         "description": "Clustered dataset from OrbitDB data.",
-        "contentUrls": ["http://0.0.0.0:4200"],
+        "contentUrls": ["http://0.0.0.0:4200"], # TODO: Map user string to array
         "price": 10,
         "author": "Outlier Ventures",
         # Fixed
