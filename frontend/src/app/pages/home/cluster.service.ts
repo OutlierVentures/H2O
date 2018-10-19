@@ -6,7 +6,9 @@ import {
     MLParams,
     MLResult,
     OrbitParams,
-    OrbitResult
+    OrbitResult,
+    OceanParams,
+    OceanResult
 } from "./types";
 
 const SERVER_URL: string = 'api/';
@@ -23,6 +25,10 @@ export class MLService {
 
     public trainModel(MLParams: MLParams): Observable<MLResult> {
         return this.http.post(`${SERVER_URL}train`, MLParams).map((res) => res.json());
+    }
+
+    public publishAsset(OceanParams: OceanParams): Observable<OceanResult> {
+        return this.http.post(`${SERVER_URL}ocean`, OceanParams).map((res) => res.json());
     }
 
 }
