@@ -7,6 +7,11 @@ matplotlib.use('agg')
 import matplotlib.pyplot as plt
 from Naked.toolshed.shell import execute_js
 import json
+import os
+import binascii
+import requests
+from squid_py.ocean_contracts import OceanContracts
+from squid_py.consumer import register
 
 # declare constants
 HOST = '0.0.0.0'
@@ -71,7 +76,6 @@ def train():
     plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5);
     plt.savefig('../frontend/src/assets/images/after.png')
     plt.close()
-    print(df)
 
     '''
     K-means is not classification, so accuracy doesn't really apply.
@@ -90,11 +94,40 @@ def publish_asset():
     # Get parameters for clustering
     parameters = request.get_json()
 
-    print(parameters['name'],
-          parameters['description'],
-          parameters['contentUrls'],
-          parameters['price'],
-          parameters['author'])
+    # must have run configure script
+
+    ocean = OceanContracts(host = 'http://0.0.0.0',
+                           port = 8545,
+                           config_path = './config_local.ini')
+
+    json_consume = {
+        "metadata": {
+            # User-specified
+            "name": parameters['name'],
+            "description": parameters['description'],
+            "contentUrls": [parameters['contentUrls']], # List
+            "price": parameters['price'],
+            "author": parameters['author'],
+            # Fixed
+            "type": "dataset",
+            "licence": "CC-BY",
+            # Internal, used to generate resource ID
+            "links": "",
+            "size": "",
+            "format": ""
+        },
+        ## Generate unique assetID (40-byte hex)
+        "assetId": binascii.b2a_hex(os.urandom(20))
+    }
+
+    resource_id = register(publisher_account = ocean.web3.eth.accounts[1],
+                           provider_account = ocean.web3.eth.accounts[0],
+                           price = 10,
+                           ocean_contracts_wrapper = ocean,
+                           json_metadata = json_consume,
+                           provider_host = 'http://0.0.0.0:5000')
+
+    assert requests.get('http://0.0.0.0:5000/api/v1/provider/assets/metadata/%s' % resource_id).status_code == 200
 
     return ('', 200)
 
