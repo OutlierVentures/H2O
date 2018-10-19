@@ -6,6 +6,7 @@ import matplotlib
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
 from Naked.toolshed.shell import execute_js
+import json
 
 # declare constants
 HOST = '0.0.0.0'
@@ -49,15 +50,20 @@ def train():
     except:
         print('No OrbitDB database found.')
 
-
-    print(parameters['C'])
-
-
     # K-means cluster
     kmeans = KMeans(n_clusters = int(parameters['C']))
     kmeans.fit(df)
     prediction = kmeans.predict(df)
     centers = kmeans.cluster_centers_
+
+    # Write clustered output to file
+    output = {
+        "data": df.tolist(),
+        "cluster": prediction.tolist(),
+        "centroids": centers.tolist()
+    }
+    with open('../../h2o_output.json', 'w') as outfile:
+        json.dump(output, outfile)
 
     # Plot result
     plt.figure(2)
@@ -65,6 +71,7 @@ def train():
     plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5);
     plt.savefig('../frontend/src/assets/images/after.png')
     plt.close()
+    print(df)
 
     '''
     K-means is not classification, so accuracy doesn't really apply.
