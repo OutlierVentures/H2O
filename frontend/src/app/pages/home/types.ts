@@ -16,7 +16,7 @@ export class OrbitResult {
 
 export class OceanParams {
     name: string = "H2O clustering";
-    description: string = "Clustered OrbitDB data.";
+    description: string = "Clustered OrbitDB";
     contentUrls: string = "http://my.hosted.data";
     price: number = 10;
     author: string = "Outlier Ventures";
