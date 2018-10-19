@@ -15,7 +15,8 @@ export class OrbitResult {
 }
 
 export class OceanParams {
-    title: string = "H2O clustering"
+    name: string = "H2O clustering"
+
 }
 
 export class OceanResult {

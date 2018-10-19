@@ -83,7 +83,7 @@ def publish_asset():
     # Get parameters for clustering
     parameters = request.get_json()
 
-    print(parameters['title'])
+    print(parameters['name'])
 
     return ('', 200)
 
