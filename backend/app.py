@@ -77,6 +77,17 @@ def train():
     return ('', 200)
 
 
+@app.route('/api/ocean', methods=['POST'])
+def publish_asset():
+
+    # Get parameters for clustering
+    parameters = request.get_json()
+
+    print(parameters['title'])
+
+    return ('', 200)
+
+
 if __name__ == '__main__':
     # run web server
     app.run(host = HOST,
