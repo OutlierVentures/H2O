@@ -24,5 +24,19 @@
             </button>
             <img src="../../assets/images/after.png" alt="" style="width: 80%">
         </md-card>
+        <br />
+        <md-card fxLayoutAlign="center center" fxLayout="column">
+            <h4>Publish result to Ocean Protocol</h4>
+            <md-input-container>
+                <input
+                    mdInput
+                    name="Asset title"
+                    placeholder="Asset title"
+                    [(ngModel)]="OceanParams.title">
+            </md-input-container>
+            <button md-raised-button (click)="publishAsset()">
+                Publish
+            </button>
+        </md-card>
     </div>
 </div>
