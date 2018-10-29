@@ -51,7 +51,6 @@ Make sure H2O-Host is running so that the database is available through IPFS. Wi
 You'll need a running instance of Ocean Protocol. You can start an instance with H2O by going to the `backend` folder and typing:
 ```
 docker-compose -f ./docker/docker-compose.yml up
-
 ```
 The blockchain is ready once you see the output:
 ```
@@ -74,13 +73,12 @@ Open two terminal windows, one for back-end and one for front-end. You can run t
 In one terminal window:
 ```
 cd backend
-./configure
-python3 app.py
+./run
 ```
 In the other:
 ```
 cd frontend
-yarn start
+./run
 ```
 
 Interact with the app in your browser at `0.0.0.0:4200`.
@@ -96,8 +94,7 @@ To run:
 ```
 screen
 cd backend
-./configure
-python3 app.py
+./run
 ```
 Press `CTRL` + `A`, then `CTRL` + `D`.
 
@@ -105,7 +102,7 @@ Next:
 ```
 screen
 cd frontend
-yarn start
+./run
 ```
 Wait a few seconds until you see `webpack: Compiled successfully.`
 
