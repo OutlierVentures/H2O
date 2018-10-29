@@ -10,6 +10,7 @@ import json
 import os
 import binascii
 import requests
+import logging
 from squid_py.ocean_contracts import OceanContracts
 from squid_py.consumer import register
 
@@ -19,6 +20,8 @@ PORT = 8081
 
 # initialize flask application
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 
 @app.route('/api/orbit', methods=['POST'])
