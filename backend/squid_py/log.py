@@ -7,7 +7,7 @@ import coloredlogs
 
 def setup_logging(default_path='logging.yaml', default_level=logging.INFO, env_key='LOG_CFG'):
     """
-    | **@author:** Prathyush SP
+    | **@author:** Prathyush SP, Outlier Ventures
     | Logging Setup
     """
     path = default_path
@@ -23,10 +23,10 @@ def setup_logging(default_path='logging.yaml', default_level=logging.INFO, env_k
                 logging.info("Logging configuration loaded from file: {}".format(path))
             except Exception as e:
                 print(e)
-                print('Error in Logging Configuration. Using default configs')
+                print('Error in Logging Configuration. Using default configs.')
                 logging.basicConfig(level=default_level)
                 coloredlogs.install(level=default_level)
     else:
         logging.basicConfig(level=default_level)
         coloredlogs.install(level=default_level)
-        print('Failed to load configuration file. Using default configs')
+        #print('Failed to load configuration file. Using default configs.')
