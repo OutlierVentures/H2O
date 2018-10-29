@@ -4,6 +4,13 @@
     <div class="home__training">
         <md-card fxLayoutAlign="center center" fxLayout="column">
             <h4>Get data from OrbitDB</h4>
+            <md-input-container>
+                <input
+                    mdInput
+                    name="OrbitDB address"
+                    placeholder="OrbitDB address"
+                    [(ngModel)]="OrbitParams.address">
+            </md-input-container>
             <button md-raised-button (click)="getOrbit()">
                 Replicate database
             </button>

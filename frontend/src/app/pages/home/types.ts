@@ -7,7 +7,7 @@ export class MLResult {
 }
 
 export class OrbitParams {
-
+    address: string = "/orbitdb/QmcHKBHmXmx3HHi1opqAVqF4E3qwwkmJPQ8CeVX4ybc4xJ/trainingdata"
 }
 
 export class OrbitResult {
