@@ -27,6 +27,16 @@ log.setLevel(logging.ERROR)
 @app.route('/api/orbit', methods=['POST'])
 def get_orbit():
 
+    # Get parameters for OrbitDB
+    parameters = request.get_json()
+
+    # Write OrbitDB address to file
+    output = {
+        "address": parameters['address']
+    }
+    with open('config.json', 'w') as outfile:
+        json.dump(output, outfile)
+
     execute_js('orbit.js')
 
     # Read in dataframe
