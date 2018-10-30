@@ -11,6 +11,7 @@ import os
 import binascii
 import requests
 import logging
+import shutil
 from squid_py.ocean_contracts import OceanContracts
 from squid_py.consumer import register
 
@@ -26,6 +27,13 @@ log.setLevel(logging.ERROR)
 
 @app.route('/api/orbit', methods=['POST'])
 def get_orbit():
+
+    # OrbitDB writeflag issue workaround: delete local copy on query
+    if os.path.exists('orbitdb'):
+        shutil.rmtree('orbitdb')
+
+    if os.path.exists('orbitdb'):
+        os.remove('data.json')
 
     # Get parameters for OrbitDB
     parameters = request.get_json()
@@ -93,7 +101,7 @@ def train():
     '''
     K-means is not classification, so accuracy doesn't really apply.
     Nevertheless, labels can be loaded for an 'accuracy' metric:
-    truth = data['truth'].values
+    truth = data['t'].values
     Compare to the 'prediction' array. Note you may have to use the
     random_state parameter so that cluster ordering is deterministic.
     '''
