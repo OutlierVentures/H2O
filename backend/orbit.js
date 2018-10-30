@@ -36,7 +36,7 @@ if (!fs.existsSync('data.json')) {
         let data = {
           "x": getArray(db, 'x'),
           "y": getArray(db, 'y'),
-          "truth": getArray(db, 't')
+          "t": getArray(db, 't')
         }
         fs.writeFileSync('data.json', JSON.stringify(data));
         await orbitdb.disconnect()
