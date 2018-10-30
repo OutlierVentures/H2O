@@ -32,7 +32,7 @@ def get_orbit():
     if os.path.exists('orbitdb'):
         shutil.rmtree('orbitdb')
 
-    if os.path.exists('orbitdb'):
+    if os.path.exists('data.json'):
         os.remove('data.json')
 
     # Get parameters for OrbitDB
