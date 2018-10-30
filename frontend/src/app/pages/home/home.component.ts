@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
         this.mlService.getOrbit(this.OrbitParams).subscribe((OrbitResult) => {
             this.OrbitResult = OrbitResult;
         });
-        location.reload();
+        document.getElementById('replicate').innerHTML="<p><center>Finding nearest database...<center></p>";
     }
 
     public trainModel() {

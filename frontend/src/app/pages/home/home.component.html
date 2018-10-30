@@ -11,9 +11,11 @@
                     placeholder="OrbitDB address"
                     [(ngModel)]="OrbitParams.address">
             </md-input-container>
-            <button md-raised-button (click)="getOrbit()">
-                Replicate database
-            </button>
+            <div id="replicate">
+              <button md-raised-button (click)="getOrbit()">
+                  Replicate database
+              </button>
+            </div>
             <img src="../../assets/images/before.png" alt="" style="width: 80%">
         </md-card>
         <br />
