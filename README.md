@@ -13,6 +13,7 @@ This is a deployable version. For the local deployment-only version, switch to t
 
 - Python 3.6+
 - Pip3 9.0+
+- GCC
 - Node 8.10+
 - NPM 3.5+
 - Angular CLI 6.2+
