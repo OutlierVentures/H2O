@@ -1,5 +1,5 @@
 const config = require('./config.json')
-const fs = require('fs');
+const fs = require('fs')
 
 if (!fs.existsSync('data.json')) {
 
