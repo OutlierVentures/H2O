@@ -11,7 +11,7 @@ This is a deployable version. For the local deployment-only version, switch to t
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.6+ + python3-dev on Linux
 - Pip3 9.0+
 - GCC
 - Node 8.10+
