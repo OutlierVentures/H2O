@@ -16,10 +16,14 @@ This is a deployable version. For the local deployment-only version, switch to t
 - GCC
 - Node 8.10+
 - NPM 3.5+
+- One line install of the above on Ubuntu 18.04+:
+    ```
+    sudo apt install build-essential python3-dev python3-pip nodejs npm
+    ```
 - Angular CLI 6.2+
   - `sudo npm install -g @angular/cli`
 - Yarn 1.10+
-   - Linux install:
+   - Debian-based Linux install:
       ```
       curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
       echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
