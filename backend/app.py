@@ -93,7 +93,7 @@ def train():
         "cluster": prediction.tolist(),
         "centroids": centers.tolist()
     }
-    with open('../../h2o_output.json', 'w') as outfile:
+    with open('output.json', 'w') as outfile:
         json.dump(output, outfile)
 
     # Plot result
