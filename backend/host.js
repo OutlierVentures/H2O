@@ -1,6 +1,7 @@
-const data = require('./data.json')
+const data = require('./output.json')
 const IPFS = require('ipfs')
 const OrbitDB = require('orbit-db')
+const fs = require('fs')
 
 const ipfsOptions = {
   start: true,
@@ -24,7 +25,7 @@ ipfs.on('ready', async () => {
 
   const orbitdb = new OrbitDB(ipfs)
 
-  const db = await orbitdb.docs('trainingdata', {
+  const db = await orbitdb.docs(new Date().toISOString(), {
     create: true,
     overwrite: true,
     localOnly: false,
@@ -33,15 +34,17 @@ ipfs.on('ready', async () => {
 
   await db.load()
 
-  console.log('OrbitDB address:')
-  console.log(db.address.toString())
-
   // async forEach withon the IPFS on ready is problematic, put manually
   await db.put( { _id: 'x', array: data.x })
   await db.put( { _id: 'y', array: data.y })
-
-  // Remove this line if you do not have ground truth
   await db.put( { _id: 't', array: data.t })
+
+  // Once database is filled append its address to config file
+  fs.readFile('config.json', function (error, data) {
+    var config = JSON.parse(data)
+    config.host = db.address.toString()
+    fs.writeFile('config.json', JSON.stringify(config))
+  })
 
   // Do not close connection to remain a host
 
