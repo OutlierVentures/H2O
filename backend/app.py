@@ -148,7 +148,7 @@ def publish_asset():
 
     resource_id = register(publisher_account = ocean.web3.eth.accounts[1],
                            provider_account = ocean.web3.eth.accounts[0],
-                           price = 10,
+                           price = parameters['price'],
                            ocean_contracts_wrapper = ocean,
                            json_metadata = json_consume,
                            provider_host = 'http://0.0.0.0:5000')
