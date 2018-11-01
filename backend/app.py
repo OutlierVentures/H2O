@@ -1,19 +1,24 @@
+# Ocean Protocol
+from squid_py.ocean_contracts import OceanContracts
+from squid_py.consumer import register
+
+# OrbitDB
+from Naked.toolshed.shell import execute_js
+
+# Flask
 from flask import Flask, request, jsonify
+
+# Utilities
+import os, shutil, json, requests, binascii, requests, logging
+
+# Clustering
 from sklearn.cluster import KMeans
 import pandas as pd
 import matplotlib
 # Run matplotlib in headless mode, prevents NSWindow crash
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
-from Naked.toolshed.shell import execute_js
-import json
-import os
-import binascii
-import requests
-import logging
-import shutil
-from squid_py.ocean_contracts import OceanContracts
-from squid_py.consumer import register
+
 
 # declare constants
 HOST = '0.0.0.0'
