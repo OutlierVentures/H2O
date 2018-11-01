@@ -117,10 +117,19 @@ def train():
 @app.route('/api/ocean', methods=['POST'])
 def publish_asset():
 
+    #TODO: FIND HOW ORBITDB ADDRESS MAPS TO IPFS.IO/IPFS/[HASH]
+    # ORBIT HASH IS IPFS MULTIHASH
+
     # Get parameters for clustering
     parameters = request.get_json()
 
-    # must have run configure script
+    # IS HOST, SO RUNS UNTIL MANUALLY CLOSED
+    execute_js('host.js')
+
+    # REMOVE COMMENT Below works, checked in python console REMOVE COMMENT
+    with open('config.json', 'r') as infile:
+        config = json.load(infile)
+    orbit_address = config['host']
 
     ocean = OceanContracts(host = 'http://0.0.0.0',
                            port = 8545,
@@ -131,7 +140,7 @@ def publish_asset():
             # User-specified
             "name": parameters['name'],
             "description": parameters['description'],
-            "contentUrls": [parameters['contentUrls']], # List
+            "contentUrls": [orbit_address], # List
             "price": parameters['price'],
             "author": parameters['author'],
             # Fixed
