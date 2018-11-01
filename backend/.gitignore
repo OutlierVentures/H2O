@@ -2,6 +2,7 @@
 
 # App
 data.json
+output.json
 
 # OrbitDB
 /orbitdb
