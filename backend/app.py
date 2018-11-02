@@ -62,7 +62,7 @@ def get_orbit():
         plt.scatter(df[:, 0], df[:, 1]);
         plt.savefig('../frontend/src/assets/images/before.png')
         plt.close()
-        
+
     except:
         print('No OrbitDB database found.')
 

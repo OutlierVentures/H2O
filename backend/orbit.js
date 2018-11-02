@@ -1,6 +1,7 @@
 const config = require('./config.json')
 const fs = require('fs')
 
+// Check for file to prevent retriggers
 if (!fs.existsSync('data.json')) {
 
   const IPFS = require('ipfs')
