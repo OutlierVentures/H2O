@@ -66,10 +66,6 @@ keeper-contracts_1  | eth_getFilterLogs
 ```
 Local/testnet use can be specified with environment variables as usual with Ocean Protocol.
 
-#### Mid-October 2018: IPFS node module install slow on MacOS
-
-MacOS users: the normal IPFS node module install is currently broken. The install scripts provided with H2O will get it running but for now take several minutes at the `npm install` step. We've optimised it as best we can until IPFS roll out a fix.
-
 
 ### Running
 
