@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Script for dev use: launch all componenents
+
+screen -AdmS h2o -t tab0 bash -c 'cd backend; docker-compose -f ./docker/docker-compose.yml up'
+screen -S h2o -X screen -t tab1 bash -c 'cd backend; ./run;'
+screen -S h2o -X screen -t tab2 bash -c 'cd frontend; yarn install --pure-lockfile; ./run'
+screen -r h2o
