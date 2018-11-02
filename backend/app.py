@@ -134,7 +134,6 @@ def publish_asset():
     # IS HOST, SO RUNS UNTIL MANUALLY CLOSED
     execute_js('host.js')
 
-    # REMOVE COMMENT Below works, checked in python console REMOVE COMMENT
     with open('host.json', 'r') as infile:
         host = json.load(infile)
 
