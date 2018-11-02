@@ -19,7 +19,7 @@ This is a deployable version. For the local deployment-only version, switch to t
 ```
 ./install
 ```
-If you encounter errors, try running with `sudo`. If you still have problems, there is a full requirements list at the bottom of this file for manual installation.
+If you encounter errors, try running with `sudo`. If you still have problems, there is a full requirements list at the bottom of this file for manual installations.
 
 ### Run
 
