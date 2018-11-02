@@ -46,6 +46,8 @@ ipfs.on('ready', async () => {
     fs.writeFile('config.json', JSON.stringify(config))
   })
 
-  // Do not close connection to remain a host
+  await orbitdb.disconnect()
+  await ipfs.stop(() => {})
+  process.exit()
 
 })
