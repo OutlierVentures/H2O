@@ -8,53 +8,20 @@ You can find a live version of the app (no Ocean asset registration, `master` br
 
 This is a deployable version. For the local deployment-only version, switch to the `local_deployment` branch.
 
-
-## Requirements
-
-- Python 3.6+ + python3-dev on Linux
-- Pip3 9.0+
-- GCC
-- Node 8.10+
-- NPM 3.5+
-- One line install of the above on Ubuntu 18.04+:
-    ```
-    sudo apt install build-essential python3-dev python3-pip nodejs npm
-    ```
-- Angular CLI 6.2+
-  - `sudo npm install -g @angular/cli`
-- Yarn 1.10+
-   - Debian-based Linux install:
-      ```
-      curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-      sudo apt-get update && sudo apt-get install yarn
-      ```
-### Asset Registration
-
-- If on mac, gnu-sed: `brew install --with-default-names gnu-sed`
-
-
 ## Architecture
 
 ![Architecture Diagram](/doc/OceanHaja.png)
 
 
-## How to use
+## Getting started
 
-Install dependencies:
+### Install
 ```
-pip3 install --upgrade setuptools
-cd backend
-pip3 install -r requirements.txt
-npm install
-cd ../frontend
-yarn install --pure-lockfile
+./install
 ```
+If you encounter errors, try running with `sudo`. If you still have problems, there is a full requirements list at the bottom of this file for manual installation.
 
-Make sure H2O-Host is running so that the database is available through IPFS. Without a provider of the database, it cannot be replicated.
-
-
-### Running
+### Run
 
 #### Quickstart for all components
 
@@ -62,7 +29,7 @@ Make sure H2O-Host is running so that the database is available through IPFS. Wi
 ./launch
 ```
 
-Hard errors will need a restart of the components that exited (typically backend, restart with `./backend/run`).
+Hard errors will need a restart of the components that exited (this will typically be backend, restart it with `cd backend && ./run`).
 
 #### Running components individually
 
@@ -80,7 +47,7 @@ keeper-contracts_1  | eth_getFilterLogs
 ```
 Local/testnet use can be specified with environment variables as usual with Ocean Protocol.
 
-Next, open two terminal windows, one for back-end and one for front-end. You can run the tasks in a single window using `screen` or `bg` if you'd like.
+Next, open two terminal windows, one for backend and one for frontend. You can run the tasks in a single window using `screen` or `bg` if you'd like.
 
 In one terminal window:
 ```
@@ -125,12 +92,12 @@ You can now close the terminal window. The app will continue to run.
 
 ## Roadmap
 
-1. Hosting from H2O app
+1. Hosting from H2O app (0.9.5)
  - OrbitDB on IPFS.
  - Azure (possibly wrapper).
-2. Make UI in line with Outlier Ventures branding.
-3. Containerise.
-4. Regulatory & publish.
+2. Make UI in line with Outlier Ventures branding (0.9.6).
+3. Containerise (0.9.7).
+4. Regulatory & publish (1.0.0).
 
 
 ## Useful info
@@ -141,3 +108,28 @@ market.address = 0xb8277FC2A46C11235775BEC194BD8C12ed92343C
 auth.address = 0xfA65f2662224Dd340a2dea0972E70BA450E94e3C
 token.address = 0x656f2Ab5D4C4bC2D5821fd959B083fd50273C2f1
 ```
+
+## Full requirements list
+
+If you encounter errors with the install script, here is a full list of requirements:
+
+H2O runs on Linux and MacOS.
+
+- MacOS: command line tools, Homebrew & `gnu-sed`
+- Docker & Docker Compose
+- Python 3 (`python3-dev` on Linux)
+- Pip3
+- GCC 4+
+- Node 8+
+- NPM 3+
+- Angular CLI 6+
+- Yarn 1.10+
+- Finally, install dependencies:
+    ```
+    pip3 install --upgrade setuptools
+    cd backend
+    pip3 install -r requirements.txt
+    npm install
+    cd ../frontend
+    yarn install --pure-lockfile
+    ```
