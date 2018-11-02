@@ -72,6 +72,13 @@ def get_orbit():
 @app.route('/api/train', methods=['POST'])
 def train():
 
+    # OrbitDB writeflag issue workaround: delete local copy on query
+    if os.path.exists('orbitdb'):
+        shutil.rmtree('orbitdb')
+
+    if os.path.exists('output.json'):
+        os.remove('output.json')
+
     # Get parameters for clustering
     parameters = request.get_json()
 
@@ -128,9 +135,9 @@ def publish_asset():
     execute_js('host.js')
 
     # REMOVE COMMENT Below works, checked in python console REMOVE COMMENT
-    with open('config.json', 'r') as infile:
-        config = json.load(infile)
-    orbit_address = config['host']
+    with open('host.json', 'r') as infile:
+        host = json.load(infile)
+    orbit_address = host['address']
 
     ocean = OceanContracts(host = 'http://0.0.0.0',
                            port = 8545,

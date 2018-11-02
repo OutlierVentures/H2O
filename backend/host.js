@@ -39,13 +39,10 @@ ipfs.on('ready', async () => {
   await db.put( { _id: 'y', array: data.y })
   await db.put( { _id: 't', array: data.t })
 
-  // Once database is filled append its address to config file
-  fs.readFile('config.json', function (error, data) {
-    var config = JSON.parse(data)
-    config.host = db.address.toString()
-    fs.writeFile('config.json', JSON.stringify(config))
-  })
+  // Once database is filled write address to JSON
+  fs.writeFileSync('host.json', JSON.stringify({"address": db.address.toString()}))
 
+  // Close and exit
   await orbitdb.disconnect()
   await ipfs.stop(() => {})
   process.exit()
