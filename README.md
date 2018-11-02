@@ -28,6 +28,7 @@ If you encounter errors, try running with `sudo`. If you still have problems, th
 ```
 ./launch
 ```
+Ocean Protocol, backend and frontend are started in separate `screen` tabs. You can switch between them using `CTRL` + `A`, `SHIFT` + `'`.
 
 Hard errors will need a restart of the components that exited (this will typically be backend, restart it with `cd backend && ./run`).
 
