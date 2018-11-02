@@ -137,7 +137,6 @@ def publish_asset():
     # REMOVE COMMENT Below works, checked in python console REMOVE COMMENT
     with open('host.json', 'r') as infile:
         host = json.load(infile)
-    orbit_address = host['address']
 
     ocean = OceanContracts(host = 'http://0.0.0.0',
                            port = 8545,
@@ -148,7 +147,7 @@ def publish_asset():
             # User-specified
             "name": parameters['name'],
             "description": parameters['description'],
-            "contentUrls": [orbit_address], # List
+            "contentUrls": [host['address'],'https://ipfs.io/ipfs/QmeESXh9wPib8Xz7hdRzHuYLDuEUgkYTSuujZ2phQfvznQ/#dbaddress'], # List
             "price": parameters['price'],
             "author": parameters['author'],
             # Fixed

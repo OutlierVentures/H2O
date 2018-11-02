@@ -29,16 +29,18 @@ ipfs.on('ready', async () => {
     create: true,
     overwrite: true,
     localOnly: false,
-    write: ['*'], // ALLOW ALL WRITE
+    //write: ['*'], // ALLOW ALL WRITE
   })
 
   await db.load()
 
   // async forEach withon the IPFS on ready is problematic, put manually
-  await db.put( { _id: 'x', array: data.x })
-  await db.put( { _id: 'y', array: data.y })
-  await db.put( { _id: 't', array: data.t })
+  await db.put( { _id: 'data', array: data.data })
+  await db.put( { _id: 'cluster', array: data.cluster })
+  await db.put( { _id: 'centroids', array: data.centroids })
 
+  const it = db.get('data')
+  console.log(it)
   // Once database is filled write address to JSON
   fs.writeFileSync('host.json', JSON.stringify({"address": db.address.toString()}))
 
