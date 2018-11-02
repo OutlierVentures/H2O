@@ -53,8 +53,22 @@ yarn install --pure-lockfile
 
 Make sure H2O-Host is running so that the database is available through IPFS. Without a provider of the database, it cannot be replicated.
 
-You'll need a running instance of Ocean Protocol. You can start an instance with H2O by going to the `backend` folder and typing:
+
+### Running
+
+#### Quickstart for all components
+
 ```
+./launch
+```
+
+Hard errors will need a restart of the components that exited (typically backend, restart with `./backend/run`).
+
+#### Running components individually
+
+You'll need a running instance of Ocean Protocol. You can start an instance with H2O:
+```
+cd backend
 docker-compose -f ./docker/docker-compose.yml up
 ```
 The blockchain is ready once you see the output:
@@ -66,20 +80,15 @@ keeper-contracts_1  | eth_getFilterLogs
 ```
 Local/testnet use can be specified with environment variables as usual with Ocean Protocol.
 
-
-### Running
-
-Open two terminal windows, one for back-end and one for front-end. You can run the tasks in a single window using `screen` or `bg` if you'd like, but you may miss useful logs.
+Next, open two terminal windows, one for back-end and one for front-end. You can run the tasks in a single window using `screen` or `bg` if you'd like.
 
 In one terminal window:
 ```
-cd backend
-./run
+./backend/run
 ```
 In the other:
 ```
-cd frontend
-./run
+./frontend/run
 ```
 
 Interact with the app in your browser at `0.0.0.0:4200`.
@@ -94,16 +103,14 @@ The app is currently deployed using a Werkzeug dev server. This is not safe for 
 To run:
 ```
 screen
-cd backend
-./run
+./backend/run
 ```
 Press `CTRL` + `A`, then `CTRL` + `D`.
 
 Next:
 ```
 screen
-cd frontend
-./run
+./frontend/run
 ```
 Wait a few seconds until you see `webpack: Compiled successfully.`
 
@@ -114,9 +121,12 @@ You can now close the terminal window. The app will continue to run.
 
 ## Roadmap
 
-1. Testing + clean up terminal outputs.
+1. Hosting from H2O app
+ - OrbitDB on IPFS.
+ - Azure (possibly wrapper).
 2. Make UI in line with Outlier Ventures branding.
-3. Regulatory & publish.
+3. Containerise.
+4. Regulatory & publish.
 
 
 ## Useful info
