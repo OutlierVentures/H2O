@@ -56,14 +56,15 @@ def get_orbit():
     try:
         data = pd.read_json('data.json')
         df = data.as_matrix(columns = data.columns[0:2])
+
+        # Plot original
+        plt.figure(1)
+        plt.scatter(df[:, 0], df[:, 1]);
+        plt.savefig('../frontend/src/assets/images/before.png')
+        plt.close()
+        
     except:
         print('No OrbitDB database found.')
-
-    # Plot original
-    plt.figure(1)
-    plt.scatter(df[:, 0], df[:, 1]);
-    plt.savefig('../frontend/src/assets/images/before.png')
-    plt.close()
 
     return ('', 200)
 
