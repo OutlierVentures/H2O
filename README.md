@@ -84,11 +84,13 @@ Next, open two terminal windows, one for back-end and one for front-end. You can
 
 In one terminal window:
 ```
-./backend/run
+cd backend
+./run
 ```
 In the other:
 ```
-./frontend/run
+cd frontend
+./run
 ```
 
 Interact with the app in your browser at `0.0.0.0:4200`.
@@ -103,14 +105,16 @@ The app is currently deployed using a Werkzeug dev server. This is not safe for 
 To run:
 ```
 screen
-./backend/run
+cd backend
+./run
 ```
 Press `CTRL` + `A`, then `CTRL` + `D`.
 
 Next:
 ```
 screen
-./frontend/run
+cd frontend
+./run
 ```
 Wait a few seconds until you see `webpack: Compiled successfully.`
 
