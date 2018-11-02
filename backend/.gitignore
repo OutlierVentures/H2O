@@ -3,6 +3,7 @@
 # App
 data.json
 output.json
+host.json
 
 # OrbitDB
 /orbitdb
