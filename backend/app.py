@@ -125,9 +125,6 @@ def train():
 @app.route('/api/ocean', methods=['POST'])
 def publish_asset():
 
-    #TODO: FIND HOW ORBITDB ADDRESS MAPS TO IPFS.IO/IPFS/[HASH]
-    # ORBIT HASH IS IPFS MULTIHASH
-
     # Get parameters for clustering
     parameters = request.get_json()
 
@@ -174,6 +171,7 @@ def publish_asset():
 
 
 if __name__ == '__main__':
+
     # run web server
     app.run(host = HOST,
             debug = True,  # automatic reloading enabled

@@ -221,4 +221,4 @@ venv.bak/
 .mypy_cache/
 .idea
 docker/docs
-/config_local.ini
+config_local.ini
