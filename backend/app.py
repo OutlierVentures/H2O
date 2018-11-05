@@ -175,7 +175,7 @@ def publish_asset():
             "name": parameters['name'],
             "description": parameters['description'],
             # ContentUrls is a list. Use commented line for OrbitDB hosting (not testnet compatible yet)
-            "contentUrls": ['https://' + azure_account + '.blob.core.windows/net/' + asset_id],
+            "contentUrls": ['https://' + azure_account + '.blob.core.windows/net/' + asset_id + '/output.json'],
             #"contentUrls": [host['address'],'https://ipfs.io/ipfs/QmeESXh9wPib8Xz7hdRzHuYLDuEUgkYTSuujZ2phQfvznQ/#dbaddress'],
             "price": parameters['price'],
             "author": parameters['author'],
