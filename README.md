@@ -29,27 +29,28 @@ If you encounter any install problems, there is a full requirements list at the 
 
 #### Quickstart for all components
 
+Start an instance of Ocean Protocol:
 ```
-sudo ./launch
+./ocean
 ```
-Ocean Protocol, backend and frontend are started in separate `screen` tabs. You can switch between them using `CTRL` + `A`, `SHIFT` + `'`.
+This will launch Ocean in a `screen` session. Once the blockchain is ready, you will see repeat output `keeper-contracts_1  | eth_getFilterLogs`, at which point you can detach from the screen with `CTRL` + `A`, `CTRL` + `D`.
+
+Next, launch H2O:
+```
+./launch
+```
+The backend and frontend are started in separate `screen` tabs. You can switch between them using `CTRL` + `A`, `SHIFT` + `'`.
 
 Hard errors will need a restart of the components that exited (this will typically be backend, restart it with `cd backend && ./run`).
 
 #### Running components individually
 
-You'll need a running instance of Ocean Protocol. You can start an instance with H2O:
+Start an instance of Ocean Protocol:
 ```
-cd backend
-docker-compose -f ./docker/docker-compose.yml up
+./ocean
 ```
-The blockchain is ready once you see the output:
-```
-keeper-contracts_1  | eth_getFilterLogs
-keeper-contracts_1  | eth_getFilterLogs
-keeper-contracts_1  | eth_getFilterLogs
-...
-```
+This will launch Ocean in a `screen` session. Once the blockchain is ready, you will see repeat output `keeper-contracts_1  | eth_getFilterLogs`, at which point you can detach from the screen with `CTRL` + `A`, `CTRL` + `D`.
+
 Local/testnet use can be specified with environment variables as usual with Ocean Protocol.
 
 Next, open two terminal windows, one for backend and one for frontend. You can run the tasks in a single window using `screen` or `bg` if you'd like.
