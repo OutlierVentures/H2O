@@ -19,6 +19,8 @@ export class OceanParams {
     description: string = "Clustered OrbitDB";
     price: number = 10;
     author: string = "Outlier Ventures";
+    azureaccount: string = "devstoreaccount1";
+    azurekey: string = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw=="
 }
 
 export class OceanResult {
