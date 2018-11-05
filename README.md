@@ -104,12 +104,9 @@ You can now close the terminal window. The app will continue to run.
 
 ## Roadmap
 
-1. Hosting from H2O app (0.9.5)
- - OrbitDB on IPFS.
- - Azure (possibly wrapper).
-2. Make UI in line with Outlier Ventures branding (0.9.6).
-3. Containerise (0.9.7).
-4. Regulatory & publish (1.0.0).
+1. Make UI in line with Outlier Ventures branding (0.9.6).
+2. Containerise (0.9.7).
+3. Regulatory & publish (1.0.0).
 
 
 ## Useful info
