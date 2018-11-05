@@ -4,6 +4,9 @@ Machine learning in Nautilina with OrbitDB.
 
 You can find a live version of the app at `159.69.202.132:4200`.
 
+Publishing assets requires an Azure Storage account.
+Proof-of-concept OrbitDB hosting can be found in the `backend` folder, see `app.py` and `host.js`.
+
 
 ## Architecture
 
@@ -39,6 +42,12 @@ Next, launch H2O:
 The backend and frontend are started in separate `screen` tabs. You can switch between them using `CTRL` + `A`, `SHIFT` + `'`.
 
 Hard errors will need a restart of the components that exited (this will typically be backend, restart it with `cd backend && ./run`).
+
+You can view the app at `0.0.0.0:4200`.
+
+To deploy, expose ports `4200` and `8545`.
+The app will be accessible at `[YOUR_PUBLIC_IP]:4200`.
+The code has not yet been audited – deploy at your own risk.
 
 #### Running components individually
 
