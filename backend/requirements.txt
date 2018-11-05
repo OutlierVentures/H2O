@@ -4,6 +4,7 @@ matplotlib
 Naked
 flask
 scikit-learn[alldeps]
+azure-storage
 argh==0.26.2
 asn1crypto==0.24.0
 atomicwrites==1.1.5
