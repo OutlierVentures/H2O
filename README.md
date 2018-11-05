@@ -2,11 +2,8 @@
 
 Machine learning in Nautilina with OrbitDB.
 
-This branch (`develop`) is for registering an asset with the Ocean Protocol Squid API.
+You can find a live version of the app at `159.69.202.132:4200`.
 
-You can find a live version of the app (no Ocean asset registration, `master` branch) at `159.69.202.132:4200`.
-
-This is a deployable version. For the local deployment-only version, switch to the `local_deployment` branch.
 
 ## Architecture
 
