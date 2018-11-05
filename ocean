@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Launch Ocean Protocol
+
+screen -AdmS ocean bash -c 'cd backend; docker-compose -f ./docker/docker-compose.yml up'
+screen -r ocean
