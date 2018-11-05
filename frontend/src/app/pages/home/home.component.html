@@ -65,6 +65,20 @@
                     placeholder="Author"
                     [(ngModel)]="OceanParams.author">
             </md-input-container>
+            <md-input-container>
+                <input
+                    mdInput
+                    name="Azure Account Name"
+                    placeholder="Azure Account Name"
+                    [(ngModel)]="OceanParams.azureaccount">
+            </md-input-container>
+            <md-input-container>
+                <input
+                    mdInput
+                    name="Azure Access Key"
+                    placeholder="Azure Access Key"
+                    [(ngModel)]="OceanParams.azurekey">
+            </md-input-container>
             <button md-raised-button (click)="publishAsset()">
                 Publish
             </button>
