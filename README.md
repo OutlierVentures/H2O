@@ -15,18 +15,22 @@ This is a deployable version. For the local deployment-only version, switch to t
 
 ## Getting started
 
+H2O runs on Linux and MacOS with command line tools (type `gcc` in terminal to install).
+
+You'll need Docker and Docker Compose 1.22. Docker Compose 1.23 and later uses container naming incompatible with Ocean Protocol - once Ocean roll out a fix, we'll update here.
+
 ### Install
 ```
-./install
+sudo ./install
 ```
-If you encounter errors, try running with `sudo`. If you still have problems, there is a full requirements list at the bottom of this file for manual installations.
+If you encounter any install problems, there is a full requirements list at the bottom of this file for manual installations.
 
 ### Run
 
 #### Quickstart for all components
 
 ```
-./launch
+sudo ./launch
 ```
 Ocean Protocol, backend and frontend are started in separate `screen` tabs. You can switch between them using `CTRL` + `A`, `SHIFT` + `'`.
 
@@ -117,7 +121,7 @@ If you encounter errors with the install script, here is a full list of requirem
 H2O runs on Linux and MacOS.
 
 - MacOS: command line tools, Homebrew & `gnu-sed`
-- Docker & Docker Compose
+- Docker & Docker Compose 1.22
 - Python 3 (`python3-dev` on Linux)
 - Pip3
 - GCC 4+
