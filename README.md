@@ -45,10 +45,6 @@ Hard errors will need a restart of the components that exited (this will typical
 
 You can view the app at `0.0.0.0:4200`.
 
-To deploy, expose ports `4200` and `8545`.
-The app will be accessible at `[YOUR_PUBLIC_IP]:4200`.
-The code has not yet been audited – deploy at your own risk.
-
 #### Running components individually
 
 Start an instance of Ocean Protocol:
@@ -77,29 +73,12 @@ Interact with the app in your browser at `0.0.0.0:4200`.
 
 ### Deployment
 
-This deploys the app at your public IP. You must allow port 4200 and 8081.
+To deploy use the `live` branch.
+Expose ports `4200` and `8545`.
+The app will be accessible at `[YOUR_PUBLIC_IP]:4200`.
+The code has not yet been audited – deploy at your own risk.
 
 The app is currently deployed using a Werkzeug dev server. This is not safe for production. If you want to go production-ready, use a WSGI HTTP server like [gunicorn](https://gunicorn.org/). When ready, the app will be switched to this.
-
-To run:
-```
-screen
-cd backend
-./run
-```
-Press `CTRL` + `A`, then `CTRL` + `D`.
-
-Next:
-```
-screen
-cd frontend
-./run
-```
-Wait a few seconds until you see `webpack: Compiled successfully.`
-
-Press `CTRL` + `A`, then `CTRL` + `D`.
-
-You can now close the terminal window. The app will continue to run.
 
 
 ## Roadmap
