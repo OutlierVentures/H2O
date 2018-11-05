@@ -5,11 +5,15 @@ from squid_py.consumer import register
 # OrbitDB
 from Naked.toolshed.shell import execute_js
 
+# Azure Storage
+import uuid, sys
+from azure.storage.blob import BlockBlobService, PublicAccess
+
 # Flask
 from flask import Flask, request, jsonify
 
 # Utilities
-import os, shutil, json, requests, binascii, requests, logging
+import os, shutil, json, requests, logging, random, string
 
 # Clustering
 from sklearn.cluster import KMeans
@@ -128,11 +132,38 @@ def publish_asset():
     # Get parameters for clustering
     parameters = request.get_json()
 
-    # IS HOST, SO RUNS UNTIL MANUALLY CLOSED
-    execute_js('host.js')
+    azure_account = parameters['azureaccount']
 
-    with open('host.json', 'r') as infile:
-        host = json.load(infile)
+    # Unique asset ID: 40 lowercase alphabetic characters (Azure compatible)
+    # Cannot take sample larger than population (26), so take two and combine
+    sample_one = ''.join(random.sample(string.ascii_lowercase, 20))
+    sample_two = ''.join(random.sample(string.ascii_lowercase, 20))
+    asset_id = sample_one + sample_two
+
+    # Uncomment this and comment out Azure try-except block for OrbitDB hosting.
+    # OrbitDB hosting is proof-of-concept and not testnet compatible yet.
+    #execute_js('host.js')
+    #with open('host.json', 'r') as infile:
+    #    host = json.load(infile)
+
+    # Azure storage hosting
+    try:
+        # Create service used to call the Blob service for the storage account
+        block_blob_service = BlockBlobService(account_name = azure_account, account_key = parameters['azurekey'])
+
+        # Create container with name = asset_id
+        container_name = asset_id
+        block_blob_service.create_container(asset_id)
+
+        # Make public
+        block_blob_service.set_container_acl(asset_id, public_access = PublicAccess.Container)
+
+        # Create and upload blob
+        block_blob_service.create_blob_from_path(asset_id, 'output.json', 'output.json')
+
+    except Exception as e:
+        print(e)
+
 
     ocean = OceanContracts(host = 'http://0.0.0.0',
                            port = 8545,
@@ -143,7 +174,9 @@ def publish_asset():
             # User-specified
             "name": parameters['name'],
             "description": parameters['description'],
-            "contentUrls": [host['address'],'https://ipfs.io/ipfs/QmeESXh9wPib8Xz7hdRzHuYLDuEUgkYTSuujZ2phQfvznQ/#dbaddress'], # List
+            # ContentUrls is a list. Use commented line for OrbitDB hosting (not testnet compatible yet)
+            "contentUrls": ['https://' + azure_account + '.blob.core.windows/net/' + asset_id],
+            #"contentUrls": [host['address'],'https://ipfs.io/ipfs/QmeESXh9wPib8Xz7hdRzHuYLDuEUgkYTSuujZ2phQfvznQ/#dbaddress'],
             "price": parameters['price'],
             "author": parameters['author'],
             # Fixed
@@ -155,7 +188,7 @@ def publish_asset():
             "format": ""
         },
         ## Generate unique assetID (40-byte hex)
-        "assetId": binascii.b2a_hex(os.urandom(20))
+        "assetId": asset_id
     }
 
     resource_id = register(publisher_account = ocean.web3.eth.accounts[1],
@@ -172,7 +205,7 @@ def publish_asset():
 
 if __name__ == '__main__':
 
-    # run web server
+    # Run web server
     app.run(host = HOST,
-            debug = True,  # automatic reloading enabled
+            debug = True,  # Automatic reloading enabled
             port = PORT)
