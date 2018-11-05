@@ -1,3 +1,6 @@
+// Hosting using OrbitDB. Proof-of-concept, not compatible with testnet yet.
+// Will be enabled when IPFS is supported by Ocean.
+
 const data = require('./output.json')
 const IPFS = require('ipfs')
 const OrbitDB = require('orbit-db')
