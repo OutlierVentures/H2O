@@ -51,6 +51,8 @@ Start an instance of Ocean Protocol:
 ```
 ./ocean
 ```
+You can add the option `kovan` to use the testnet: `./ocean kovan`.
+
 This will launch Ocean in a `screen` session. Once the blockchain is ready, you will see repeat output `keeper-contracts_1  | eth_getFilterLogs`, at which point you can detach from the screen with `CTRL` + `A`, `CTRL` + `D`.
 
 Local/testnet use can be specified with environment variables as usual with Ocean Protocol.
