@@ -1,0 +1,11 @@
+**/.gitignore
+**/__pycache__
+**/node_modules
+**/.DS_Store
+/frontend/src/assets/images/after.png
+/frontend/src/assets/images/before.png
+/backend/config_local.ini
+/backend/config.json
+/backend/data.json
+/backend/host.json
+/backend/output.json
