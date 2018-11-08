@@ -5,7 +5,7 @@ Machine learning in Nautilina with OrbitDB.
 You can find a live version of the app at `159.69.202.132:4200`.
 
 Publishing assets requires an Azure Storage account.
-Proof-of-concept OrbitDB hosting can be found in the `backend` folder, see `app.py` and `host.js`.
+Proof-of-concept OrbitDB hosting can be found in `h2o/backend` folder, see `app.py` and `host.js`.
 
 
 ## Architecture
@@ -31,13 +31,15 @@ If you encounter any install problems, there is a full requirements list at the 
 
 Start an instance of Ocean Protocol:
 ```
-./ocean
+./start_ocean
 ```
 This will launch Ocean in a `screen` session. Once the blockchain is ready, you will see repeat output `keeper-contracts_1  | eth_getFilterLogs`, at which point you can detach from the screen with `CTRL` + `A`, `CTRL` + `D`.
 
+For contracts on the Kovan testnet, just add the `kovan` option: `./start_ocean kovan`.
+
 Next, launch H2O:
 ```
-./launch
+./start_h2o
 ```
 The backend and frontend are started in separate `screen` tabs. You can switch between them using `CTRL` + `A`, `SHIFT` + `'`.
 
@@ -49,24 +51,22 @@ You can view the app at `0.0.0.0:4200`.
 
 Start an instance of Ocean Protocol:
 ```
-./ocean
+./start_ocean
 ```
-You can add the option `kovan` to use the testnet: `./ocean kovan`.
+You can add the option `kovan` to use the testnet contracts: `./start_ocean kovan`.
 
 This will launch Ocean in a `screen` session. Once the blockchain is ready, you will see repeat output `keeper-contracts_1  | eth_getFilterLogs`, at which point you can detach from the screen with `CTRL` + `A`, `CTRL` + `D`.
-
-Local/testnet use can be specified with environment variables as usual with Ocean Protocol.
 
 Next, open two terminal windows, one for backend and one for frontend. You can run the tasks in a single window using `screen` or `bg` if you'd like.
 
 In one terminal window:
 ```
-cd backend
+cd h2o/backend
 ./run
 ```
 In the other:
 ```
-cd frontend
+cd h2o/frontend
 ./run
 ```
 
@@ -75,18 +75,21 @@ Interact with the app in your browser at `0.0.0.0:4200`.
 
 ### Deployment
 
-To deploy use the `live` branch.
+*Containerisation + production server in development on the `deploy` branch.*
+
+To deploy yourself (currently at your own risk, uses dev server), switch to the `live` branch.
+
 Expose ports `4200` and `8545`.
 The app will be accessible at `[YOUR_PUBLIC_IP]:4200`.
 The code has not yet been audited – deploy at your own risk.
 
-The app is currently deployed using a Werkzeug dev server. This is not safe for production. If you want to go production-ready, use a WSGI HTTP server like [gunicorn](https://gunicorn.org/). When ready, the app will be switched to this.
+The `live` branch uses a Werkzeug dev server. This is not safe for production. If you want to go production-ready, use a WSGI HTTP server like [gunicorn](https://gunicorn.org/). Likewise, frontend runs an Angular dev server, which you will need to switch to a production server. This is currently in development on the `deploy` branch.
 
 
 ## Roadmap
 
-1. Make UI in line with Outlier Ventures branding (0.9.6).
-2. Containerise (0.9.7).
+1. Containerise and set up on production server (0.9.6).
+2. Make UI in line with Outlier Ventures branding (0.9.7).
 3. Regulatory & publish (1.0.0).
 
 
