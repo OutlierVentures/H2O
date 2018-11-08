@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Launch H2O
-
-screen -AdmS h2o -t tab0 bash -c 'cd frontend; ./run'
-screen -S h2o -X screen -t tab1 bash -c 'cd backend; ./run'
-screen -r h2o
