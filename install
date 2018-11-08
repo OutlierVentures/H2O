@@ -19,7 +19,7 @@ fi
 npm install -g @angular/cli
 
 pip3 install --upgrade setuptools
-cd backend
+cd h2o/backend
 pip3 install -r requirements.txt
 npm install
 cd ../frontend
