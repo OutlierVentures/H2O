@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd frontend
+yarn start &
+cd ../backend
+chmod +x run
+./run

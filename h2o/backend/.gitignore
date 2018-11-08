@@ -4,6 +4,7 @@
 data.json
 output.json
 host.json
+config.json
 
 # OrbitDB
 /orbitdb
