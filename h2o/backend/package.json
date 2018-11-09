@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "ipfs": "^0.32.3",
-    "orbit-db": "^0.19.9"
-  }
-}

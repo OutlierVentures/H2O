@@ -165,7 +165,7 @@ def publish_asset():
         print(e)
 
 
-    ocean = OceanContracts(host = 'http://0.0.0.0',
+    ocean = OceanContracts(host = 'http://127.17.0.1',
                            port = 8545,
                            config_path = './config_local.ini')
 
@@ -196,9 +196,9 @@ def publish_asset():
                            price = parameters['price'],
                            ocean_contracts_wrapper = ocean,
                            json_metadata = json_consume,
-                           provider_host = 'http://0.0.0.0:5000')
+                           provider_host = 'http://127.17.0.1:5000')
 
-    assert requests.get('http://0.0.0.0:5000/api/v1/provider/assets/metadata/%s' % resource_id).status_code == 200
+    assert requests.get('http://127.17.0.1:5000/api/v1/provider/assets/metadata/%s' % resource_id).status_code == 200
 
     return ('', 200)
 

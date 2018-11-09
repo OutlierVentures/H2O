@@ -21,7 +21,7 @@ npm install -g @angular/cli
 pip3 install --upgrade setuptools
 cd h2o/backend
 pip3 install -r requirements.txt
-npm install
+npm install orbit-db ipfs
 cd ../frontend
 yarn install --pure-lockfile
 

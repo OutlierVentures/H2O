@@ -5,3 +5,6 @@
 screen -AdmS h2o -t tab0 bash -c 'cd h2o/backend; ./run'
 screen -S h2o -X screen -t tab1 bash -c 'cd h2o/frontend; ./run'
 screen -r h2o
+
+## DOCKER VERSION: set --log-level ERROR
+## Have second option without this for full build info
