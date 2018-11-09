@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cd frontend
-yarn start --ssl &
-cd ../backend
-chmod +x run
-./run

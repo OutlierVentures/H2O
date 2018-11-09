@@ -1,0 +1,15 @@
+version: '3'
+services:
+  h2o:
+    build: .
+    ports:
+     - "8081:8081"
+     - "4200:4200"
+     - "5000:5000"
+     - "8545:8545"
+     - "9984:9984"
+     - "9985:9985"
+     - "46656:46656"
+     - "46657:46657"
+    volumes:
+     - "/var/run/docker.sock:/var/run/docker.sock"

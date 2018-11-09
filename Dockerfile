@@ -21,10 +21,12 @@ RUN apt-get update \
     python3-dev \
     python3-pip
 
-# For getting Ocean Protocol contract addresses from sibling container
+# For Ocean Protocol, 1.22 for non-suffixed container names
 RUN curl -fsSL https://get.docker.com -o get-docker.sh \
     && sh get-docker.sh \
-    && rm get-docker.sh
+    && rm get-docker.sh \
+    && curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
+    && chmod +x /usr/local/bin/docker-compose
 
 # Node and npm
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
@@ -51,21 +53,20 @@ WORKDIR /app
 
 # Install modules
 
-RUN cd backend \
+RUN cd h2o/backend \
     && pip3 install -r requirements.txt
 
-RUN cd backend \
+RUN cd h2o/backend \
     && npm install orbit-db ipfs
 
-RUN cd frontend \
+RUN cd h2o/frontend \
     && yarn install --pure-lockfile
 
 
 # Ports
 
-# Ocean
-#EXPOSE 8545
-#EXPOSE 5000
+# Ocean Protocol
+EXPOSE 5000 8545 9984 9985 46656 46657
 
 # Backend
 EXPOSE 8081
@@ -76,6 +77,6 @@ EXPOSE 4200
 
 # Start H2O
 
-RUN chmod +x docker_start_h2o
+RUN chmod +x docker_start
 
-CMD ./docker_start_h2o
+CMD ./docker_start
