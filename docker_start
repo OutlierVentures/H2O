@@ -8,19 +8,23 @@ fi
 
 if [ "$(docker ps -aq -f name=tendermint_1)" ]; then
   firstrun=0
+  echo "FIRST RUN"
 else
   firstrun=1
+  echo "NOT FIRST RUN"
 fi
 
-docker-compose -f ./ocean/'$name'.yml up  &>/dev/null &
-
+docker-compose -f ./ocean/$name.yml up &
+echo "RAN COMPOSE"
 # Wait for Ocean to download and launch, note tendermint boots last.
 # Add an extra 30 seconds for contract compilation on first time run.
 if [ $firstrun == 1 ]; then
   while ! [ "$(docker ps -q -f name=tendermint_1)" ];
   do
+    echo "sleeping"
     sleep 1
   done
+  echo "30 sec"
   sleep 30s
 fi
 
