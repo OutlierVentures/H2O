@@ -66,7 +66,7 @@ RUN cd h2o/frontend \
 # Ports
 
 # Ocean Protocol
-# EXPOSE 5000 8545 9984 9985 46656 46657
+EXPOSE 5000 8545 9984 9985 46656 46657
 
 # Backend
 EXPOSE 8081
