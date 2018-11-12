@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# INSTALLER FOR DEV MODE (NON-CONTAINERISED)
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   yes | apt-get update
   yes | apt-get upgrade
