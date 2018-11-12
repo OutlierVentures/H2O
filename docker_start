@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $1 == kovan ]; then
+if [ "$1" == kovan ]; then
   name=kovan
 else
   name=docker-compose
@@ -8,23 +8,23 @@ fi
 
 if [ "$(docker ps -aq -f name=tendermint_1)" ]; then
   firstrun=0
-  echo "FIRST RUN"
+  echo "NOT FIRST RUN"
 else
   firstrun=1
-  echo "NOT FIRST RUN"
+  echo "FIRST RUN"
 fi
 
-docker-compose -f ./ocean/$name.yml up &
-echo "RAN COMPOSE"
+docker-compose -f ./ocean/$name.yml up &>/dev/null &
+
 # Wait for Ocean to download and launch, note tendermint boots last.
 # Add an extra 30 seconds for contract compilation on first time run.
 if [ $firstrun == 1 ]; then
   while ! [ "$(docker ps -q -f name=tendermint_1)" ];
   do
-    echo "sleeping"
+    echo "."
     sleep 1
   done
-  echo "30 sec"
+  echo "Ocean Protocol is booting..."
   sleep 30s
 fi
 
@@ -34,4 +34,21 @@ cd h2o/frontend
 yarn start --ssl &
 cd ../backend
 chmod +x run
+echo "
+
+   __ __
+  / // /
+ / _  /__
+/_//_/_  |
+    / __/____
+   /____/ __ \\
+       / /_/ /
+       \____/
+
+
+
+H2O IS UP AND RUNNING
+https://0.0.0.0:4200
+
+"
 ./run
