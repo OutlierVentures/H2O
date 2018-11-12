@@ -132,6 +132,22 @@ def publish_asset():
     # Get parameters for clustering
     parameters = request.get_json()
 
+
+    """
+    Web3 runs on the host.
+    The host OS check is necessary for a containerised launch.
+    For developers using force run on an unsupported OS:
+    If you see a 'too many requests' error, you need to change web3_host.
+    """
+    host_os = os.environ.get('HOST_OS')
+    if host_os == 'linux':
+        web3_host = 'http://127.17.0.1'
+    elif host_os == 'macos':
+        web3_host = 'http://docker.for.mac.host.internal'
+    else:
+        web3_host = 'http://0.0.0.0'
+
+
     azure_account = parameters['azureaccount']
 
     # Unique asset ID: 40 lowercase alphabetic characters (Azure compatible)
@@ -165,7 +181,7 @@ def publish_asset():
         print(e)
 
 
-    ocean = OceanContracts(host = 'http://0.0.0.0',
+    ocean = OceanContracts(host = web3_host,
                            port = 8545,
                            config_path = './config_local.ini')
 
@@ -196,9 +212,9 @@ def publish_asset():
                            price = parameters['price'],
                            ocean_contracts_wrapper = ocean,
                            json_metadata = json_consume,
-                           provider_host = 'http://0.0.0.0:5000')
+                           provider_host = web3_host + ':5000')
 
-    assert requests.get('http://0.0.0.0:5000/api/v1/provider/assets/metadata/%s' % resource_id).status_code == 200
+    assert requests.get(web3_host + ':5000/api/v1/provider/assets/metadata/%s' % resource_id).status_code == 200
 
     return ('', 200)
 
