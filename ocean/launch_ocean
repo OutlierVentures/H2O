@@ -2,7 +2,7 @@
 
 # START OCEAN FOR DEV MODE (NON-CONTAINERISED)
 
-if [ $1 == kovan ]; then
+if [ "$1" == kovan ]; then
   name=kovan
 else
   name=docker-compose
