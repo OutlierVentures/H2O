@@ -6,7 +6,7 @@ else
   name=docker-compose
 fi
 
-if [ "$(docker ps -aq -f name=tendermint_1)" ]; then
+if [ "$(docker ps -aq -f name=ocean_keeper-contracts_1)" ]; then
   firstrun=0
 else
   firstrun=1
@@ -18,7 +18,7 @@ docker-compose -f ./ocean/$name.yml --project-name=ocean up &>/dev/null &
 # Add an extra 30 seconds for contract compilation on first time run.
 if [ $firstrun == 1 ]; then
   echo "Compiling contracts..."
-  while ! [ "$(docker ps -q -f name=tendermint_1)" ];
+  while ! [ "$(docker ps -q -f name=ocean_keeper-contracts_1)" ];
   do
     echo "."
     sleep 5
