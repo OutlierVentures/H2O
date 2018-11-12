@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  export HOST_OS=linux
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  export HOST_OS=macos
+else
+  echo "Unsupported operating system. H2O runs on Linux and MacOS.
+  If you think this is an error, force run with docker-compose up.
+  There be dragons."
+fi
+
 purple="\033[0;35m"
 endcolor="\033[0m"
 echo -e "
