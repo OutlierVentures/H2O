@@ -36,9 +36,10 @@ class OceanContracts(object):
             logging.info("OceanMarket : {}".format(self.default_contract_address_map[OCEAN_MARKET_CONTRACT]))
             logging.info("OceanAuth : {}".format(self.default_contract_address_map[OCEAN_ACL_CONTRACT]))
             logging.info("OceanToken : {}".format(self.default_contract_address_map[OCEAN_TOKEN_CONTRACT]))
-        except Exception:
-            logging.error('OceanContracts could not initiate. You can specify the path in $CONFIG_FILE environment '
-                          'variable.')
+        except Exception as e:
+            logging.error(e)
+            #logging.error('OceanContracts could not initiate. You can specify the path in $CONFIG_FILE environment '
+            #              'variable.')
             raise Exception('You should provide a valid config file.')
 
     def get_value(self, value, env_var, default):
