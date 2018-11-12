@@ -19,39 +19,27 @@ H2O runs on Linux and MacOS with command line tools (type `gcc` in terminal to i
 
 You'll need Docker and Docker Compose 1.22. Docker Compose 1.23 and later uses container naming incompatible with Ocean Protocol - once Ocean roll out a fix, we'll update here.
 
-### Install
+### Quick run
 ```
-sudo ./install
+./launch
+```
+
+### Development
+
+Dev mode runs H2O on your local machine instead of in a Docker container.
+
+#### Install components
+```
+sudo ./dev_install
 ```
 If you encounter any install problems, there is a full requirements list at the bottom of this file for manual installations.
-
-### Run
-
-#### Quickstart for all components
-
-Start an instance of Ocean Protocol:
-```
-./start_ocean
-```
-This will launch Ocean in a `screen` session. Once the blockchain is ready, you will see repeat output `keeper-contracts_1  | eth_getFilterLogs`, at which point you can detach from the screen with `CTRL` + `A`, `CTRL` + `D`.
-
-For contracts on the Kovan testnet, just add the `kovan` option: `./start_ocean kovan`.
-
-Next, launch H2O:
-```
-./start_h2o
-```
-The backend and frontend are started in separate `screen` tabs. You can switch between them using `CTRL` + `A`, `SHIFT` + `'`.
-
-Hard errors will need a restart of the components that exited (this will typically be backend, restart it with `cd backend && ./run`).
-
-You can view the app at `0.0.0.0:4200`.
 
 #### Running components individually
 
 Start an instance of Ocean Protocol:
 ```
-./start_ocean
+cd ocean
+./launch_ocean
 ```
 You can add the option `kovan` to use the testnet contracts: `./start_ocean kovan`.
 
@@ -73,7 +61,7 @@ cd h2o/frontend
 Interact with the app in your browser at `0.0.0.0:4200`.
 
 
-### Deployment
+#### Deployment
 
 *Containerisation + production server in development on the `deploy` branch.*
 
