@@ -33,12 +33,4 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   echo "contracts.folder = /home/$(whoami)/.local/contracts/" >> $CONF_FILE
 fi
 
-
-echo "
- _  _ ___ ___    ___   _   ___ _  _____ _  _ ___
-| || |_  ) _ \  | _ ) /_\ / __| |/ / __| \| |   \\
-| __ |/ / (_) | | _ \/ _ \ (__| ' <| _|| .\` | |) |
-|_||_/___\___/  |___/_/ \_\___|_|\_\___|_|\_|___/
-
-"
 python3 app.py
