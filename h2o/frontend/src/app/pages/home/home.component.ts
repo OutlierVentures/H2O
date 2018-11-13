@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
             this.OrbitResult = OrbitResult;
         });
         document.getElementById('replicate').innerHTML="<p><center>Finding nearest database...<center></p>";
+        setTimeout(() => location.reload(), 8000);
     }
 
     public trainModel() {
@@ -44,7 +45,6 @@ export class HomeComponent implements OnInit {
     }
 
     public publishAsset() {
-        // Not the prettiest, but fast and doesn't require any additional listening for backend outputs
         try {
             this.mlService.publishAsset(this.OceanParams).subscribe((OceanResult) => {
                 this.OceanResult = OceanResult;
