@@ -29,7 +29,7 @@ fi
 # Rebooting existing containers takes less time than starting frontend.
 
 cd h2o/frontend
-yarn start --ssl --env=production &
+yarn start --ssl --env=prod &
 cd ../backend
 chmod +x docker_run
 echo "====================
