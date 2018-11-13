@@ -136,12 +136,12 @@ def publish_asset():
     """
     Web3 runs on the host.
     The host OS check is necessary for a containerised launch.
-    For developers using force run on an unsupported OS:
-    If you see a 'too many requests' error, you need to change web3_host.
+    For developers: if you see a 'too many requests' error,
+    you need to change web3_host. This may be 172.17.0.1 on some systems.
     """
     host_os = os.environ.get('HOST_OS')
     if host_os == 'linux':
-        web3_host = 'http://127.17.0.1'
+        web3_host = 'http://172.19.0.1'
     elif host_os == 'macos':
         web3_host = 'http://docker.for.mac.host.internal'
     else:
