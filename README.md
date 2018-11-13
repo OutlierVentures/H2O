@@ -2,7 +2,7 @@
 
 Machine learning in Nautilina with OrbitDB.
 
-You can find a live version of the app at `https://159.69.202.132:4200`.
+You can find a live version of the app at `https://159.69.202.132`.
 
 Publishing assets requires an Azure Storage account.
 Proof-of-concept OrbitDB hosting can be found in `h2o/backend` folder, see `app.py` and `host.js`.
