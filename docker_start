@@ -24,6 +24,8 @@ if [ $firstrun == 1 ]; then
   done
   echo "Booting Ocean Protocol..."
   sleep 30
+else
+  sleep 10
 fi
 
 # Rebooting existing containers takes less time than starting frontend.
