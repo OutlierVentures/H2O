@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Start ocean protocol first - launcher in ocean folder
+
+red="\033[0;31m"
+endcolor="\033[0m"
+echo -e "$red
+   ____ _   __    ___  _____   __
+  / __ \ | / /   / _ \/ __/ | / /
+ / /_/ / |/ /   / // / _/ | |/ /
+ \____/|___/   /____/___/ |___/
+$endcolor"
+
+cd h2o/frontend
+yarn start &
+cd ../backend
+chmod +x run
+echo -e "${red}Starting H2O @ http://0.0.0.0:4200$endcolor
+"
+./run
