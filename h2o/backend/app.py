@@ -142,7 +142,7 @@ def publish_asset():
     """
     host_os = os.environ.get('HOST_OS')
     if host_os == 'linux':
-        web3_host = 'http://172.19.0.1'
+        web3_host = 'http://172.18.0.1'
     elif host_os == 'macos':
         web3_host = 'http://docker.for.mac.host.internal'
     else:
