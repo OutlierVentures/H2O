@@ -2,10 +2,10 @@
 
 # INSTALLER FOR DEV MODE (NON-CONTAINERISED)
 
-red="\033[0;31m"
+boldgreen="\033[1;32m"
 endcolor="\033[0m"
 
-echo -e "${red}Installing H2O...$endcolor"
+echo -e "${boldgreen}Installing H2O...$endcolor"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   yes | apt-get update
@@ -32,6 +32,6 @@ npm install orbit-db ipfs
 cd ../frontend
 yarn install --pure-lockfile
 
-echo -e "$red
+echo -e "$boldgreen
 H2O installed.
 $endcolor"
