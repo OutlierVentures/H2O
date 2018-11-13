@@ -134,10 +134,11 @@ def publish_asset():
 
 
     """
-    Web3 runs on the host.
-    The host OS check is necessary for a containerised launch.
-    For developers: if you see a 'too many requests' error,
-    you need to change web3_host. This may be 172.17.0.1 on some systems.
+    Web3 runs on the host. The host OS check is needed for containerised H2O.
+    Developers: a 'too many requests' error means you need to change web3_host.
+    Get address: docker exec into the container, apt install net-tools, run
+    netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'
+    Don't forget to prefix the address with 'http://' when assigning web3_host.
     """
     host_os = os.environ.get('HOST_OS')
     if host_os == 'linux':
