@@ -224,5 +224,5 @@ if __name__ == '__main__':
 
     # Run web server
     app.run(host = HOST,
-            debug = True,  # Automatic reloading enabled
+            debug = False,  # Enable for auto-reload. Not for production.
             port = PORT)
