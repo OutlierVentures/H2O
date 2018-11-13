@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
             this.OrbitResult = OrbitResult;
         });
         document.getElementById('replicate').innerHTML="<p><center>Finding nearest database...<center></p>";
-        setTimeout(() => location.reload(), 8000);
+        setTimeout(() => location.reload(), 10000);
     }
 
     public trainModel() {
