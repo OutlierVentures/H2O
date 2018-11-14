@@ -96,7 +96,7 @@ If you encounter errors with the install script, here is a full list of requirem
 
 H2O runs on Linux and MacOS.
 
-- MacOS: command line tools, Homebrew & `gnu-sed`
+- MacOS: command line tools, Homebrew, `gmp`, `gnu-sed`
 - Docker & Docker Compose 1.22
 - Python 3 (`python3-dev` on Linux)
 - Pip3
