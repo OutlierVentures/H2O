@@ -49,11 +49,14 @@ export class HomeComponent implements OnInit {
             this.mlService.publishAsset(this.OceanParams).subscribe((OceanResult) => {
                 this.OceanResult = OceanResult;
             });
-            document.getElementById('form').innerHTML="<p>Successfully uploaded to Ocean Protocol!</p><img src=\"../../assets/images/success.png\" style=\"width: 30%\">";
-            location.reload();
+            document.getElementById('form').innerHTML="\
+            <p>Successfully uploaded to Ocean Protocol!</p>\
+            <img src=\"../../assets/images/success.png\" style=\"width: 30%\">\
+            <p><a href=\"LINK\">Your hosted dataset</a></p>";
         }
         catch (e) {
             document.getElementById('form').innerHTML="</p>Could not connect to Ocean Protocol.</p><img src=\"../../assets/images/failure.png\" style=\"width: 30%\"><p><center>Check your account is the first in Keeper contracts<br />and ensure you set your environment variables.</center></p>";
+            setTimeout(() => location.reload(), 10000);
         }
     }
 
