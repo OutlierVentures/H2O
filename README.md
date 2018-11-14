@@ -29,6 +29,10 @@ You'll need Docker and Docker Compose 1.22. Docker Compose 1.23 and later uses c
 Dev mode runs H2O on your local machine instead of in a Docker container.
 
 #### Install components
+
+MacOS: install Python 3 from [https://python.org](python.org), not using Homebrew. This is to do with where Ocean Protocol installs your contracts.
+
+Next:
 ```
 sudo ./dev_install
 ```

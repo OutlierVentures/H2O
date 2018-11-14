@@ -19,7 +19,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew update && brew upgrade
   brew install --with-default-names gnu-sed
-  brew install python node yarn gmp
+  brew install node yarn gmp
 
 fi
 
