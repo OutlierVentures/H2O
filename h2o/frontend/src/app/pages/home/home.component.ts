@@ -52,10 +52,17 @@ export class HomeComponent implements OnInit {
             document.getElementById('form').innerHTML="\
             <p>Successfully uploaded to Ocean Protocol!</p>\
             <img src=\"../../assets/images/success.png\" style=\"width: 30%\">\
-            <p><a href=\"LINK\">Your hosted dataset</a></p>";
+            <p><center><a href=\"https://" + this.OceanParams.azureaccount + 
+            ".blob.core.windows.net/" + this.OceanParams.assetid +
+            "/output.json\">Your hosted dataset</a><br/>\
+            (Will 404 if account invalid)</center></p>";
         }
         catch (e) {
-            document.getElementById('form').innerHTML="</p>Could not connect to Ocean Protocol.</p><img src=\"../../assets/images/failure.png\" style=\"width: 30%\"><p><center>Check your account is the first in Keeper contracts<br />and ensure you set your environment variables.</center></p>";
+            document.getElementById('form').innerHTML="\
+            </p>Could not connect to Ocean Protocol.</p>\
+            <img src=\"../../assets/images/failure.png\" style=\"width: 30%\">\
+            <p><center>Check your account is the first in Keeper contracts<br />\
+            and ensure you set your environment variables.</center></p>";
             setTimeout(() => location.reload(), 10000);
         }
     }
