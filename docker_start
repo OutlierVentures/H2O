@@ -17,7 +17,8 @@ docker-compose -f ./ocean/$name.yml --project-name=ocean up &>/dev/null &
 # Wait for Ocean to download and launch, note tendermint boots last.
 # Add an extra 30 seconds for contract compilation on first time run.
 if [ $firstrun == 1 ]; then
-  echo "Compiling contracts..."
+  echo "Downloading Ocean Protocol components."
+  echo "This might take a few minutes..."
   while ! [ "$(docker ps -q -f name=ocean_keeper-contracts_1)" ];
   do
     sleep 5
@@ -31,7 +32,7 @@ fi
 # Rebooting existing containers takes less time than starting frontend.
 
 cd h2o/frontend
-yarn start --ssl --env=prod & # --ssl-cert="/volume/map/see/compose.yml" --ssl-key="also"
+yarn start --ssl --env=prod &
 cd ../backend
 chmod +x docker_run
 echo "====================
