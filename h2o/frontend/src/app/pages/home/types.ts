@@ -19,10 +19,21 @@ export class OceanParams {
     description: string = "Clustered OrbitDB";
     price: number = 10;
     author: string = "Outlier Ventures";
-    azureaccount: string = "devstoreaccount1";
-    azurekey: string = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw=="
+    azureaccount: string;
+    azurekey: string;
+    assetid: string = genid(); // Generates new Ocean asset ID when instantiated
 }
 
 export class OceanResult {
 
 }
+
+// The goal is not randomness but collision resistance
+function genid() {
+    var text = "";
+    var charspace = "abcdefghijklmnopqrstuvwxyz";
+    for (var len = 0; len < 40; len++) {
+      text += charspace.charAt(Math.floor(Math.random() * charspace.length));
+    }
+    return text;
+  }
