@@ -31,7 +31,7 @@ fi
 # Rebooting existing containers takes less time than starting frontend.
 
 cd h2o/frontend
-yarn start --ssl --env=prod &
+yarn start --ssl --env=prod & # --ssl-cert="/volume/map/see/compose.yml" --ssl-key="also"
 cd ../backend
 chmod +x docker_run
 echo "====================
