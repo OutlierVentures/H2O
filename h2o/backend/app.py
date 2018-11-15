@@ -146,16 +146,13 @@ def publish_asset():
     elif host_os == 'macos':
         web3_host = 'http://docker.for.mac.host.internal'
     else:
-        web3_host = 'http://0.0.0.0'
+        web3_host = 'http://127.0.0.1'
 
 
     azure_account = parameters['azureaccount']
 
-    # Unique asset ID: 40 lowercase alphabetic characters (Azure compatible)
-    # Cannot take sample larger than population (26), so take two and combine
-    sample_one = ''.join(random.sample(string.ascii_lowercase, 20))
-    sample_two = ''.join(random.sample(string.ascii_lowercase, 20))
-    asset_id = sample_one + sample_two
+    # 40-byte alpha only
+    asset_id = parameters['assetid']
 
     # Uncomment this and comment out Azure try-except block for OrbitDB hosting.
     # OrbitDB hosting is proof-of-concept and not testnet compatible yet.
@@ -169,7 +166,6 @@ def publish_asset():
         block_blob_service = BlockBlobService(account_name = azure_account, account_key = parameters['azurekey'])
 
         # Create container with name = asset_id
-        container_name = asset_id
         block_blob_service.create_container(asset_id)
 
         # Make public
@@ -192,7 +188,7 @@ def publish_asset():
             "name": parameters['name'],
             "description": parameters['description'],
             # ContentUrls is a list. Use commented line for OrbitDB hosting (not testnet compatible yet)
-            "contentUrls": ['https://' + azure_account + '.blob.core.windows/net/' + asset_id + '/output.json'],
+            "contentUrls": ['https://' + azure_account + '.blob.core.windows.net/' + asset_id + '/output.json'],
             #"contentUrls": [host['address'],'https://ipfs.io/ipfs/QmeESXh9wPib8Xz7hdRzHuYLDuEUgkYTSuujZ2phQfvznQ/#dbaddress'],
             "price": parameters['price'],
             "author": parameters['author'],
@@ -213,9 +209,10 @@ def publish_asset():
                            price = parameters['price'],
                            ocean_contracts_wrapper = ocean,
                            json_metadata = json_consume,
-                           provider_host = web3_host + ':5000')
-
-    assert requests.get(web3_host + ':5000/api/v1/provider/assets/metadata/%s' % resource_id).status_code == 200
+                           provider_host = web3_host +':5000')
+    
+    # You can use this assertion outside of a containerized envronment, otherwise you get a redirect
+    #assert requests.get(web3_host + ':5000/api/v1/provider/assets/metadata/%s' % resource_id).status_code == 200
 
     return ('', 200)
 
