@@ -7,5 +7,6 @@ services:
      - "443:4200"
     volumes:
      - "/var/run/docker.sock:/var/run/docker.sock"
+    #-"host/cert:container/cert"
     environment:
      - HOST_OS
