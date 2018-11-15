@@ -63,7 +63,7 @@ def get_orbit():
 
         # Plot original
         plt.figure(1)
-        plt.scatter(df[:, 0], df[:, 1]);
+        plt.scatter(df[:, 0], df[:, 1])
         plt.savefig('../frontend/src/assets/images/before.png')
         plt.close()
 
@@ -111,7 +111,7 @@ def train():
     # Plot result
     plt.figure(2)
     plt.scatter(df[:, 0], df[:, 1], c = prediction)
-    plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5);
+    plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5)
     plt.savefig('../frontend/src/assets/images/after.png')
     plt.close()
 
@@ -131,15 +131,13 @@ def publish_asset():
 
     # Get parameters for clustering
     parameters = request.get_json()
-
-
-    """
+    '''
     Web3 runs on the host. The host OS check is needed for containerised H2O.
     Developers: a 'too many requests' error means you need to change web3_host.
     Get address: docker exec into the container, apt install net-tools, run
     netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'
     Don't forget to prefix the address with 'http://' when assigning web3_host.
-    """
+    '''
     host_os = os.environ.get('HOST_OS')
     if host_os == 'linux':
         web3_host = 'http://172.18.0.1'
