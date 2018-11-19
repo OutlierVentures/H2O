@@ -21,7 +21,7 @@ export class OceanParams {
     author: string = "Outlier Ventures";
     azureaccount: string;
     azurekey: string;
-    containername: string = genid(); // Generates new Ocean asset ID when instantiated
+    containername: string = "h2o-" + genid(); // Generates new Ocean asset ID when instantiated
 }
 
 export class OceanResult {
