@@ -1,6 +1,7 @@
 **/__pycache__
 **/node_modules
 **/.DS_Store
+**/.vscode
 /h2o/frontend/src/assets/images/after.png
 /h2o/frontend/src/assets/images/before.png
 /h2o/backend/config_local.ini
