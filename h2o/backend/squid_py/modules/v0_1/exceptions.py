@@ -1,0 +1,2 @@
+class InvalidModule(Exception):
+    pass

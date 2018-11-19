@@ -1,0 +1,157 @@
+{
+  "type": "OceanProtocolServiceAgreementTemplate",
+  "id": "0x419d158c3a5d81d15b0160cf8929916089218bdb4aa78c3ecd16633afd44b8ae",
+  "name": "dataAssetAccessServiceAgreement",
+  "description": "This service agreement defines the flow for accessing a data asset on the ocean network. Any file or bundle of files can be access using this service agreement",
+  "creator": "",
+  "serviceAgreementContract": {
+    "address": "0x...",
+    "fulfillmentOperator": 0,
+    "events": [
+      {
+        "name": "ExecuteAgreement",
+        "actorType": "consumer",
+        "handler": {
+          "moduleName": "payment",
+          "functionName": "lockPayment",
+          "version": "0.1"
+        }
+      }
+    ]
+  },
+  "conditions": [
+    {
+      "name": "lockPayment",
+      "timeout": 0,
+      "conditionKey": "0x...",
+      "contractAddress": "0x...",
+      "fingerprint": "0x...",
+      "functionName": "lockPayment",
+      "parameters": [
+        {
+          "name": "assetId",
+          "type": "bytes32",
+          "value": ""
+        },{
+          "name": "price",
+          "type": "uint256",
+          "value": ""
+        }
+      ],
+      "events": [
+        {
+          "name": "PaymentLocked",
+          "actorType": [
+            "publisher"
+          ],
+          "handlers": {
+            "moduleName": "accessControl",
+            "functionName": "grantAccess",
+            "version": "0.1"
+          }
+        }
+      ],
+      "dependencies": [],
+      "dependencyTimeoutFlags": [],
+      "isTerminalCondition": false
+    }, {
+      "name": "grantAccess",
+      "timeout": 0,
+      "conditionKey": "0x...",
+      "contractAddress": "0x...",
+      "fingerprint": "0x...",
+      "functionName": "grantAccess",
+      "parameters": [
+        {
+          "name": "assetId",
+          "type": "bytes32",
+          "value": ""
+        }
+      ],
+      "events": [
+        {
+          "name": "AccessGranted",
+          "actorType": [
+            "consumer"
+          ],
+          "handlers": {
+            "moduleName": "paymentProcessing",
+            "functionName": "releasePayment",
+            "version": "0.1"
+          }
+        }
+      ],
+      "dependencies": ["lockPayment"],
+      "dependencyTimeoutFlags": [0],
+      "isTerminalCondition": false
+    }, {
+      "name": "releasePayment",
+      "timeout": 0,
+      "conditionKey": "0x...",
+      "contractAddress": "0x...",
+      "fingerprint": "0x...",
+      "functionName": "releasePayment",
+      "parameters": [
+        {
+          "name": "assetId",
+          "type": "bytes32",
+          "value": ""
+        },{
+          "name": "price",
+          "type": "uint256",
+          "value": ""
+        }
+      ],
+      "events": [
+        {
+          "name": "PaymentReleased",
+          "actorType": [
+            "consumer"
+          ],
+          "handlers": {
+            "moduleName": "serviceAgreement",
+            "functionName": "fulfillAgreement",
+            "version": "0.1"
+          }
+        }
+      ],
+      "dependencies": ["grantAccess"],
+      "dependencyTimeoutFlags": [0],
+      "isTerminalCondition": true
+    }, {
+      "name": "refundPayment",
+      "timeout": 1,
+      "conditionKey": "0x...",
+      "contractAddress": "0x...",
+      "fingerprint": "0x...",
+      "functionName": "refundPayment",
+      "parameters": [
+        {
+          "name": "assetId",
+          "type": "bytes32",
+          "value": ""
+        },{
+          "name": "price",
+          "type": "uint256",
+          "value": ""
+        }
+      ],
+      "events": [
+        {
+          "name": "PaymentRefund",
+          "actorType": [
+            "consumer", "publisher"
+          ],
+          "handlers": {
+            "moduleName": "serviceAgreement",
+            "functionName": "terminateAgreement",
+            "version": "0.1"
+          }
+        }
+      ],
+      "dependencies": ["lockPayment", "grantAccess"],
+      "dependencyTimeoutFlags": [0, 1],
+      "isTerminalCondition": true
+    }
+  ]
+}
