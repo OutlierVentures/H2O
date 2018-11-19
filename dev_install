@@ -14,21 +14,23 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
   apt-get update && apt-get install yarn
+  pip3 install wheel
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew update && brew upgrade
-  brew install --with-default-names gnu-sed
-  brew install node yarn gmp
+  brew install python node@8 yarn
 
 fi
 
 npm install -g @angular/cli
 
 pip3 install --upgrade setuptools
-cd h2o/backend
+pip3 install wheel
+
+cd backend
 pip3 install -r requirements.txt
-npm install orbit-db ipfs
+npm install orbit-db ipfs # MOVE IF MIGRATING ORBIT TO FRONT END
 cd ../frontend
 yarn install --pure-lockfile
 

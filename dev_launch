@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Start ocean protocol first - launcher in ocean folder
+# Start ocean protocol first
 
 red="\033[0;31m"
 endcolor="\033[0m"
@@ -11,10 +11,12 @@ echo -e "$red
  \____/|___/   /____/___/ |___/
 $endcolor"
 
-cd h2o/frontend
+cd frontend
 yarn start &
 cd ../backend
+./scripts/wait_for_migration_and_extract_keeper_artifacts.sh
 chmod +x run
-echo -e "${red}Starting H2O @ http://0.0.0.0:4200$endcolor
+echo -e "
+${red}Starting H2O @ http://0.0.0.0:4200$endcolor
 "
 ./run
