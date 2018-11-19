@@ -1,0 +1,14 @@
+flask
+naked
+sklearn
+pandas
+matplotlib
+azure-storage
+coloredlogs
+eciespy
+keeper-contracts
+pyopenssl
+PyJWT
+PyYAML
+web3==4.5.0
+ocean-secret-store-client==0.0.1

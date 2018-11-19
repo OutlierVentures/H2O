@@ -11,14 +11,14 @@ This app runs Squid-py 0.2.5. The squid component will be updated with stable re
 
 ## Architecture
 
-![Architecture Diagram](/doc/OceanHaja.png)
+![Architecture Diagram](/images/OceanHaja.png)
 
 
 ## Getting started
 
-H2O runs on Linux and MacOS with command line tools (type `gcc` in terminal to install).
+H2O runs on Linux and MacOS with XCode + command line tools.
 
-You'll need Docker and Docker Compose 1.22. Docker Compose 1.23 and later uses container naming incompatible with Ocean Protocol - once Ocean roll out a fix, we'll update here.
+You'll need Docker and Docker Compose.
 
 ### Quick run
 ```
@@ -31,9 +31,6 @@ Dev mode runs H2O on your local machine instead of in a Docker container.
 
 #### Install components
 
-MacOS: install Python 3 from [https://python.org](python.org), not using Homebrew. This is to do with where Ocean Protocol installs your contracts.
-
-Next:
 ```
 sudo ./dev_install
 ```
@@ -101,21 +98,22 @@ If you encounter errors with the install script, here is a full list of requirem
 
 H2O runs on Linux and MacOS.
 
-- MacOS: command line tools, Homebrew, `gmp`, `gnu-sed`
-- Docker & Docker Compose 1.22
+- MacOS: command line tools, Homebrew
+- Linux: GCC 4+
+- Docker & Docker Compose
 - Python 3 (`python3-dev` on Linux)
 - Pip3
-- GCC 4+
-- Node 8+
-- NPM 3+
-- Angular CLI 6+
+- Node 8 (strictly version 8 - this is because of `node-gyp`)
+- NPM 3
+- Angular CLI 1+
 - Yarn 1.10+
 - Finally, install dependencies:
     ```
     pip3 install --upgrade setuptools
+    pip3 install wheel
     cd backend
     pip3 install -r requirements.txt
-    npm install
+    npm install orbit-db ipfs
     cd ../frontend
     yarn install --pure-lockfile
     ```

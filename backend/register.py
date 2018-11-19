@@ -9,14 +9,7 @@ from squid_py.service_agreement.service_factory import ServiceDescriptor
 from unittest.mock import Mock
 
 
-'''
-REMOVE DEFAULT VALUES, THESE ARE FOR QUICK TESTING
-'''
-def simple_register(name = "UK Weather information 2011",
-                    price = 100,
-                    description = "Weather information of UK including temperature and humidity",
-                    author = "Met Office",
-                    azure_url = "https://testocnfiles.blob.core.windows.net/testfiles/testzkp.zip"):
+def simple_register(name, price, description, author, azure_url):
 
 
     # Instantiate Ocean, form metadata object and create asset from it
