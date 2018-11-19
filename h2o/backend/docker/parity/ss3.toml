@@ -1,0 +1,48 @@
+[parity]
+chain = "dev"
+base_path = "db.ss3"
+
+[ui]
+disable = true
+
+[rpc]
+disable = true
+
+[ipc]
+disable = true
+
+[websockets]
+disable = true
+
+[network]
+port = 30303
+bootnodes = [ 
+"enode://c8474825b34e3c3dbade2dcff0514bc8d0fbf7a4f13aa3cb2ec055f152f24a5292650fa17a5c0003c6fefa8e45a55771bd73d8cc757d1dea016a26b84b04e7fb@127.0.0.1:30301",
+"enode://864b1ad21fdbf23a56a78579e582d5846030d33ebd9a5d64ceea384cda51dcc11c49dc2575ec742241817f7b519b3b8e2e401a41065ccf47c51a50f034be011e@127.0.0.1:30302" 
+] 
+
+[ipfs]
+enable = false
+
+[snapshots]
+disable_periodic = true
+
+[secretstore]
+disable = false
+disable_http = true   # Secret Store nodes 2 and 3 are not accessibles from the outside
+acl_contract = "none" # no permissionning contract used yet
+server_set_contract = "none"
+nodes = [
+"42ddc4495e6e8f9a26ce35998fdf16a70a228ef7f36ed413d3b89555e89fba5dcb0d6380e9d0d7cf20025162e8ac58d518d8da855a694e45a92cd90c2b1bd61a@127.0.0.1:8011",
+"031f15f573427bd0716dbd64284f03dafbfff3d8fbaefd92206290ff6a18273c257b156e1dba26e3a0c22e182c71b32fc3a2b87cf7774f8f2a997fbde6f6a4c4@127.0.0.1:8012",
+"b58a0c706509de4ab9d813980d293fc50796ec97e194c6a02ae3048752d87085172e4c08bd805dcf5f6be1959f9cf5e4bf9201233696d47f5efdba485b641dec@127.0.0.1:8013"
+]
+interface = "local"
+port = 8013
+path = "db.ss3/secretstore"
+
+self_secret = "d7fac5a254c27eb7bf387b596dd700b9531c9568"
+
+[account]
+password = ["test/ss3.pwd"]
+
