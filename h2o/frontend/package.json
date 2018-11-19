@@ -28,10 +28,9 @@
         "core-js": "^2.4.1",
         "d3": "^4.13.0",
         "hammerjs": "^2.0.8",
-        "ipfs": "^0.32.3",
-        "orbit-db": "^0.19.9",
         "rxjs": "^5.4.1",
-        "zone.js": "^0.8.14"
+        "zone.js": "^0.8.14",
+        "node-sass": "^4.10.0" 
     },
     "devDependencies": {
         "@angular/cli": "1.2.6",
