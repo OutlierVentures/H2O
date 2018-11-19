@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
             <p>Successfully uploaded to Ocean Protocol!</p>\
             <img src=\"../../assets/images/success.png\" style=\"width: 30%\">\
             <p><center><a href=\"https://" + this.OceanParams.azureaccount + 
-            ".blob.core.windows.net/" + this.OceanParams.assetid +
+            ".blob.core.windows.net/" + this.OceanParams.containername +
             "/output.json\">Your hosted dataset</a><br/>\
             (Will 404 if account invalid)</center></p>";
         }
