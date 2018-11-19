@@ -1,5 +1,6 @@
 **/__pycache__
 **/node_modules
+**/artifacts
 **/.DS_Store
 **/.vscode
 /h2o/frontend/src/assets/images/after.png
