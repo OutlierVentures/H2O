@@ -1,6 +1,5 @@
-# Ocean Protocol
-from squid_py.ocean_contracts import OceanContracts
-from squid_py.consumer import register
+# Ocean Protocol (Outlier Ventures' abstraction)
+import register as reg
 
 # OrbitDB
 from Naked.toolshed.shell import execute_js
@@ -147,70 +146,48 @@ def publish_asset():
         web3_host = 'http://127.0.0.1'
 
 
-    azure_account = parameters['azureaccount']
+    '''
+    # Uncomment this for OrbitDB hosting (PoC, not Ocean testnet compatible yet)
+    execute_js('host.js')
+    with open('host.json', 'r') as infile:
+        host = json.load(infile)
+    '''
 
-    # 40-byte alpha only
-    asset_id = parameters['assetid']
-
-    # Uncomment this and comment out Azure try-except block for OrbitDB hosting.
-    # OrbitDB hosting is proof-of-concept and not testnet compatible yet.
-    #execute_js('host.js')
-    #with open('host.json', 'r') as infile:
-    #    host = json.load(infile)
 
     # Azure storage hosting
+    azure_account = parameters['azureaccount']
+
+    # Unique container name - requires non-collision * under a single Azure account *
+    # 36^4=1679616 possibilities, Pr[collision] = 1 - ( (36^4-1)/36^4 )^num_datasets_created
+    container_name = parameters['containername']
+
+    # Generate machine-readable download link to hosted dataset
+    azure_url = 'https://' + azure_account + '.blob.core.windows.net/' + container_name + '/output.json'
+
     try:
         # Create service used to call the Blob service for the storage account
         block_blob_service = BlockBlobService(account_name = azure_account, account_key = parameters['azurekey'])
 
         # Create container with name = asset_id
-        block_blob_service.create_container(asset_id)
+        block_blob_service.create_container(container_name)
 
         # Make public
-        block_blob_service.set_container_acl(asset_id, public_access = PublicAccess.Container)
+        block_blob_service.set_container_acl(container_name, public_access = PublicAccess.Container)
 
         # Create and upload blob
-        block_blob_service.create_blob_from_path(asset_id, 'output.json', 'output.json')
+        block_blob_service.create_blob_from_path(container_name, 'output.json', 'output.json')
 
     except Exception as e:
         print(e)
 
 
-    ocean = OceanContracts(host = web3_host,
-                           port = 8545,
-                           config_path = './config_local.ini')
+    # Outlier Ventures' abstraction for easy registration with Keeper and Aquarius
+    reg.simple_register(parameters['name'],
+                        parameters['price'],
+                        parameters['description'],
+                        parameters['author'],
+                        azure_url)
 
-    json_consume = {
-        "metadata": {
-            # User-specified
-            "name": parameters['name'],
-            "description": parameters['description'],
-            # ContentUrls is a list. Use commented line for OrbitDB hosting (not testnet compatible yet)
-            "contentUrls": ['https://' + azure_account + '.blob.core.windows.net/' + asset_id + '/output.json'],
-            #"contentUrls": [host['address'],'https://ipfs.io/ipfs/QmeESXh9wPib8Xz7hdRzHuYLDuEUgkYTSuujZ2phQfvznQ/#dbaddress'],
-            "price": parameters['price'],
-            "author": parameters['author'],
-            # Fixed
-            "type": "dataset",
-            "licence": "CC-BY",
-            # Internal, used to generate resource ID
-            "links": "",
-            "size": "",
-            "format": ""
-        },
-        ## Generate unique assetID (40-byte hex)
-        "assetId": asset_id
-    }
-
-    resource_id = register(publisher_account = ocean.web3.eth.accounts[1],
-                           provider_account = ocean.web3.eth.accounts[0],
-                           price = parameters['price'],
-                           ocean_contracts_wrapper = ocean,
-                           json_metadata = json_consume,
-                           provider_host = web3_host +':5000')
-    
-    # You can use this assertion outside of a containerized envronment, otherwise you get a redirect
-    #assert requests.get(web3_host + ':5000/api/v1/provider/assets/metadata/%s' % resource_id).status_code == 200
 
     return ('', 200)
 
