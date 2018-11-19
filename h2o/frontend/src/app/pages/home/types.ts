@@ -21,18 +21,19 @@ export class OceanParams {
     author: string = "Outlier Ventures";
     azureaccount: string;
     azurekey: string;
-    assetid: string = genid(); // Generates new Ocean asset ID when instantiated
+    containername: string = genid(); // Generates new Ocean asset ID when instantiated
 }
 
 export class OceanResult {
 
 }
 
-// The goal is not randomness but collision resistance
+// Unique container name - requires non-collision * under a single Azure account *
+// 36^4=1679616 possibilities, Pr[collision] = 1 - ( (36^4-1)/36^4 )^num_datasets_created
 function genid() {
     var text = "";
-    var charspace = "abcdefghijklmnopqrstuvwxyz";
-    for (var len = 0; len < 40; len++) {
+    var charspace = "abcdefghijklmnopqrstuvwxyz0123456789";
+    for (var len = 0; len < 4; len++) {
       text += charspace.charAt(Math.floor(Math.random() * charspace.length));
     }
     return text;
