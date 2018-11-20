@@ -17,6 +17,7 @@ cd ../backend
 ./scripts/wait_for_migration_and_extract_keeper_artifacts.sh
 chmod +x run
 echo -e "
+
 ${red}Starting H2O @ http://0.0.0.0:4200$endcolor
 "
 ./run
