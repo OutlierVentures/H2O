@@ -1,3 +1,5 @@
+import 'setimmediate'
+
 import {Component, OnInit} from '@angular/core';
 import {MLService} from "./cluster.service";
 import {
@@ -30,11 +32,21 @@ export class HomeComponent implements OnInit {
     }
 
     public getOrbit() {
-        this.mlService.getOrbit(this.OrbitParams).subscribe((OrbitResult) => {
-            this.OrbitResult = OrbitResult;
-        });
+        
         document.getElementById('replicate').innerHTML="<p><center>Finding nearest database...<center></p>";
-        setTimeout(() => location.reload(), 10000);
+        
+        console.log('before')
+
+        this.getODB(() => {
+            console.log('OrbitDB retrieved');    
+
+            this.mlService.getOrbit(this.OrbitParams).subscribe((OrbitResult) => {
+                this.OrbitResult = OrbitResult;
+            });
+            location.reload();
+        });
+        //document.getElementById('replicate').innerHTML="<p><center>Finding nearest database...<center></p>";
+        //setTimeout(() => location.reload(), 10000);
     }
 
     public trainModel() {
@@ -66,5 +78,71 @@ export class HomeComponent implements OnInit {
             setTimeout(() => location.reload(), 10000);
         }
     }
+
+    private getODB(_callback) {
+
+        const IPFS = require('ipfs')
+        const OrbitDB = require('orbit-db')
+
+        const ipfsOptions = {
+            start: true,
+            EXPERIMENTAL: {
+                pubsub: true,
+            },
+            config: {
+                Addresses: {
+                    Swarm: [
+                        '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star',
+                    ]
+                },
+            }
+        }
+
+        const ipfs = new IPFS(ipfsOptions)
+
+        ipfs.on('error', (e) => console.error(e))
+
+        ipfs.on('ready', async () => {
+
+            const orbitdb = new OrbitDB(ipfs)
+
+            const db = await orbitdb.open(this.OrbitParams.address)
+            await db.load()
+
+            db.events.on('replicated', async () => {
+                try {
+                    let data = {
+                        "x": this.getArray(db, 'x'),
+                        "y": this.getArray(db, 'y'),
+                        "t": this.getArray(db, 't')
+                    }
+                    this.OrbitParams.dataset = JSON.stringify(data);
+                    console.log('Has been set!')
+                    console.log(this.OrbitParams.dataset)
+                    //_callback();
+                    await orbitdb.disconnect()
+                    await ipfs.stop(() => {})
+                    _callback();
+                }
+                catch(error) {
+                    // OrbitDB considers itself loaded before it is readable, catch this
+                    console.log(error)
+                    _callback()
+                }
+
+            })
+
+        })
+        
+    }
+    private getArray(db, name) {
+
+        let entry = db.get(name)
+        return entry[0].array
+
+    }
+
+
+
 
 }

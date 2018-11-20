@@ -36,16 +36,17 @@ log.setLevel(logging.ERROR)
 @app.route('/api/orbit', methods=['POST'])
 def get_orbit():
 
+    '''
     # OrbitDB writeflag issue workaround: delete local copy on query
     if os.path.exists('orbitdb'):
         shutil.rmtree('orbitdb')
 
     if os.path.exists('data.json'):
         os.remove('data.json')
-
+    '''
     # Get parameters for OrbitDB
     parameters = request.get_json()
-
+    '''
     # Write OrbitDB address to file
     output = {
         "address": parameters['address']
@@ -54,10 +55,12 @@ def get_orbit():
         json.dump(output, outfile)
 
     execute_js('orbit.js')
-
+    '''
+    print(parameters['dataset'])
     # Read in dataframe
     try:
-        data = pd.read_json('data.json')
+        #data = pd.read_json('data.json')
+        data = json.loads(parameters['dataset'])
         df = data.as_matrix(columns = data.columns[0:2])
 
         # Plot original
