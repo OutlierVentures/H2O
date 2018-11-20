@@ -1,5 +1,5 @@
 export class MLParams {
-    C: number = 4;
+    clusters: number = 4;
 }
 
 export class MLResult {
