@@ -1,14 +1,14 @@
 <md-toolbar>
     <div fxFlex fxLayout="row">
-        <div fxFlex fxLayoutAlign="start center" class="cursor-pointer" routerLink="/">
-            <img [src]="logoUrl" height="30">
-            <a class="nav-bar__title">{{title}}</a>
-        </div>
+        <a href="https://www.outlierventures.io"><div style="width: 100%" fxFlex fxLayoutAlign="start center" class="cursor-pointer" routerLink="/">
+            <img [src]="logoUrl" height="20">
+            <a href="https://www.outlierventures.io" class="nav-bar__title">{{title}}</a>
+        </div></a>
         <div fxFlex *ngIf="!hasSideNav">
-            <nav fxLayout="row" fxLayoutAlign="center center" fxHide fxShow.gt-sm>
+            <nav fxLayout="row" fxLayoutAlign="start center" fxHide fxShow.gt-sm>
                 <a *ngFor="let item of menuItems" [routerLink]="item.route"
                    routerLinkActive="navigation-item--active"
-                   class="navigation-item">{{item.name}}</a>
+                   class="navigation-item">H2O</a>
             </nav>
         </div>
         <div fxFlex fxLayoutAlign="end center">

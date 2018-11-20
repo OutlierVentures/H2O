@@ -1,5 +1,5 @@
 <div fxLayoutAlign="center center" fxLayout="column">
-    <h1>Clustering in Nautilina with OrbitDB</h1>
+    <h1>Machine Learning with OrbitDB & Ocean Protocol</h1>
 
     <div class="home__training">
         <md-card fxLayoutAlign="center center" fxLayout="column">
@@ -20,13 +20,13 @@
         </md-card>
         <br />
         <md-card fxLayoutAlign="center center" fxLayout="column">
-            <h4>Set number of clusters</h4>
+            <h4>Perform clustering</h4>
             <md-input-container>
                 <input
                     mdInput
                     name="Number of clusters"
                     placeholder="Number of clusters"
-                    [(ngModel)]="MLParams.C">
+                    [(ngModel)]="MLParams.clusters">
             </md-input-container>
             <button md-raised-button (click)="trainModel()">
                 Run clustering
