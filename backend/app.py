@@ -63,7 +63,7 @@ def get_orbit():
         # Plot original
         plt.figure(1)
         plt.scatter(df[:, 0], df[:, 1])
-        plt.savefig('../frontend/src/assets/images/before.png')
+        plt.savefig('images/before.png')
         plt.close()
 
     except:
@@ -111,7 +111,7 @@ def train():
     plt.figure(2)
     plt.scatter(df[:, 0], df[:, 1], c = prediction)
     plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5)
-    plt.savefig('../frontend/src/assets/images/after.png')
+    plt.savefig('images/after.png')
     plt.close()
 
     '''
