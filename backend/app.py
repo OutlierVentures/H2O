@@ -58,12 +58,12 @@ def get_orbit():
     # Read in dataframe
     try:
         data = pd.read_json('data.json')
-        df = data.as_matrix(columns = data.columns[0:2])
-
+        df = data.values[:, [0, 1]]
+        
         # Plot original
         plt.figure(1)
         plt.scatter(df[:, 0], df[:, 1])
-        plt.savefig('images/before.png')
+        plt.savefig('../frontend/src/assets/images/before.png')
         plt.close()
 
     except:
@@ -88,7 +88,7 @@ def train():
     # Read in dataframe
     try:
         data = pd.read_json('data.json')
-        df = data.as_matrix(columns = data.columns[0:2])
+        df = data.values[:, [0, 1]]
     except:
         print('No OrbitDB database found.')
 
@@ -111,7 +111,7 @@ def train():
     plt.figure(2)
     plt.scatter(df[:, 0], df[:, 1], c = prediction)
     plt.scatter(centers[:, 0], centers[:, 1], s = 200, alpha = 0.5)
-    plt.savefig('images/after.png')
+    plt.savefig('../frontend/src/assets/images/after.png')
     plt.close()
 
     '''
