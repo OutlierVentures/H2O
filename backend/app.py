@@ -130,21 +130,6 @@ def publish_asset():
 
     # Get parameters for clustering
     parameters = request.get_json()
-    '''
-    Web3 runs on the host. The host OS check is needed for containerised H2O.
-    Developers: a 'too many requests' error means you need to change web3_host.
-    Get address: docker exec into the container, apt install net-tools, run
-    netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'
-    Don't forget to prefix the address with 'http://' when assigning web3_host.
-    '''
-    host_os = os.environ.get('HOST_OS')
-    if host_os == 'linux':
-        web3_host = 'http://172.18.0.1'
-    elif host_os == 'macos':
-        web3_host = 'http://docker.for.mac.host.internal'
-    else:
-        web3_host = 'http://127.0.0.1'
-
 
     '''
     # Uncomment this for OrbitDB hosting (PoC, not Ocean testnet compatible yet)

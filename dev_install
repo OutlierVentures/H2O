@@ -10,7 +10,9 @@ echo -e "${boldgreen}Installing H2O...$endcolor"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   yes | apt-get update
   yes | apt-get upgrade
-  yes | apt install build-essential python3-dev python3-pip nodejs npm
+  yes | apt install build-essential python3-dev python3-pip
+  curl -sL https://deb.nodesource.com/setup_8.x | -E bash -
+  apt-get install -y nodejs
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
   apt-get update && apt-get install yarn
@@ -30,7 +32,7 @@ pip3 install wheel
 
 cd backend
 pip3 install -r requirements.txt
-npm install orbit-db ipfs # MOVE IF MIGRATING ORBIT TO FRONT END
+npm install orbit-db ipfs
 cd ../frontend
 yarn install --pure-lockfile
 
