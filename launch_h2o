@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Start ocean protocol first
+
+red="\033[0;31m"
+endcolor="\033[0m"
+echo -e "$red
+     ____  __  __________   ___________
+    / __ \/ / / /_  __/ /  /  _/ __/ _ \\
+   / /_/ / /_/ / / / / /___/ // _// , _/
+  _\____/\____/_/_/_/____/___/___/_/|_|___
+ | | / / __/ |/ /_  __/ / / / _ \/ __/ __/
+ | |/ / _//    / / / / /_/ / , _/ _/_\ \\
+ |___/___/_/|_/ /_/  \____/_/|_/___/___/
+
+$endcolor"
+
+cd frontend
+yarn start &
+cd ../backend
+./scripts/wait_for_migration_and_extract_keeper_artifacts.sh
+python3 app.py
