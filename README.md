@@ -1,9 +1,6 @@
 # H2O: Haja to Ocean
 
-<center>
-<img src='/images/components.png' style='width: 100px' />
-*Machine learning with OrbitDB & Ocean Protocol*
-</center>
+<p align="center"><br/><br/><img src='/images/components.png' width='300px' /><br/><br/><b>Machine learning with OrbitDB & Ocean Protocol</b><br/><br/></p>
 
 You can find a live version of the app at [h2o.apps.outlierventures.io](https://h2o.apps.outlierventures.io/home).
 
