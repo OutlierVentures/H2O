@@ -20,7 +20,7 @@ def simple_register(name, price, description, author, azure_url):
             "name": name,
             "type": "dataset",
             "description": description,
-            "size": "3.1gb", # THIS FIELD IS NOW REQUIRED. WILL HAVE TO READ FILE SIZE.
+            "size": "0.1MB", # Approx
             "author": author,
             "license": "CC-BY",
             "contentType": "text/json",
