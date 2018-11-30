@@ -54,3 +54,12 @@ It may be useful to send the ETH to an address managed by something you're used 
 
 Once you've transferred some ETH to your provider address you can continue. If the account ever runs out of ETH, you can top up using the steps above.
 
+
+## Deploying contracts to Kovan
+
+```
+./deploy_contracts
+```
+By default, verified working v0.4 contracts will be used. Append `latest` for the latest release of Ocean's Keeper contracts.
+
+The script will display a URL of your deployed contracts on Etherscan when finished.
