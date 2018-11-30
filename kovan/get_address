@@ -1,0 +1,4 @@
+#!/bin/bash
+
+npm install truffle-hdwallet-provider
+node get_address.js
