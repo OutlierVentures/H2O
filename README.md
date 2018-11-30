@@ -46,6 +46,11 @@ In another teminal window, launch H2O:
 Interact with the app in your browser at `0.0.0.0:4200`.
 
 
+### Using Kovan
+
+See `README.md` in the `kovan` folder.
+
+
 ### Deployment
 
 You can run an H2O client using nginx.
