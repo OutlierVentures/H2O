@@ -4,38 +4,46 @@ boldgreen="\033[1;32m"
 boldred="\033[1;31m"
 endcolor="\033[0m"
 
-if [[ read -r address<address ]]; then
+address=`cat address` || {
   echo -e "${boldred}Error: you need to run get_address before this script.$endcolor";
   exit 1;
-fi
+}
 
 echo -e "${boldgreen}Deploying a new set of Keeper contracts to Kovan...$endcolor"
 
-if [ ! -f keeper-contracts ]; then
+if [ ! -d keeper-contracts ]; then
   git clone https://github.com/oceanprotocol/keeper-contracts.git || {
     echo -e "${boldred}Git clone failed. Try again or manually download the keeper contracts:
-    https://github.com/oceanprotocol/keeper-contracts
-    Place the keeper-contracts directory in this folder and run this script again.$endcolor"
+https://github.com/oceanprotocol/keeper-contracts
+Place the keeper-contracts directory in this folder and run this script again.$endcolor"
     exit 1;
   }
 fi
 
 cd keeper-contracts
 
-if [ "$1" != latest ]; then
-  git checkout 569d265
+if [ "$1" == latest ]; then
+  git checkout -f develop;
+elif [ "$1" == plankton ]; then
+  git checkout -f 569d265;
+else
+  git checkout -f 415d9c0;
 fi
 
 cp ../truffle.js truffle.js
 
 npm i
 
-npm install -g ganache-cli || { 
-  echo -e "${boldred}NPM permissions error. Install ganache-cli globally. After that, just:
-  npm run migrate:kovan.$endcolor"
+ganache-cli --version || npm install -g ganache-cli || { 
+  echo -e "${boldred}NPM permissions error.
+Install ganache-cli globally and run this script again.$endcolor"
 }
 
-npm run migrate:kovan
-
-echo -e "${boldgreen}Deployment complete. Your contracts:
-https://kovan.etherscan.io/address/${address}$endcolor"
+etherscan="https://kovan.etherscan.io/address/${address}"
+if npm run migrate:kovan; then
+  echo -e "${boldgreen}Deployment complete. Your contracts:
+$etherscan$endcolor";
+else
+  echo -e "${boldred}Deployment failed, see logs above. For any successful contracts, see:
+$etherscan$endcolor";
+fi
