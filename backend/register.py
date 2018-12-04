@@ -82,4 +82,4 @@ def simple_register(name, price, description, author, azure_url):
 
 
 if __name__ == "__main__":
-    simple_register()
+    simple_register('test', 10, 'test', 'test', 'test')
