@@ -4,6 +4,8 @@ Ocean Protocol does not support using the official Kovan contracts deployed by t
 
 This approach is not endorsed by Ocean Protocol and will be replaced once code for interacting with Ocean's contracts once they have written it.
 
+Running on Kovan requires Parity.
+
 
 ## Create an Infura account
 
@@ -20,22 +22,26 @@ Make a note of this mnemonic.
 Note your mnemonic is refferred to as 'KOVAN_NMEMORIC' \[sic\] in the Ocean Protocol code. In terms of endpoints, V2 is used by Ocean but V2 and V3 can be used interchangeably with H2O. 
 
 
-## Getting your publisher address
+## Create your publisher account
 
-Your publisher address is the account from which the Keeper contracts will be deployed and publishing contracts will be generated.
+Your publisher account is the address from which the Keeper contracts will be deployed and publishing contracts will be generated.
 
-To get this address, set your environment variables:
+To get this account, set your environment variables:
 ```
 export INFURA_TOKEN = [YOUR_PROJECT_ID]
 export KOVAN_NMEMORIC = [YOUR_MNEMONIC_WRAPPED_IN_QUOTES]
 ```
 
-Run the `get_address` script:
+Run the `get_publisher` script:
 ```
-chmod +x get_address
-./get_address
+chmod +x get_publisher
+./get_publisher
 ```
-The script will output your publisher account address. Make a note of this.
+The script will output your publisher account address and private key, as well as generate a JSON keystore file in the `H2O/kovan` folder.
+
+You can import this account into a wallet of your choosing, e.g. MetaMask.
+
+![MetaMask](../images/metamask.png)
 
 This address is deterministically generated according to your Infura project ID and mnemonic. It is independent of the machine you are using. If you lose the address you can just run the script again and get it back as long as you still have your project ID and mnemonic. Any ETH you've transferred to the address will stay with it. This illustrates one of the many truly practical properties of blockchain.
 
@@ -49,8 +55,6 @@ You can get Kovan Ether at these locations:
 - [GitHub Faucet](https://faucet.kovan.network/) – 1ETH
 
 These have a timeout so you'll have to wait before repeat faucet use.
-
-It may be useful to send the ETH to an address managed by something you're used to since the HDWallet provider can be a bit tricky. For example, you can send your ETH to a MetaMask-managed account and then transfer 0.5ETH from MetaMask to your provider address.
 
 Once you've transferred some ETH to your provider address you can continue. If the account ever runs out of ETH, you can top up using the steps above.
 
@@ -66,3 +70,13 @@ Options (`./deploy_contracts [OPTION]`):
 - `latest`: latest set of Keeper contracts from Ocean Protocol.
 
 The script will display a URL of your deployed contracts on Etherscan when finished.
+
+
+## Launching a Kovan Parity node
+
+```
+./start_parity
+```
+Squid will now point to your Parity node as the Keeper.
+
+From here, you have two options: running with Keeper only, for which just comment the Aquarius URL in your `config_local.ini` file, and running normally, which means starting an Aquarius instance. You can `git clone` Aquarius from [here](https://github.com/oceanprotocol/aquarius).
