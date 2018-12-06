@@ -1,8 +1,6 @@
 # H2O: Haja to Ocean
 
-<img src='/images/components.png' style='width: 50%' />
-
-Machine learning with OrbitDB & Ocean Protocol.
+<p align="center"><br/><br/><img src='/images/components.png' width='300px' /><br/><br/><b>Machine learning with OrbitDB & Ocean Protocol</b><br/><br/></p>
 
 You can find a live version of the app at [h2o.apps.outlierventures.io](https://h2o.apps.outlierventures.io/home).
 
@@ -17,9 +15,9 @@ This app runs Squid-py 0.2.5.
 
 ![Dataflow](/images/dataflow.png)
 
-### Architecture diagram
+H2O works with any dataset that can be clustered with SciKit Learn's `kmeans` function hosted using OrbitDB. This is a set of datapoints with each dimension stored as a separate entry in an OrbitDB docs type database. To fetch your database, just enter your OrbitDB address in the H2O UI.
 
-![Architecture](/images/architecture.png)
+If you just have raw data (JSON format), you can upload this to a docs type database using the H2O-Host component. You can find the repo for H2O-Host [here](https://www.github.com/OutlierVentures/H2O-Host). The repo also includes a data generation script if you don't have any data yourself but still want to test H2O and generate some processed datasets for training AI.
 
 
 ## Getting started
@@ -48,6 +46,16 @@ In another teminal window, launch H2O:
 Interact with the app in your browser at `0.0.0.0:4200`.
 
 
+### Architecture diagram
+
+![Architecture](/images/architecture.png)
+
+
+### Using the Kovan testnet
+
+For the adventurous, take a look at the readme in the `kovan` folder.
+
+
 ### Deployment
 
 You can run an H2O client using nginx.
@@ -57,8 +65,6 @@ Move H2O to `/var/www/your-domain-name.example`.
 You can quickly set up an nginx configuration using [nginxconfig.io](https://nginxconfig.io). 
 
 *Set up HTTPS since users will be supplying an Azure storage key.*
-
-*In no event shall Outlier Ventures, Outlier Ventures Operations, their employees, their associates or the authors of this software be liable to you or any third parties for any special, punitive, incidental, indirect or consequential damages of any kind, or any damages whatsoever, including, without limitation, those resulting from loss of use, data or profits, whether or not the aforementioned parties have been advised of the possibility of such damages, and on any theory of liability, arising out of or in connection with the use of this software.*
 
 Get an instance of Ocean Protocol up and running.
 

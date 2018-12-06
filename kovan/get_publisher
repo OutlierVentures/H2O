@@ -1,0 +1,11 @@
+#!/bin/bash
+
+boldred="\033[1;31m"
+endcolor="\033[0m"
+
+if [[ ! -z "${INFURA_TOKEN}" && ! -z "${KOVAN_NMEMORIC}" ]]; then
+  npm install truffle-hdwallet-provider password-prompt;
+  node get_publisher.js;
+else
+  echo -e "${boldred}Please set your INFURA_TOKEN and KOVAN_NMEMORIC environment variables.$endcolor";
+fi

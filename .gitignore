@@ -11,3 +11,6 @@
 /backend/data.json
 /backend/host.json
 /backend/output.json
+/kovan/keeper-contracts
+/kovan/address
+/kovan/keystore.json
