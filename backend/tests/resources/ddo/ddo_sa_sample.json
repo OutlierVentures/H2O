@@ -1,0 +1,216 @@
+{
+  "@context": "https://w3id.org/future-method/v1",
+  "id": "did:op:3809174ce71dd460faf4941140323ebafdc062f062d3932fe0195c78719a8716",
+
+  "publicKey": [{
+    "id": "did:op:b6e2eb5eff1a093ced9826315d5a4ef6c5b5c8bd3c49890ee284231d7e1d0aaa#keys-1",
+    "type": "RsaVerificationKey2018",
+    "owner": "did:op:6027c1e7cbae06a91fce0557ee53195284825f56a7100be0c53cbf4391aa26cc",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, {
+    "id": "did:op:d1fe2dc63e0e4fe2fff65d2077d71e39eef3ceda293a36265acc30c81d78ce95#keys-2",
+    "type": "Ed25519VerificationKey2018",
+    "owner": "did:op:4c27a254e607cdf91a1206480e7eb8c74856102316c1a462277d4f21c02373b6",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }, {
+    "id": "did:op:da1ec6bba5ab6842897599cb8e6c17b888e3fee1e8adb2ac18e30c6b511a78b8#keys-3",
+    "type": "RsaPublicKeyExchangeKey2018",
+    "owner": "did:op:5f6b885202ffb9643874be529302eb00d55e226959f1fbacaeda592c5b5c9484",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }],
+
+  "authentication": [{
+    "type": "RsaSignatureAuthentication2018",
+    "publicKey": "did:op:0ebed8226ada17fde24b6bf2b95d27f8f05fcce09139ff5cec31f6d81a7cd2ea#keys-1"
+  }, {
+    "type": "ieee2410Authentication2018",
+    "publicKey": "did:op:c24997ab64005abbe0bee5f6ad8dc4038c27d52b6e4a1f537a488441a9c2b0b9#keys-2"
+  }],
+
+  "service": [
+    {
+    "type": "Access",
+    "serviceEndpoint": "http://mybrizo.org/api/v1/brizo/services/consume?pubKey=${pubKey}&serviceId={serviceId}&url={url}",
+    "serviceDefinitionId": "...",
+    "templateId": "...",
+    "conditions": [
+        {
+            "name": "lockPayment",
+            "timeout": 0,
+            "conditionKey": "0x...",
+            "contractAddress": "0x...",
+            "fingerprint": "0x...",
+            "functionName": "lockPayment",
+            "parameters": [
+              {
+                "name": "assetId",
+                "type": "string",
+                "value": ""
+              },{
+                "name": "price",
+                "type": "uint256",
+                "value": ""
+              }
+            ],
+            "events": [
+              {
+                "name": "PaymentLocked",
+                "actorType": [
+                  "publisher"
+                ],
+                "handlers": {
+                  "moduleName": "accessControl",
+                  "functionName": "grantAccess",
+                  "version": "0.1"
+                }
+              }
+            ],
+            "dependencies": [],
+            "dependencyTimeoutFlags": [0]
+        }, {
+            "name": "grantAccess",
+            "timeout": 0,
+            "conditionKey": "0x...",
+            "contractAddress": "0x...",
+            "fingerprint": "0x...",
+            "functionName": "grantAccess",
+            "parameters": [
+              {
+                "name": "assetId",
+                "type": "string",
+                "value": ""
+              },{
+                "name": "documentKeyId",
+                "type": "bytes32",
+                "value": ""
+              }
+            ],
+            "events": [
+              {
+                "name": "AccessGranted",
+                "actorType": [
+                  "consumer"
+                ],
+                "handlers": {
+                  "moduleName": "payment",
+                  "functionName": "releasePayment",
+                  "version": "0.1"
+                }
+              }
+            ],
+            "dependencies": ["lockPayment"],
+            "dependencyTimeoutFlags": [0]
+        }, {
+            "name": "releasePayment",
+            "timeout": 0,
+            "conditionKey": "0x...",
+            "contractAddress": "0x...",
+            "fingerprint": "0x...",
+            "functionName": "releasePayment",
+            "parameters": [
+              {
+                "name": "assetId",
+                "type": "string",
+                "value": ""
+              },{
+                "name": "price",
+                "type": "uint256",
+                "value": ""
+              }
+            ],
+            "events": [
+              {
+                "name": "PaymentReleased",
+                "actorType": [
+                  "consumer"
+                ],
+                "handlers": {
+                  "moduleName": "serviceAgreement",
+                  "functionName": "fulfillAgreement",
+                  "version": "0.1"
+                }
+              }
+            ],
+            "dependencies": ["grantAccess"],
+            "dependencyTimeoutFlags": [0]
+        }, {
+            "name": "refundPayment",
+            "timeout": 1,
+            "conditionKey": "0x...",
+            "contractAddress": "0x...",
+            "fingerprint": "0x...",
+            "functionName": "refundPayment",
+            "parameters": [
+              {
+                "name": "assetId",
+                "type": "string",
+                "value": ""
+              },{
+                "name": "price",
+                "type": "uint256",
+                "value": ""
+              }
+            ],
+            "events": [
+              {
+                "name": "PaymentRefund",
+                "actorType": [
+                  "consumer", "publisher"
+                ],
+                "handlers": {
+                  "moduleName": "serviceAgreement",
+                  "functionName": "terminateAgreement",
+                  "version": "0.1"
+                }
+              }
+            ],
+            "dependencies": ["lockPayment", "grantAccess"],
+            "dependencyTimeoutFlags": [0, 1]
+        }
+    ]
+    }, {
+    "type": "Compute",
+    "serviceEndpoint": "http://mybrizo.org/api/v1/brizo/services/compute?pubKey=${pubKey}&serviceId={serviceId}&algo={algo}&container={container}"
+
+  }, {
+    "type": "Metadata",
+    "serviceEndpoint": "http://myaquarius.org/api/v1/provider/assets/metadata/{did}",
+    "metadata": {
+      "base": {
+        "name": "UK Weather information 2011",
+        "type": "dataset",
+        "description": "Weather information of UK including temperature and humidity",
+        "size": "3.1gb",
+        "dateCreated": "2012-10-10T17:00:000Z",
+        "author": "Met Office",
+        "license": "CC-BY",
+        "copyrightHolder": "Met Office",
+        "encoding": "UTF-8",
+        "compression": "zip",
+        "contentType": "text/csv",
+        "workExample": "423432fsd,51.509865,-0.118092,2011-01-01T10:55:11+00:00,7.2,68",
+        "contentUrls": ["https://testocnfiles.blob.core.windows.net/testfiles/testzkp.zip"],
+        "links": [
+          {"sample1": "http://data.ceda.ac.uk/badc/ukcp09/data/gridded-land-obs/gridded-land-obs-daily/"},
+          {"sample2": "http://data.ceda.ac.uk/badc/ukcp09/data/gridded-land-obs/gridded-land-obs-averages-25km/"},
+          {"fieldsDescription": "http://data.ceda.ac.uk/badc/ukcp09/"}
+        ],
+        "inLanguage": "en",
+        "tags": "weather, uk, 2011, temperature, humidity",
+        "price": 10
+
+      },
+      "curation": {
+        "rating": 0.93,
+        "numVotes": 123,
+        "schema": "Binary Votting"
+      },
+      "additionalInformation" : {
+        "updateFrecuency": "yearly",
+        "structuredMarkup" : [
+          { "uri" : "http://skos.um.es/unescothes/C01194/jsonld", "mediaType" : "application/ld+json"},
+          { "uri" : "http://skos.um.es/unescothes/C01194/turtle", "mediaType" : "text/turtle"}]
+      }
+    }
+  }]
+}
