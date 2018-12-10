@@ -31,7 +31,7 @@ class DIDRegistry(ContractBase):
         :param ddo: DDO string or DDO object to resolve too
         :param did: DID to resovlve too, can be a 32 byte value or 64 hex string
         :param key: Optional 32 byte key ( 64 char hex )
-        :param account: Ethereum account to use to register/update the DID
+        :param account: instance of Account to use to register/update the DID
         """
 
         value_type = VALUE_TYPE_DID
@@ -78,9 +78,10 @@ class DIDRegistry(ContractBase):
             raise ValueError('Invalid key value {}, must be bytes or string'.format(key))
 
         if account is None:
-            raise ValueError('You must provide an account address to use to register a DID')
+            raise ValueError('You must provide an account to use to register a DID')
 
-        transaction = self.register_attribute(did_source_id, value_type, key, value, account)
+        self.unlock_account(account)
+        transaction = self.register_attribute(did_source_id, value_type, key, value, account.address)
         receipt = self.get_tx_receipt(transaction)
         return receipt
 

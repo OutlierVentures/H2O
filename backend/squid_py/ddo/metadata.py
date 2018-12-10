@@ -1,6 +1,6 @@
 
 class AdditionalInfoMeta(object):
-    KEY = 'additionalInfo'
+    KEY = 'additionalInformation'
     VALUES_KEYS = (
         "updateFrequency",
         "structuredMarkup"
@@ -59,24 +59,23 @@ class MetadataBase(object):
     REQUIRED_VALUES_KEYS = {'name', 'type', 'description', 'contentUrls', 'contentType'}
 
     EXAMPLE = {
-        'name':            "UK Weather information 2011",
+        'name':            "Ocean protocol white paper",
         'type':            "dataset",
-        'description':     "Weather information of UK including temperature and humidity",
-        'size':            "3.1gb",
+        'description':     "Introduce the main concepts and vision behind ocean protocol",
+        'size':            "1mb",
         'dateCreated':     "2012-10-10T17:00:000Z",
-        'author':          "Met Office",
+        'author':          "Ocean Protocol Foundation Ltd.",
         'license':         "CC-BY",
-        'copyrightHolder': "Met Office",
+        'copyrightHolder': "Ocean Protocol Foundation Ltd.",
         'encoding':        "UTF-8",
-        'compression':     "zip",
+        'compression':     "",
         'contentType':     "text/csv",
-        'workExample':     "423432fsd,51.509865,-0.118092,2011-01-01T10:55:11+00:00,7.2,68",
+        'workExample':     "Text PDF",
         'inLanguage':      "en",
-        'tags':            "weather, uk, 2011, temperature, humidity",
+        'tags':            "data exchange sharing curation bonding curve",
         'price':           23,
         'contentUrls': [
-            "https://testocnfiles.blob.core.windows.net/testfiles/testzkp.zip",
-            "https://testocnfiles.blob.core.windows.net/testfiles/testzkp.zip",
+            "https://testocnfiles.blob.core.windows.net/testfiles/testzkp.pdf"
         ],
         'links': [
             {
@@ -120,6 +119,6 @@ class Metadata(object):
     def get_example():
         example = dict()
         for section_key, section in Metadata.MAIN_SECTIONS.items():
-            example[section_key] = section.EXAMPLE
+            example[section_key] = section.EXAMPLE.copy()
 
         return example

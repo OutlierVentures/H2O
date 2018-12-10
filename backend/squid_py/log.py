@@ -23,10 +23,10 @@ def setup_logging(default_path='logging.yaml', default_level=logging.INFO, env_k
                 logging.info("Logging configuration loaded from file: {}".format(path))
             except Exception as e:
                 print(e)
-                print('Squid: using default logging.')
+                print('Error in Logging Configuration. Using default configs')
                 logging.basicConfig(level=default_level)
                 coloredlogs.install(level=default_level)
     else:
         logging.basicConfig(level=default_level)
         coloredlogs.install(level=default_level)
-        print('Squid: using default logging.')
+        print('Using default logging settings.')

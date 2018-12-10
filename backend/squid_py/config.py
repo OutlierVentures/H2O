@@ -12,7 +12,7 @@ DEFAULT_KEEPER_HOST = 'localhost'
 DEFAULT_KEEPER_PORT = 8545
 DEFAULT_KEEPER_URL = 'http://localhost:8545'
 DEFAULT_KEEPER_PATH = 'artifacts'
-DEFAULT_GAS_LIMIT = 300000
+DEFAULT_GAS_LIMIT = 1000000
 DEFAULT_NAME_AQUARIUS_URL = 'http://localhost:5000'
 DEFAULT_STORAGE_PATH = 'squid_py.db'
 
@@ -44,12 +44,14 @@ config_defaults = {
         NAME_KEEPER_URL: DEFAULT_KEEPER_URL,
         NAME_KEEPER_PATH: DEFAULT_KEEPER_PATH,
         NAME_GAS_LIMIT: DEFAULT_GAS_LIMIT,
-        NAME_AQUARIUS_URL: DEFAULT_NAME_AQUARIUS_URL,
-        NAME_STORAGE_PATH: DEFAULT_STORAGE_PATH,
         NAME_SECRET_STORE_URL: '',
         NAME_PARITY_URL: '',
         NAME_PARITY_ADDRESS: '',
         NAME_PARITY_PASSWORD: '',
+    },
+    'resources': {
+        NAME_AQUARIUS_URL: DEFAULT_NAME_AQUARIUS_URL,
+        NAME_STORAGE_PATH: DEFAULT_STORAGE_PATH
     }
 }
 
@@ -99,7 +101,7 @@ class Config(configparser.ConfigParser):
 
     @property
     def storage_path(self):
-        return self.get(self._section_name, NAME_STORAGE_PATH)
+        return self.get('resources', NAME_STORAGE_PATH)
 
     @property
     def keeper_url(self):
@@ -111,7 +113,7 @@ class Config(configparser.ConfigParser):
 
     @property
     def aquarius_url(self):
-        return self.get(self._section_name, NAME_AQUARIUS_URL)
+        return self.get('resources', NAME_AQUARIUS_URL)
 
     @property
     def secret_store_url(self):

@@ -192,7 +192,7 @@ class DIDResolver:
         data = self.get_did(did_bytes)
         while data and (max_hop_count == 0 or resolved.hop_count < max_hop_count):
             if data['value_type'] == VALUE_TYPE_URL or data['value_type'] == VALUE_TYPE_DDO:
-                logger.info('found did {0} -> {1}'.format(Web3.toHex(did_bytes), data['value']))
+                logger.debug('found did {0} -> {1}'.format(Web3.toHex(did_bytes), data['value']))
                 if data['value']:
                     try:
                         result = data['value'].decode('utf8')
@@ -203,16 +203,17 @@ class DIDResolver:
                 data = None
                 break
             elif data['value_type'] == VALUE_TYPE_DID:
-                logger.info('found did {0} -> did:op:{1}'.format(Web3.toHex(did_bytes), data['value']))
+                logger.debug('found did {0} -> did:op:{1}'.format(Web3.toHex(did_bytes), data['value']))
                 try:
                     did_bytes = Web3.toBytes(hexstr=data['value'].decode('utf8'))
                 except:
-                    raise TypeError('Invalid data type for a DID value at {}'.format(Web3.toHex(did_bytes)))
+                    raise TypeError('Invalid data type for a DID value at {}. Got "{}" which '
+                                    'does not seem like a valid did.'.format(Web3.toHex(did_bytes), data['value'].decode('utf8')))
                 resolved.add_data(data, did_bytes)
                 result = did_bytes
             elif data['value_type'] == VALUE_TYPE_DID_REF:
                 # at the moment the same method as DID, get the hexstr and convert to bytes
-                logger.info('found did {0} -> #{1}'.format(Web3.toHex(did_bytes), data['value']))
+                logger.debug('found did {0} -> #{1}'.format(Web3.toHex(did_bytes), data['value']))
                 try:
                     did_bytes = Web3.toBytes(hexstr=data['value'].decode('utf8'))
                 except:

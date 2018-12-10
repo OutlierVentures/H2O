@@ -38,12 +38,11 @@ class Market(ContractBase):
         """Request an amount of tokens for a particular address."""
         try:
             receipt = self.contract_concise.requestTokens(amount, transact={'from': address})
-            logging.info("{} requests {} tokens, returning receipt".format(address, amount))
+            logging.debug("{} requests {} tokens, returning receipt".format(address, amount))
             return receipt
-        except:
+        except Exception:
             # TODO: Specify error
             raise
-            return False
 
     def register_asset(self, asset, price, publisher_address):
         """
@@ -66,7 +65,7 @@ class Market(ContractBase):
         )
 
         self.get_tx_receipt(result)
-        logging.info("Registered Asset {} into blockchain".format(asset.asset_id))
+        logging.debug("Registered Asset {} into blockchain".format(asset.asset_id))
         return result
 
     def pay_order(self, order_id, publisher_address, price, timeout, sender_address, gas_amount=None):

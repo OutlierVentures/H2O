@@ -128,9 +128,8 @@ class PublicKeyBase:
         values = {
             'id': self._id,
             'type': self._type,
+            self._store_type: self._value
         }
-        if self._store_type:
-            values[self._store_type] = self._value
 
         if self._owner:
             values['owner'] = self._owner

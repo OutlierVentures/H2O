@@ -80,6 +80,9 @@ def did_parse(did):
         if result['method'] == OCEAN_DID_METHOD and re.match('^[0-9A-Fa-f]{1,64}$', result['id']):
             result['id_hex'] = Web3.toHex(hexstr=result['id'])
 
+        if not result['id_hex'] and result['id'].startswith('0x'):
+            result['id_hex'] = result['id']
+
     return result
 
 
@@ -108,15 +111,14 @@ def id_to_did(did_id, method='op'):
     # test for zero address
     if Web3.toBytes(hexstr=did_id) == b'':
         did_id = '0'
-    return 'did:{0}:{1}'.format(method, did_id)
+    return 'did:{0}:0x{1}'.format(method, did_id)
 
 
 def did_to_id(did):
     """return an id extracted from a DID string"""
-    if is_did_valid(did):
-        result = did_parse(did)
-        if result:
-            return re.sub('^0x', '', Web3.toHex(hexstr=result['id']))
+    result = did_parse(did)
+    if result and result['id_hex'] is not None:
+        return result['id_hex']
     return None
 
 

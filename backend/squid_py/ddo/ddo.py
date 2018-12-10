@@ -11,6 +11,7 @@ from Crypto.Signature import PKCS1_v1_5
 from Crypto.Hash import SHA256
 from web3 import Web3
 
+from squid_py.ddo.public_key_hex import PublicKeyHex
 from .authentication import Authentication
 from .constants import KEY_PAIR_MODULUS_BIT, DID_DDO_CONTEXT_URL
 from .public_key_base import PublicKeyBase, PUBLIC_KEY_STORE_TYPE_PEM
@@ -111,6 +112,13 @@ class DDO:
     def as_text(self, is_proof=True, is_pretty=False):
         """return the DDO as a JSON text
         if is_proof == False then do not include the 'proof' element"""
+        data = self.as_dictionary(is_proof)
+        if is_pretty:
+            return json.dumps(data, indent=2, separators=(',', ': '))
+
+        return json.dumps(data)
+
+    def as_dictionary(self, is_proof=True):
         if self._created is None:
             self._created = DDO.get_timestamp()
 
@@ -137,10 +145,7 @@ class DDO:
         if self._proof and is_proof:
             data['proof'] = self._proof
 
-        if is_pretty:
-            return json.dumps(data, indent=2, separators=(',', ': '))
-
-        return json.dumps(data)
+        return data
 
     def _read_dict(self, dictionary):
         """import a JSON dict into this DDO"""
@@ -289,6 +294,13 @@ class DDO:
                 return service
         return None
 
+    def find_service_by_key_value(self, service_key, value):
+        for s in self._services:
+            if service_key in s.get_values() and s.get_values()[service_key] == value:
+                return s
+
+        return None
+
     def validate(self):
         """validate the ddo data structure"""
         if self._public_keys and self._authentications:
@@ -428,14 +440,13 @@ class DDO:
     @staticmethod
     def sign_text(text, private_key, sign_type=PUBLIC_KEY_TYPE_RSA):
         """Sign some text using the private key provided"""
-        signed_text = None
         if sign_type == PUBLIC_KEY_TYPE_RSA:
             signer = PKCS1_v1_5.new(RSA.import_key(private_key))
             text_hash = SHA256.new(text.encode('utf-8'))
             signed_text = signer.sign(text_hash)
-        else:
-            raise NotImplementedError
-        return signed_text
+            return signed_text
+
+        raise NotImplementedError
 
     @staticmethod
     def validate_signature(text, key, signature, sign_type=AUTHENTICATION_TYPE_RSA):
@@ -459,15 +470,27 @@ class DDO:
     def create_public_key_from_json(values):
         """create a public key object based on the values from the JSON record"""
         # currently we only support RSA public keys
-        public_key = PublicKeyRSA(values['id'], owner=values.get('owner', None))
+        _id = values.get('id')
+        if not _id:
+            # Make it more forgiving for now.
+            _id = ''
+            # raise ValueError('publicKey definition is missing the "id" value.')
+
+        if values.get('type') == PUBLIC_KEY_TYPE_RSA:
+            public_key = PublicKeyRSA(_id, owner=values.get('owner'))
+        else:
+            public_key = PublicKeyHex(_id, owner=values.get('owner'))
+
         public_key.set_key_value(values)
         return public_key
 
     @staticmethod
     def create_authentication_from_json(values):
         """create authentitaciton object from a JSON string"""
-        key_id = values['publicKey']
-        authentication_type = values['type']
+        key_id = values.get('publicKey')
+        authentication_type = values.get('type')
+        if not key_id:
+            raise ValueError('Invalid authentication definition, "publicKey" is missing: "%s"' % values)
         if isinstance(key_id, dict):
             public_key = DDO.create_public_key_from_json(key_id)
             authentication = Authentication(public_key, public_key.get_authentication_type())
@@ -479,13 +502,15 @@ class DDO:
     @staticmethod
     def create_service_from_json(values):
         """create a service object from a JSON string"""
+        # id is the did, no big deal if missing
         if not 'id' in values:
-            raise IndexError
+            print('Service definition in DDO document is missing the "id" key/value.')
+            # raise IndexError
         if not 'serviceEndpoint' in values:
             raise IndexError
         if not 'type' in values:
             raise IndexError
-        service = Service(values['id'], values['serviceEndpoint'], values['type'], values)
+        service = Service(values.get('id', ''), values['serviceEndpoint'], values['type'], values)
         return service
 
     @staticmethod
