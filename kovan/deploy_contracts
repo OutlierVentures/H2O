@@ -48,6 +48,7 @@ ${boldgreen}PATH=\$PATH:~/.npm-global/bin$endcolor";
   exit 1;
 }
 
+
 # Migrate to Kovan
 etherscan="https://kovan.etherscan.io/address/${address}"
 if npm run migrate:kovan; then
