@@ -5,7 +5,7 @@ import logging
 from squid_py.ddo import DDO
 from squid_py.did import did_to_id, id_to_did
 from squid_py.ocean.ocean_base import OceanBase
-from squid_py.service_agreement.service_factory import ServiceTypes
+from squid_py.service_agreement.service_types import ServiceTypes
 
 DDO_SERVICE_METADATA_KEY = 'metadata'
 

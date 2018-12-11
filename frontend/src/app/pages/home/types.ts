@@ -21,7 +21,10 @@ export class OceanParams {
     author: string = "Outlier Ventures";
     azureaccount: string;
     azurekey: string;
-    containername: string = "h2o-" + genid(); // Generates new Ocean asset ID when instantiated
+    // Generates new Ocean asset ID when instantiated
+    containername: string = "h2o-" + genid();
+    // Overwritten if running with Kovan testnet, leave = null for script match
+    publisher: string = null;
 }
 
 export class OceanResult {
@@ -37,4 +40,4 @@ function genid() {
       text += charspace.charAt(Math.floor(Math.random() * charspace.length));
     }
     return text;
-  }
+}

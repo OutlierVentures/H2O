@@ -46,20 +46,37 @@ export class HomeComponent implements OnInit {
 
     public publishAsset() {
         try {
-            this.mlService.publishAsset(this.OceanParams).subscribe((OceanResult) => {
+            let params = this.OceanParams;
+            this.mlService.publishAsset(params).subscribe((OceanResult) => {
                 this.OceanResult = OceanResult;
             });
+            let startbutton = "<button _ngcontent-c8 class=\"mat-raised-button\" md-raised-button>\
+                               <span class=\"mat-button-wrapper\">"
+            let endbutton = "</span></button>"
+            let azure = "";
+            let etherscan = "";
+            if (params.azureaccount != null && params.azurekey != null) {
+                azure = "<a href=\"https://" + params.azureaccount + ".blob.core.windows.net/" + params.containername + "/output.json\">"
+                        + startbutton + "Your hosted dataset" + endbutton
+                        + "</a>";
+            }
+            if (params.publisher != null) {
+                etherscan = "<a href=\"https://kovan.etherscan.io/address/" + params.publisher + "\">"
+                            + startbutton + "Your contracts on Kovan" + endbutton
+                            + "</a>";
+            }
             document.getElementById('form').innerHTML="\
-            <p>Successfully uploaded to Ocean Protocol!</p>\
+            <p>Successfully uploaded to Ocean Protocol!<br/><br/></p>\
             <img src=\"../../assets/images/success.png\" style=\"width: 30%\">\
-            <p><center><a href=\"https://" + this.OceanParams.azureaccount + 
-            ".blob.core.windows.net/" + this.OceanParams.containername +
-            "/output.json\">Your hosted dataset</a><br/>\
-            (Will 404 if account invalid)</center></p>";
+            <p><center>"
+            + azure
+            + "<br/><br/>"
+            + etherscan
+            + "</center></p>";
         }
         catch (e) {
             document.getElementById('form').innerHTML="\
-            </p>Could not connect to Ocean Protocol.</p>\
+            </p>Could not connect to Ocean Protocol.<br/><br/></p>\
             <img src=\"../../assets/images/failure.png\" style=\"width: 30%\">\
             <p><center>Check your account is the first in Keeper contracts<br />\
             and ensure you set your environment variables.</center></p>";

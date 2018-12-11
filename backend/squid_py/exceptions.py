@@ -6,6 +6,10 @@ class OceanInvalidContractAddress(Exception):
     pass
 
 
+class OceanKeeperContractsNotFound(Exception):
+    pass
+
+
 # Raised when an DID attribute is assigned to a DID in the same chain of DIDs
 class OceanDIDCircularReference(Exception):
     pass

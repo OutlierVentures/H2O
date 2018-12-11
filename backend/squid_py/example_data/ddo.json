@@ -32,7 +32,7 @@
     "type": "Consume",
     "serviceEndpoint": "http://mybrizo.org/api/v1/brizo/services/consume?pubKey=${pubKey}&serviceId={serviceId}&url={url}",
     "serviceDefinitionId": "...",
-    "slaTemplateId": "...",
+    "templateId": "...",
     "conditions": [
         {
             "name": "lockPayment",

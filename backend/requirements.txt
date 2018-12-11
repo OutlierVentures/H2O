@@ -6,7 +6,7 @@ matplotlib
 azure-storage
 coloredlogs
 eciespy
-keeper-contracts
+keeper-contracts==0.5.0
 pyopenssl
 PyJWT
 PyYAML

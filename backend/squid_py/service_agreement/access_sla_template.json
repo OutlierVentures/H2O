@@ -1,12 +1,12 @@
 {
   "type": "OceanProtocolServiceAgreementTemplate",
-  "id": "0x419d158c3a5d81d15b0160cf8929916089218bdb4aa78c3ecd16633afd44b8ae",
+  "id": "0x044852b2a670ade5407e78fb2863c51de9fcb96542a07186fe3aeda6bb8a116d",
   "name": "dataAssetAccessServiceAgreement",
   "description": "This service agreement defines the flow for accessing a data asset on the ocean network. Any file or bundle of files can be access using this service agreement",
   "creator": "",
   "serviceAgreementContract": {
-    "address": "0x...",
-    "fulfillmentOperator": 0,
+    "contractName": "ServiceAgreement",
+    "fulfillmentOperator": 1,
     "events": [
       {
         "name": "ExecuteAgreement",
@@ -23,10 +23,10 @@
     {
       "name": "lockPayment",
       "timeout": 0,
-      "conditionKey": "0x...",
-      "contractAddress": "0x...",
-      "fingerprint": "0x...",
+      "conditionKey": "0x313d20f9cda19e1f5702af79e5ebfa7cb434918722f9b334000ea71cdaac1614",
+      "contractName": "PaymentConditions",
       "functionName": "lockPayment",
+      "index": 0,
       "parameters": [
         {
           "name": "assetId",
@@ -41,10 +41,8 @@
       "events": [
         {
           "name": "PaymentLocked",
-          "actorType": [
-            "publisher"
-          ],
-          "handlers": {
+          "actorType": "publisher",
+          "handler": {
             "moduleName": "accessControl",
             "functionName": "grantAccess",
             "version": "0.1"
@@ -52,18 +50,22 @@
         }
       ],
       "dependencies": [],
-      "dependencyTimeoutFlags": [],
-      "isTerminalCondition": false
+      "isTerminalCondition": 0
     }, {
       "name": "grantAccess",
       "timeout": 0,
-      "conditionKey": "0x...",
-      "contractAddress": "0x...",
-      "fingerprint": "0x...",
+      "conditionKey": "0x38163b4835d3b0c780fcdf6a872e3e86f84393a0bda8e8b642df39a8d05c4c1a",
+      "contractName": "AccessConditions",
       "functionName": "grantAccess",
+      "index": 1,
       "parameters": [
         {
           "name": "assetId",
+          "type": "bytes32",
+          "value": ""
+        },
+        {
+          "name": "documentKeyId",
           "type": "bytes32",
           "value": ""
         }
@@ -71,26 +73,46 @@
       "events": [
         {
           "name": "AccessGranted",
-          "actorType": [
-            "consumer"
-          ],
-          "handlers": {
-            "moduleName": "paymentProcessing",
+          "actorType": "publisher",
+          "handler": {
+            "moduleName": "payment",
             "functionName": "releasePayment",
+            "version": "0.1"
+          }
+        },
+        {
+          "name": "AccessGranted",
+          "actorType": "consumer",
+          "handler": {
+            "moduleName": "accessControl",
+            "functionName": "consumeAsset",
+            "version": "0.1"
+          }
+        },
+        {
+          "name": "AccessTimeout",
+          "actorType": "consumer",
+          "handler": {
+            "moduleName": "payment",
+            "functionName": "refundPayment",
             "version": "0.1"
           }
         }
       ],
-      "dependencies": ["lockPayment"],
-      "dependencyTimeoutFlags": [0],
-      "isTerminalCondition": false
+      "dependencies": [
+        {
+          "name": "lockPayment",
+          "timeout": 0
+        }
+      ],
+      "isTerminalCondition": 0
     }, {
       "name": "releasePayment",
       "timeout": 0,
-      "conditionKey": "0x...",
-      "contractAddress": "0x...",
-      "fingerprint": "0x...",
+      "conditionKey": "0x477f516713f4b0de54d0e0f4429f593c63f2dd2ca4789633e02a446c7978f3cb",
+      "contractName": "PaymentConditions",
       "functionName": "releasePayment",
+      "index": 2,
       "parameters": [
         {
           "name": "assetId",
@@ -105,26 +127,28 @@
       "events": [
         {
           "name": "PaymentReleased",
-          "actorType": [
-            "consumer"
-          ],
-          "handlers": {
+          "actorType": "consumer",
+          "handler": {
             "moduleName": "serviceAgreement",
             "functionName": "fulfillAgreement",
             "version": "0.1"
           }
         }
       ],
-      "dependencies": ["grantAccess"],
-      "dependencyTimeoutFlags": [0],
-      "isTerminalCondition": true
+      "dependencies": [
+        {
+          "name": "grantAccess",
+          "timeout": 0
+        }
+      ],
+      "isTerminalCondition": 1
     }, {
       "name": "refundPayment",
       "timeout": 1,
-      "conditionKey": "0x...",
-      "contractAddress": "0x...",
-      "fingerprint": "0x...",
+      "conditionKey": "0x385d3af26f7c057688a4988fb784c392a97ce472a4feb4435968fed04809e8dc",
+      "contractName": "PaymentConditions",
       "functionName": "refundPayment",
+      "index": 3,
       "parameters": [
         {
           "name": "assetId",
@@ -139,19 +163,25 @@
       "events": [
         {
           "name": "PaymentRefund",
-          "actorType": [
-            "consumer", "publisher"
-          ],
-          "handlers": {
+          "actorType": "publisher",
+          "handler": {
             "moduleName": "serviceAgreement",
             "functionName": "terminateAgreement",
             "version": "0.1"
           }
         }
       ],
-      "dependencies": ["lockPayment", "grantAccess"],
-      "dependencyTimeoutFlags": [0, 1],
-      "isTerminalCondition": true
+      "dependencies": [
+        {
+          "name": "lockPayment",
+          "timeout": 0
+        },
+        {
+          "name": "grantAccess",
+          "timeout": 1
+        }
+      ],
+      "isTerminalCondition": 1
     }
   ]
 }

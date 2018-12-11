@@ -3,14 +3,10 @@
 
     All keeper contract inherit from this base class
 """
-import json
 import logging
-import os
 
 from web3.contract import ConciseContract
-from squid_py.exceptions import OceanInvalidContractAddress
-from squid_py.keeper.utils import get_contract_by_name
-from squid_py.utils.utilities import network_name
+from squid_py.keeper.utils import get_contract_by_name, get_network_name
 
 
 class ContractBase(object):
@@ -38,7 +34,7 @@ class ContractBase(object):
         """Retrieve a tuple with the concise contract and the contract definition."""
         contract_definition = get_contract_by_name(
             contract_path,
-            network_name(self.web3),
+            get_network_name(self.web3),
             contract_name,
         )
         address = self.to_checksum_address(contract_definition['address'])
@@ -56,6 +52,10 @@ class ContractBase(object):
 
         return concise_contract, contract, address
 
+    def unlock_account(self, account):
+        if account.password:
+            self.web3.personal.unlockAccount(account.address, account.password)
+
     def to_checksum_address(self, address):
         """Validate the address provided."""
         return self.web3.toChecksumAddress(address)
@@ -69,7 +69,7 @@ class ContractBase(object):
         """Return the event signature from a named event. """
         signature = None
         for item in self.contract.abi:
-            if 'name' in item and item['name'] == name and item['type'] == 'event':
+            if item.get('type') == 'event' and item.get('name') == name:
                 signature = item['signature']
                 break
 

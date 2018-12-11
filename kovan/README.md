@@ -2,7 +2,7 @@
 
 Ocean Protocol does not support using the official Kovan contracts deployed by the team as of yet. The instructions here are for deploying your own set of Keeper contracts.
 
-This approach is not endorsed by Ocean Protocol and will be replaced once code for interacting with Ocean's contracts once they have written it.
+The instructions below should be run from the `kovan` folder.
 
 Running on Kovan requires Parity.
 
@@ -19,7 +19,7 @@ Make a note of this mnemonic.
 
 *Your mnemonic must remain private at all times, should never be hard-coded and should never be commited to Git. If you use your mnemonic in any way in code, it should be passed as an environment variable.*
 
-Note your mnemonic is refferred to as 'KOVAN_NMEMORIC' \[sic\] in the Ocean Protocol code. In terms of endpoints, V2 is used by Ocean but V2 and V3 can be used interchangeably with H2O. 
+Note your mnemonic is refferred to as 'KOVAN_NMEMORIC' in the Ocean Protocol code. In terms of endpoints, V2 is used by Ocean but V2 and V3 can be used interchangeably with H2O. 
 
 
 ## Create your publisher account
@@ -48,7 +48,7 @@ This address is deterministically generated according to your Infura project ID 
 
 ## Getting Kovan ETH
 
-In order to deploy your contracts, you'll need about 0.2ETH. You'll need additional ETH for the contracts deployed when publishing assets.
+In order to deploy your contracts, you'll need about 0.3ETH. Contracts for publishing assets following deployment have minimal fees. 0.5ETH should be enough to start.
 
 You can get Kovan Ether at these locations:
 - [Gitter Faucet](https://gitter.im/kovan-testnet/faucet) – 3ETH
@@ -66,7 +66,7 @@ Once you've transferred some ETH to your provider address you can continue. If t
 ```
 Options (`./deploy_contracts [OPTION]`):
 - Default (no option): v0.5. Trilobite (verified working)
-- `plankton`: v0.4 Plankton (verified working)
+- `plankton`: v0.4 Plankton.
 - `latest`: latest set of Keeper contracts from Ocean Protocol.
 
 The script will display a URL of your deployed contracts on Etherscan when finished.
@@ -78,5 +78,3 @@ The script will display a URL of your deployed contracts on Etherscan when finis
 ./start_parity
 ```
 Squid will now point to your Parity node as the Keeper.
-
-From here, you have two options: running with Keeper only, for which just comment the Aquarius URL in your `config_local.ini` file, and running normally, which means starting an Aquarius instance. You can `git clone` Aquarius from [here](https://github.com/oceanprotocol/aquarius).

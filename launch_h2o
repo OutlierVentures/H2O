@@ -18,5 +18,4 @@ $endcolor"
 cd frontend
 yarn start &
 cd ../backend
-./scripts/wait_for_migration_and_extract_keeper_artifacts.sh
 python3 app.py

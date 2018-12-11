@@ -6,8 +6,5 @@ from .utilities import (
     convert_to_bytes,
     convert_to_text,
     to_32byte_hex,
-    get_balance,
-    sign,
-    split_signature,
-    network_name
+    split_signature
 )

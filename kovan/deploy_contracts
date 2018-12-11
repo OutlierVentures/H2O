@@ -20,6 +20,8 @@ Place the keeper-contracts directory in this folder and run this script again.$e
   }
 fi
 
+mv pass keeper-contracts/pass
+
 cd keeper-contracts
 
 if [ "$1" == latest ]; then
@@ -36,9 +38,10 @@ npm i
 
 ganache-cli --version || npm install -g ganache-cli || { 
   echo -e "${boldred}NPM permissions error.
-Install ganache-cli globally and run this script again.$endcolor"
+Install ganache-cli globally and run this script again.$endcolor";
 }
 
+# Migrate to Kovan
 etherscan="https://kovan.etherscan.io/address/${address}"
 if npm run migrate:kovan; then
   echo -e "${boldgreen}Deployment complete. Your contracts:
@@ -47,3 +50,34 @@ else
   echo -e "${boldred}Deployment failed, see logs above. For any successful contracts, see:
 $etherscan$endcolor";
 fi
+
+
+# Copy new contracts to Squid's reference location
+artifactspath="../../backend/artifacts"
+rm -rf $artifactspath
+cp -r artifacts $artifactspath
+
+
+# Write to config_local.ini
+pass=`cat pass` || {
+  echo -e "${boldred}Error: can't read password file.$endcolor";
+  exit 1;
+}
+cd ../../backend
+if [ ! -f config_local.ini ]; then
+  cp config.ini config_local.ini;
+fi
+
+sed -i -e "/parity.address =/ s/= .*/= $address/" config_local.ini
+sed -i -e "/parity.password =/ s/= .*/= $pass/" config_local.ini
+sed -i -e "/parity.address1 =/ s/= .*/= $address/" config_local.ini
+sed -i -e "/parity.password1 =/ s/= .*/= $pass/" config_local.ini
+rm config_local.ini-e
+
+
+# Update frontend to display link to Kovan contracts
+cd ../frontend/src/app/pages/home
+
+sed -i -e "/publisher: string =/ s/= .*/= \"$address\"/" types.ts
+rm types.ts-e
+

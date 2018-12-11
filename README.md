@@ -2,12 +2,13 @@
 
 <p align="center"><br/><br/><img src='/images/components.png' width='300px' /><br/><br/><b>Machine learning with OrbitDB & Ocean Protocol</b><br/><br/></p>
 
-You can find a live version of the app at [h2o.apps.outlierventures.io](https://h2o.apps.outlierventures.io/home).
+This app runs the Ocean Protocol Trilobite release code and latest OrbitDB.
+
+You can find a live version of H2O at [h2o.apps.outlierventures.io](https://h2o.apps.outlierventures.io/home).
 
 Publishing assets requires an Azure Storage account.
 Proof-of-concept OrbitDB hosting can be found in `backend` folder, see `app.py` and `host.js`.
 
-This app runs Squid-py 0.2.5.
 
 ## Architecture
 
@@ -31,11 +32,15 @@ sudo ./install
 ```
 If you encounter any install problems, there is a full requirements list at the bottom of this file for manual installations.
 
-### Running components
+### Running components (local deployment)
 
 Start an instance of Ocean Protocol:
 ```
 ./launch_ocean
+```
+Ensure Ocean is up and running before launching H2O - see the container output logs or use this script:
+```
+./backend/scripts/wait_for_migration_and_extract_keeper_artifacts.sh
 ```
 
 In another teminal window, launch H2O:
@@ -46,15 +51,14 @@ In another teminal window, launch H2O:
 Interact with the app in your browser at `0.0.0.0:4200`.
 
 
-### Architecture diagram
-
-![Architecture](/images/architecture.png)
-
-
 ### Using the Kovan testnet
 
 For the adventurous, take a look at the readme in the `kovan` folder.
 
+
+### Architecture diagram
+
+![Architecture](/images/architecture.png)
 
 ### Deployment
 
