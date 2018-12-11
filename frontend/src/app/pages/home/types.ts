@@ -23,8 +23,8 @@ export class OceanParams {
     azurekey: string;
     // Generates new Ocean asset ID when instantiated
     containername: string = "h2o-" + genid();
-    // Overwritten if running with Kovan testnet
-    publisher: string;
+    // Overwritten if running with Kovan testnet, leave = null for script match
+    publisher: string = null;
 }
 
 export class OceanResult {

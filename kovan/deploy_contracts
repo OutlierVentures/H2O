@@ -48,6 +48,7 @@ else
 $etherscan$endcolor";
 fi
 
+
 # Write to config_local.ini
 pass=`cat pass` || {
   echo -e "${boldred}Error: can't read password file.$endcolor";
@@ -64,6 +65,8 @@ sed -i -e "/parity.address1 =/ s/= .*/= $address/" config_local.ini
 sed -i -e "/parity.password1 =/ s/= .*/= $pass/" config_local.ini
 rm config_local.ini-e
 
+
+# Update frontend to display link to Kovan contracts
 cd ../frontend/src/app/pages/home
 
 sed -i -e "/publisher: string =/ s/= .*/= \"$address\"/" types.ts

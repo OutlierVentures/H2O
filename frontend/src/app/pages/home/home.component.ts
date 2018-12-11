@@ -46,29 +46,31 @@ export class HomeComponent implements OnInit {
 
     public publishAsset() {
         try {
-            this.mlService.publishAsset(this.OceanParams).subscribe((OceanResult) => {
+            let params = this.OceanParams;
+            this.mlService.publishAsset(params).subscribe((OceanResult) => {
                 this.OceanResult = OceanResult;
             });
             let startbutton = "<button _ngcontent-c8 class=\"mat-raised-button\" md-raised-button>\
                                <span class=\"mat-button-wrapper\">"
             let endbutton = "</span></button>"
+            let azure = "";
             let etherscan = "";
-            if (this.OceanParams.publisher != null) {
-                etherscan = "<a href=\"https://kovan.etherscan.io/address/"
-                            + this.OceanParams.publisher + "\">"
-                            + startbutton + "Your contracts on Kovan" + endbutton + "</a>";
+            if (params.azureaccount != null && params.azurekey != null) {
+                azure = "<a href=\"https://" + params.azureaccount + ".blob.core.windows.net/" + params.containername + "/output.json\">"
+                        + startbutton + "Your hosted dataset" + endbutton
+                        + "</a>";
+            }
+            if (params.publisher != null) {
+                etherscan = "<a href=\"https://kovan.etherscan.io/address/" + params.publisher + "\">"
+                            + startbutton + "Your contracts on Kovan" + endbutton
+                            + "</a>";
             }
             document.getElementById('form').innerHTML="\
             <p>Successfully uploaded to Ocean Protocol!<br/><br/></p>\
             <img src=\"../../assets/images/success.png\" style=\"width: 30%\">\
-            <p><center>\
-            <a href=\"https://"
-            + this.OceanParams.azureaccount
-            + ".blob.core.windows.net/"
-            + this.OceanParams.containername
-            + "/output.json\">"
-            + startbutton + "Your hosted dataset" + endbutton
-            + "</a><br/><br/>"
+            <p><center>"
+            + azure
+            + "<br/><br/>"
             + etherscan
             + "</center></p>";
         }
