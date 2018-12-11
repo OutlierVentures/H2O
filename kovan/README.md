@@ -78,5 +78,3 @@ The script will display a URL of your deployed contracts on Etherscan when finis
 ./start_parity
 ```
 Squid will now point to your Parity node as the Keeper.
-
-From here, you have two options: running with Keeper only, for which just comment the Aquarius URL in your `config_local.ini` file, and running normally, which means starting an Aquarius instance. You can `git clone` Aquarius from [here](https://github.com/oceanprotocol/aquarius).
