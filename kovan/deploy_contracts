@@ -41,6 +41,7 @@ ganache-cli --version || npm install -g ganache-cli || {
 Install ganache-cli globally and run this script again.$endcolor";
 }
 
+# Migrate to Kovan
 etherscan="https://kovan.etherscan.io/address/${address}"
 if npm run migrate:kovan; then
   echo -e "${boldgreen}Deployment complete. Your contracts:
@@ -50,9 +51,12 @@ else
 $etherscan$endcolor";
 fi
 
+
+# Copy new contracts to Squid's reference location
 artifactspath="../../backend/artifacts"
 rm -rf $artifactspath
 cp -r artifacts $artifactspath
+
 
 # Write to config_local.ini
 pass=`cat pass` || {

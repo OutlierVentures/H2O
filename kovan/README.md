@@ -66,7 +66,7 @@ Once you've transferred some ETH to your provider address you can continue. If t
 ```
 Options (`./deploy_contracts [OPTION]`):
 - Default (no option): v0.5. Trilobite (verified working)
-- `plankton`: v0.4 Plankton (verified working)
+- `plankton`: v0.4 Plankton.
 - `latest`: latest set of Keeper contracts from Ocean Protocol.
 
 The script will display a URL of your deployed contracts on Etherscan when finished.
