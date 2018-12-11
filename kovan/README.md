@@ -4,7 +4,10 @@ Ocean Protocol does not support using the official Kovan contracts deployed by t
 
 The instructions below should be run from the `kovan` folder.
 
-Running on Kovan requires Parity.
+Running on Kovan requires Parity:
+```
+bash <(curl https://get.parity.io -L)
+```
 
 
 ## Create an Infura account
@@ -78,3 +81,8 @@ The script will display a URL of your deployed contracts on Etherscan when finis
 ./start_parity
 ```
 Squid will now point to your Parity node as the Keeper.
+
+If you get the error 'account not found for the current chain,' just add it manually:
+```
+parity account import ./keystore.json --chain kovan --password=./pass
+```

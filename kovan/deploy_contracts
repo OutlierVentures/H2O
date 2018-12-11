@@ -20,7 +20,7 @@ Place the keeper-contracts directory in this folder and run this script again.$e
   }
 fi
 
-mv pass keeper-contracts/pass
+cp pass keeper-contracts/pass
 
 cd keeper-contracts
 
@@ -38,7 +38,14 @@ npm i
 
 ganache-cli --version || npm install -g ganache-cli || { 
   echo -e "${boldred}NPM permissions error.
-Install ganache-cli globally and run this script again.$endcolor";
+Install ganache-cli globally and run this script again.
+If you have permissions errors, try:
+${boldgreen}sudo chown -R $(whoami) ~/.npm
+sudo chown -R $(whoami) ~/.npm-global
+npm install -g ganache-cli
+${boldred}If the ganache-cli command is not found, modify your PATH:
+${boldgreen}PATH=\$PATH:~/.npm-global/bin$endcolor";
+  exit 1;
 }
 
 # Migrate to Kovan
