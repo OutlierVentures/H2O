@@ -2,7 +2,7 @@
 
 <p align="center"><br/><br/><img src='/images/components.png' width='300px' /><br/><br/><b>Machine learning with OrbitDB & Ocean Protocol</b><br/><br/></p>
 
-This app runs the Ocean Protocol Trilobite release code.
+This app runs the Ocean Protocol Trilobite release code and latest OrbitDB.
 
 You can find a live version of H2O at [h2o.apps.outlierventures.io](https://h2o.apps.outlierventures.io/home).
 
