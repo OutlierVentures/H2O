@@ -20,6 +20,8 @@ Place the keeper-contracts directory in this folder and run this script again.$e
   }
 fi
 
+mv pass keeper-contracts/pass
+
 cd keeper-contracts
 
 if [ "$1" == latest ]; then
@@ -48,6 +50,9 @@ else
 $etherscan$endcolor";
 fi
 
+artifactspath="../../backend/artifacts"
+rm -rf $artifactspath
+cp -r artifacts $artifactspath
 
 # Write to config_local.ini
 pass=`cat pass` || {

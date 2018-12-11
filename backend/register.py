@@ -46,15 +46,19 @@ def simple_register(name, price, description, author, azure_url):
     # Register asset
     pub_ocn.keeper.market.register_asset(asset, price, aquarius_acct.address)
 
-    # Check asset exists
-    chain_asset_exists = pub_ocn.keeper.market.check_asset(asset.asset_id)
-    logging.debug("check_asset = {}".format(chain_asset_exists))
-    assert chain_asset_exists
 
-    # Check price is as sppecified
-    chain_price = pub_ocn.keeper.market.get_asset_price(asset.asset_id)
-    assert price == chain_price
-    logging.debug("chain_price = {}".format(chain_price))
+    # These checks work for local deployment
+
+    # Check asset exists
+    #chain_asset_exists = pub_ocn.keeper.market.check_asset(asset.asset_id)
+    #logging.debug("check_asset = {}".format(chain_asset_exists))
+    #assert chain_asset_exists
+
+    # Check price is as specified
+    #chain_price = pub_ocn.keeper.market.get_asset_price(asset.asset_id)
+    #assert price == chain_price
+    #logging.debug("chain_price = {}".format(chain_price))
+
 
     print('\033[0;32mAsset published:')
     print(asset.metadata['base']['name'] + '\033[0m')
