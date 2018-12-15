@@ -1,6 +1,6 @@
 # H2O: Haja to Ocean
 
-<p align="center"><br/><br/><img src='/images/orbitdb.png' /><img src='/images/h2o.png' /><img src='/images/ocean.png' /><br/><br/><b>Machine learning with OrbitDB & Ocean Protocol</b><br/><br/></p>
+<p align="center"><br/><br/><img src='/images/h2o.png' width="95px"/>&nbsp;<img src='/images/orbitdb.png' width="95px"/>&nbsp;<img src='/images/ocean.png' width="95px"/>&nbsp;<img src='/images/ipfs.png' width="95px"/>&nbsp;<img src='/images/azure.png' width="95px"/><br/><br/><b>Machine learning with OrbitDB & Ocean Protocol</b><br/><br/></p>
 
 This app runs the Ocean Protocol Trilobite release code and latest OrbitDB.
 
