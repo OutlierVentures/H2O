@@ -4,12 +4,11 @@ from squid_py.service_agreement.service_factory import ServiceDescriptor
 from squid_py.utils.utilities import generate_new_id
 import logging
 from squid_py.ocean.ocean import Ocean
-from tests.test_utils import get_publisher_ocean_instance, get_consumer_ocean_instance
 
 def simple_register(name, price, description, author, azure_url):
 
-    pub_ocn = get_publisher_ocean_instance()
-    cons_ocn = get_consumer_ocean_instance()
+    pub_ocn = Ocean('config_local.ini')
+    cons_ocn = Ocean('config_local.ini')
     logging.debug("".format())
 
     # Format metadata as required by Ocean

@@ -15,7 +15,3 @@ pass=`cat pass` || {
 parity account import ./keystore.json --chain kovan --password=./pass
 
 parity --chain=kovan --jsonrpc-apis web3,eth,net,parity,traces,rpc,personal --jsonrpc-cors http://localhost:8545 --unlock=$address --password=./pass &
-
-sleep 2
-
-curl --data '{"method":"personal_unlockAccount","params":["'$address'","'$pass'",null],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545

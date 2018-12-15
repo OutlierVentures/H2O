@@ -2,9 +2,14 @@
 
 Ocean Protocol does not support using the official Kovan contracts deployed by the team as of yet. The instructions here are for deploying your own set of Keeper contracts.
 
-The instructions below should be run from the `kovan` folder.
+Running on Kovan requires Parity:
+```
+bash <(curl https://get.parity.io -L)
+```
 
-Running on Kovan requires Parity.
+Migrating to kovan writes a new set of contracts. If you want to go back to local deployment, clone a fresh repo.
+
+The instructions below should be run from the `kovan` folder.
 
 
 ## Create an Infura account
@@ -78,3 +83,10 @@ The script will display a URL of your deployed contracts on Etherscan when finis
 ./start_parity
 ```
 Squid will now point to your Parity node as the Keeper.
+
+If you get the error 'account not found for the current chain,' just add it manually:
+```
+parity account import ./keystore.json --chain kovan --password=./pass
+```
+
+You'll have to wait for Parity to sync until you can use H2O with it. Once outputs only contain 'import' instead of 'syncing,' Parity is ready. For first runs this can be several minutes.

@@ -86,6 +86,7 @@ In another:
 cd backend
 sudo python3 app.py
 ```
+Running a static frontend through a secure web server like nginx and proxying backend is relatively safe as long as debug mode is off for the backend. For true security, switch your backend process to a production server.
 
 Disconnect from your screen sessions and H2O will continue to run.
 
