@@ -115,6 +115,7 @@ def train():
     plt.close()
 
     '''
+    Testing only, if you have ground truth:
     K-means is not classification, so accuracy doesn't really apply.
     Nevertheless, labels can be loaded for an 'accuracy' metric:
     truth = data['t'].values
