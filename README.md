@@ -1,6 +1,6 @@
 # H2O: Haja to Ocean
 
-<p align="center"><br/><br/><img src='/images/h2o.png' width="95px"/>&nbsp;<img src='/images/orbitdb.png' width="95px"/>&nbsp;<img src='/images/ocean.png' width="95px"/>&nbsp;<img src='/images/ipfs.png' width="95px"/>&nbsp;<img src='/images/azure.png' width="95px"/><br/><br/><b>Machine learning with OrbitDB & Ocean Protocol</b><br/><br/></p>
+<p align="center"><br/><br/><img src='/images/h2o.png' width="95px"/>&nbsp;<img src='/images/orbit.png' width="95px"/>&nbsp;<img src='/images/ocean.png' width="95px"/>&nbsp;<img src='/images/ipfs.png' width="95px"/>&nbsp;<img src='/images/azure.png' width="95px"/><br/><br/><b>Machine learning with OrbitDB & Ocean Protocol</b><br/><br/></p>
 
 This app runs the Ocean Protocol Trilobite release code and latest OrbitDB.
 
@@ -14,7 +14,7 @@ Proof-of-concept OrbitDB hosting can be found in `backend` folder, see `app.py` 
 
 ### Dataflow
 
-![Dataflow](/images/dataflow.svg)
+![Dataflow](/images/dataflow.png)
 
 H2O works with any dataset that can be clustered with SciKit Learn's `kmeans` function hosted using OrbitDB. This is a set of datapoints with each dimension stored as a separate entry in an OrbitDB docs type database. To fetch your database, just enter your OrbitDB address in the H2O UI.
 
